@@ -20,11 +20,6 @@ export default function(app) {
   app.use('/api/models', require('./api/model'));
   app.use('/api/employees', require('./api/employee'));
   app.use('/api/vehicles', require('./api/vehicle'));
-  app.use('/api/messages', require('./api/message'));
-  app.use('/api/teams', require('./api/team'));
-  app.use('/api/players', require('./api/player'));
-  app.use('/api/reports', require('./api/report'));
-  app.use('/api/dashboards', require('./api/dashboard'));
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth').default);

@@ -1,22 +1,22 @@
-'use strict';
+/* jshint indent: 2 */
 
-export default function(sequelize, DataTypes) {
-  return sequelize.define('Grade', {
-    grade_id: {
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('area', {
+    area_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    grade_name: {
+    area_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    grade_description: {
+    area_address: {
       type: DataTypes.STRING,
       allowNull: true
     }
   }, {
-    tableName: 'Grade'
+    tableName: 'area'
   });
-}
+};

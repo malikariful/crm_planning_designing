@@ -40,7 +40,7 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
       email,
       password
     }, callback ? : Function) {
-      return $http.post('/auth/local', {
+      return $http.post('/api/users', {
         email,
         password
       })

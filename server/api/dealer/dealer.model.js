@@ -2,14 +2,21 @@
 
 export default function(sequelize, DataTypes) {
   return sequelize.define('Dealer', {
-    _id: {
-      type: DataTypes.INTEGER,
+    dealer_id: {
+      type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: DataTypes.STRING,
-    info: DataTypes.STRING,
-    active: DataTypes.BOOLEAN
+    dealer_name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    dealer_address: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
+  }, {
+    tableName: 'Dealer'
   });
 }

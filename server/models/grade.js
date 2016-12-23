@@ -1,7 +1,7 @@
-'use strict';
+/* jshint indent: 2 */
 
-export default function(sequelize, DataTypes) {
-  return sequelize.define('Grade', {
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('grade', {
     grade_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -17,6 +17,6 @@ export default function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'Grade'
+    tableName: 'grade'
   });
-}
+};

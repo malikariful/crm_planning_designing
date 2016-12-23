@@ -1,7 +1,7 @@
-'use strict';
+/* jshint indent: 2 */
 
-export default function(sequelize, DataTypes) {
-  return sequelize.define('Employees_master', {
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('employees_master', {
     employee_master_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -16,11 +16,11 @@ export default function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: true,
       references: {
-        model: 'Designation',
+        model: 'designation',
         key: 'designation_id'
       }
     }
   }, {
-    tableName: 'Employees_master'
+    tableName: 'employees_master'
   });
-}
+};

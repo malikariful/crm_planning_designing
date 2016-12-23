@@ -1,7 +1,7 @@
-'use strict';
+/* jshint indent: 2 */
 
-export default function(sequelize, DataTypes) {
-  return sequelize.define('Permission', {
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('permission', {
     permission_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -13,6 +13,6 @@ export default function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-    tableName: 'Permission'
+    tableName: 'permission'
   });
-}
+};

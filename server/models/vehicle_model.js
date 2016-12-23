@@ -1,7 +1,7 @@
-'use strict';
+/* jshint indent: 2 */
 
-export default function(sequelize, DataTypes) {
-  return sequelize.define('Vehicle_model', {
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('vehicle_model', {
     vehicle_model_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -13,6 +13,6 @@ export default function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-    tableName: 'Vehicle_model'
+    tableName: 'vehicle_model'
   });
-}
+};

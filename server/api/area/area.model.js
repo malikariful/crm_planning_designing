@@ -1,18 +1,22 @@
 'use strict';
 
 export default function(sequelize, DataTypes) {
-  return sequelize.define('Permission', {
-    permission_id: {
+  return sequelize.define('Area', {
+    area_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    permisson_name: {
+    area_name: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    area_address: {
+      type: DataTypes.STRING,
+      allowNull: true
     }
   }, {
-    tableName: 'Permission'
+    tableName: 'Area'
   });
 }

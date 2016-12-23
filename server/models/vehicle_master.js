@@ -1,7 +1,7 @@
-'use strict';
+/* jshint indent: 2 */
 
-export default function(sequelize, DataTypes) {
-  return sequelize.define('Vehicle_master', {
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('vehicle_master', {
     vehicle_master_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -20,11 +20,11 @@ export default function(sequelize, DataTypes) {
       type: DataTypes.INTEGER(11),
       allowNull: true,
       references: {
-        model: 'Vehicle_model',
+        model: 'vehicle_model',
         key: 'vehicle_model_id'
       }
     }
   }, {
-    tableName: 'Vehicle_master'
+    tableName: 'vehicle_master'
   });
-}
+};

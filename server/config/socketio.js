@@ -27,11 +27,6 @@ function onConnect(socket) {
   require('../api/model/model.socket').register(socket);
   require('../api/employee/employee.socket').register(socket);
   require('../api/vehicle/vehicle.socket').register(socket);
-  require('../api/message/message.socket').register(socket);
-  require('../api/team/team.socket').register(socket);
-  require('../api/player/player.socket').register(socket);
-  require('../api/report/report.socket').register(socket);
-  require('../api/dashboard/dashboard.socket').register(socket);
 }
 
 export default function(socketio) {
