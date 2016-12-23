@@ -16,6 +16,17 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/role/role.socket').register(socket);
+  require('../api/permission/permission.socket').register(socket);
+  require('../api/job/job.socket').register(socket);
+  require('../api/problem/problem.socket').register(socket);
+  require('../api/grade/grade.socket').register(socket);
+  require('../api/customer/customer.socket').register(socket);
+  require('../api/designation/designation.socket').register(socket);
+  require('../api/dealer/dealer.socket').register(socket);
+  require('../api/model/model.socket').register(socket);
+  require('../api/employee/employee.socket').register(socket);
+  require('../api/vehicle/vehicle.socket').register(socket);
   require('../api/message/message.socket').register(socket);
   require('../api/team/team.socket').register(socket);
   require('../api/player/player.socket').register(socket);

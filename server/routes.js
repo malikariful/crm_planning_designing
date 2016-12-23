@@ -9,6 +9,17 @@ import path from 'path';
 
 export default function(app) {
   // Insert routes below
+  app.use('/api/roles', require('./api/role'));
+  app.use('/api/permissions', require('./api/permission'));
+  app.use('/api/jobs', require('./api/job'));
+  app.use('/api/problems', require('./api/problem'));
+  app.use('/api/grades', require('./api/grade'));
+  app.use('/api/customers', require('./api/customer'));
+  app.use('/api/designations', require('./api/designation'));
+  app.use('/api/dealers', require('./api/dealer'));
+  app.use('/api/models', require('./api/model'));
+  app.use('/api/employees', require('./api/employee'));
+  app.use('/api/vehicles', require('./api/vehicle'));
   app.use('/api/messages', require('./api/message'));
   app.use('/api/teams', require('./api/team'));
   app.use('/api/players', require('./api/player'));
