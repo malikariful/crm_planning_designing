@@ -1,0 +1,34 @@
+/* jshint indent: 2 */
+
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('Players', {
+    _id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    info: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    active: {
+      type: DataTypes.INTEGER(1),
+      allowNull: true
+    },
+    TeamId: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true,
+      references: {
+        model: 'Teams',
+        key: '_id'
+      }
+    }
+  }, {
+    tableName: 'Players'
+  });
+};
