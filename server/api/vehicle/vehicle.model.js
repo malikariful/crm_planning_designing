@@ -27,4 +27,5 @@ export default function(sequelize, DataTypes) {
   }, {
     tableName: 'Vehicle_master'
   });
+  
 }

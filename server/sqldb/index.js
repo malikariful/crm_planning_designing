@@ -36,4 +36,13 @@ db.Model = db.sequelize.import('../api/model/model.model');
 db.Employee = db.sequelize.import('../api/employee/employee.model');
 db.Vehicle = db.sequelize.import('../api/vehicle/vehicle.model');
 db.User = db.sequelize.import('../api/user/user.model');
+db.CustomerVehicle = db.sequelize.import('../ExtraDatabaseModel/customerVehicles.model');
+db.VehicleDetails = db.sequelize.import('../ExtraDatabaseModel/vehicleDetails.model');
+db.JobCartProblems = db.sequelize.import('../ExtraDatabaseModel/jobCartProblems.model');
+db.RolePermissions = db.sequelize.import('../ExtraDatabaseModel/rolePermissions.model');
+// db.UserRole = db.sequelize.import('../ExtraDatabaseModel/userRoles.model'); not working
+db.User.belongsToMany(db.Role, {through: 'UserRole'});
+db.Role.belongsToMany(db.User, {through: 'UserRole'});
+
+
 module.exports = db;

@@ -1,0 +1,3 @@
+Every table in this directory must add to it's related API file.
+Currently they are returning single sequlize model. But i need to export multiple model.
+Need to fixed that in future.
