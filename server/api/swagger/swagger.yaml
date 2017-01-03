@@ -1,0 +1,1663 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Vehicle CRM
+  description: This is a Vehicle CRM
+  contact:
+    name: Muhammad. Nazmul Ahsan API team
+    email: tarekahsan709@gmail.com
+    url: ''
+  license:
+    name: MIT
+    url: 'http://opensource.org/licenses/MIT'
+host: localhost:8000
+basePath: /api
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /users:
+    post:
+      tags:
+        - user
+      description: Creates a new user for the store.Duplicates are not allowed
+      operationId: addUser
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: User to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: User has created
+        '405':
+          description: Invalid input
+  /users/login:
+    get:
+      tags:
+        - user
+      summary: Logs user into the system
+      description: ""
+      operationId: loginUser
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: username
+          description: The user name for login
+          required: false
+          type: string
+        - in: query
+          name: password
+          description: The password for login in clear text
+          required: false
+          type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            type: string
+        "400":
+          description: Invalid username/password supplied
+  /users/logout:
+    get:
+      tags:
+        - user
+      summary: Logs out current logged in user session
+      description: ""
+      operationId: logoutUser
+      produces:
+        - application/json
+        - application/xml
+      responses:
+        default:
+          description: successful operation
+  /users/{username}:
+    get:
+      tags:
+        - user
+      summary: Get user by user name
+      description: ""
+      operationId: getUserByName
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: username
+          description: The name that needs to be fetched. Use user1 for testing.
+          required: true
+          type: string
+      responses:
+        "404":
+          description: User not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: Invalid username supplied
+    put:
+      tags:
+        - user
+      summary: Updated user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: username
+          description: name that need to be deleted
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Updated user object
+          required: false
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "404":
+          description: User not found
+        "400":
+          description: Invalid user supplied
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: username
+          description: The name that needs to be deleted
+          required: true
+          type: string
+      responses:
+        "404":
+          description: User not found
+        "400":
+          description: Invalid username supplied
+  /users/find_by_status:
+    get:
+      tags:
+        - user
+      summary: Finds users by status
+      description: Status values can be provided to fetch the user
+      operationId: findUsersByStatus
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: status
+          description: Status values that need to be considered for filter
+          required: false
+          type: string
+          items:
+            type: string
+      responses:
+        "200":
+          description: Found user by their status
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        "400":
+          description: Invalid status value
+  /users/find_by_email:
+    get:
+      tags:
+        - user
+      summary: Finds users by email address
+      description: Email values can be provided to fetch the user
+      operationId: findUsersByEmail
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: email
+          description: Email values that need to be considered for filter
+          required: false
+          type: string
+          items:
+            type: string
+      responses:
+        "200":
+          description: Found user by their email
+          schema:
+            type: object
+            items:
+              $ref: "#/definitions/User"
+        "400":
+          description: Invalid email
+  /users/find_by_phone:
+    get:
+      tags:
+        - user
+      summary: Finds users by phone number
+      description: Phone number can be provided to fetch the user
+      operationId: findUsersByPhoneNumber
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: phone
+          description: Phone number that need to be considered for filter
+          required: false
+          type: string
+          items:
+            type: string
+      responses:
+        "200":
+          description: Found user by their phone number
+          schema:
+            type: object
+            items:
+              $ref: "#/definitions/User"
+        "400":
+          description: Invalid phone number
+  /employees:
+    post:
+      tags:
+        - employee
+      description: Creates a new employee for the store.Duplicates are not allowed
+      operationId: addEmployees
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Employee to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Employees'
+      responses:
+        '200':
+          description: Employees has created
+        '405':
+          description: Invalid input
+  /employees/{employee_id}:
+    get:
+      tags:
+        - employee
+      summary: Find employee by ID
+      description: Returns a employee
+      operationId: getEmployeeById
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: employee_id
+          description: ID of employee that needs to be fetched
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Model not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Employees"
+        "400":
+          description: Invalid ID supplied
+    put:
+      tags:
+        - employee
+      summary: Updated a employee by ID
+      description: This can only be done by the logged in user.
+      operationId: updateEmployee
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: employee_id
+          description: ID of the employee that needs to be updated
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful updated
+        "404":
+          description: Employee not found
+        "400":
+          description: Invalid employee supplied
+    delete:
+      tags:
+        - employee
+      summary: Deletes a employee
+      description: ""
+      operationId: deleteEmployee
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: header
+          name: api_key
+          description: ""
+          required: true
+          type: string
+        - in: path
+          name: employee_id
+          description: ID of the employee that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful deleted
+        "404":
+          description: Employee not found
+        "400":
+          description: Invalid employee supplied
+  /vehicles:
+    post:
+      tags:
+        - vehicle
+      description: Creates a new vehicle for the store.Duplicates are not allowed
+      operationId: addVehicle
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Vehicle to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Vehicles'
+      responses:
+        '200':
+          description: Vehicle has created
+        '405':
+          description: Invalid input
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/errorModel'
+  /vehicles/{vehicle_engine_no}:
+    get:
+      tags:
+        - vehicle
+      summary: Find vehicle by engine number
+      description: Returns a vehicle
+      operationId: getVehicleByEngineNumber
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: vehicle_engine_no
+          description: Engine number of vehicle that needs to be fetched
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Vehicle not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Vehicles"
+        "400":
+          description: Invalid engine number supplied
+    put:
+      tags:
+        - vehicle
+      summary: Updated a vehicle by engine number
+      description: This can only be done by the logged in user.
+      operationId: updateVehicleByEngineNumber
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: vehicle_engine_no
+          description: Engine number of the vehicle that needs to be updated
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful updated
+        "404":
+          description: Vehicle not found
+        "400":
+          description: Invalid engine number supplied
+    delete:
+      tags:
+        - vehicle
+      summary: Deletes a vehicle
+      description: ""
+      operationId: deleteVehicleByEngineNumber
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: header
+          name: api_key
+          description: ""
+          required: true
+          type: string
+        - in: path
+          name: vehicle_engine_no
+          description: engine number of the vehicle that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful deleted
+        "404":
+          description: Vehicle not found
+        "400":
+          description: Invalid engine number supplied
+  /vehicles/search/model_no:
+    get:
+      tags:
+        - vehicle
+      summary: Finds vehicle by model number
+      description: Model number values can be provided to fetch the vehicle
+      operationId: findVehicleByModelNumber
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: modelNumber
+          description: Model number values that need to be considered for filter
+          required: false
+          type: string
+          items:
+            type: string
+      responses:
+        "200":
+          description: Found vehicle by their model
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Vehicles"
+        "400":
+          description: Invalid model number
+  /vehicles/search/sales_date:
+    get:
+      tags:
+        - vehicle
+      summary: Finds vehicle by sales date
+      description: Sales date values can be provided to fetch the vehicle
+      operationId: findVehicleBySalesDate
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: salesDate
+          description: Sales date need to be considered for filter
+          required: true
+          type: string
+          format: date
+          items:
+            type: string
+      responses:
+        "200":
+          description: Found vehicle by their selling date
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Vehicles"
+        "400":
+          description: Invalid date
+  /vehicles/search/import_date:
+    get:
+      tags:
+        - vehicle
+      summary: Finds vehicle by import date
+      description: Import date values can be provided to fetch the vehicle
+      operationId: findVehicleByImportDate
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: importDate
+          description: Import date need to be considered for filter
+          required: true
+          type: string
+          format: date
+          items:
+            type: string
+      responses:
+        "200":
+          description: Found vehicle by their import date
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Vehicles"
+        "400":
+          description: Invalid date
+  /vehicles/search/service_status:
+    get:
+      tags:
+        - vehicle
+      summary: Finds vehicle by service status
+      description: Service status can be provided to fetch the vehicle
+      operationId: findVehicleByServiceStatus
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: serviceStatus
+          description: Service status need to be considered for filter
+          required: true
+          type: string
+          items:
+            type: string
+      responses:
+        "200":
+          description: Found vehicle by their status
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Vehicles"
+        "400":
+          description: Invalid status
+  /vehicles/search/milage:
+    get:
+      tags:
+        - vehicle
+      summary: Finds vehicle by milage
+      description: Milage can be provided to fetch the vehicle
+      operationId: findVehicleByMilage
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: milage
+          description: Milage need to be considered for filter
+          required: true
+          type: string
+          items:
+            type: string
+      responses:
+        "200":
+          description: Found vehicles by milage
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Vehicles"
+        "400":
+          description: Invalid status
+  /models:
+    post:
+      tags:
+        - model
+      description: Creates a new model in the store.Duplicates are not allowed
+      operationId: addModel
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Vehicle model to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Models'
+      responses:
+        '200':
+          description: model has inserted
+        '405':
+          description: Invalid input
+  /models/{model_id}:
+    get:
+      tags:
+        - model
+      summary: Find model by ID
+      description: Returns a vehicle model
+      operationId: getModelById
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: model_id
+          description: ID of model that needs to be fetched
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Model not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Models"
+        "400":
+          description: Invalid ID supplied
+    put:
+      tags:
+        - model
+      summary: Updated a model by ID
+      description: This can only be done by the logged in user.
+      operationId: updateModel
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: model_id
+          description: ID of the model that needs to be updated
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful updated
+        "404":
+          description: Model not found
+        "400":
+          description: Invalid model supplied
+    delete:
+      tags:
+        - model
+      summary: Deletes a model
+      description: ""
+      operationId: deleteModel
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: header
+          name: api_key
+          description: ""
+          required: true
+          type: string
+        - in: path
+          name: model_id
+          description: ID of the model that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful deleted
+        "404":
+          description: Model not found
+        "400":
+          description: Invalid model supplied
+  /dealers:
+    post:
+      tags:
+        - dealer
+      description: Creates a new dealer for the store.Duplicates are not allowed
+      operationId: addDealer
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Dealer to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Dealers'
+      responses:
+        '200':
+          description: Dealer has created
+        '405':
+          description: Invalid input
+  /dealers/{dealer_id}:
+    get:
+      tags:
+        - dealer
+      summary: Find dealer by ID
+      description: Returns a dealer
+      operationId: getDealerById
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: dealer_id
+          description: ID of the dealer that needs to be fetched
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Dealer not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Dealers"
+        "400":
+          description: Invalid ID supplied
+    put:
+      tags:
+        - dealer
+      summary: Updated a dealer by ID
+      description: This can only be done by the logged in employee.
+      operationId: updateDealer
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: dealer_id
+          description: ID of the Dealer that needs to be updated
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful updated
+        "404":
+          description: Dealer not found
+        "400":
+          description: Invalid dealer id supplied
+    delete:
+      tags:
+        - dealer
+      summary: Deletes a dealer
+      description: ""
+      operationId: deleteDealer
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: header
+          name: api_key
+          description: ""
+          required: true
+          type: string
+        - in: path
+          name: dealer_id
+          description: ID of the dealer that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful deleted
+        "404":
+          description: Dealer not found
+        "400":
+          description: Invalid dealer supplied
+  /dealers/findByArea:
+    get:
+      tags:
+        - dealer
+      summary: Finds dealers by area
+      description: Ara values can be provided to fetch the dealer
+      operationId: findDealersByArea
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: status
+          description: Area values that need to be considered for filter
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+      responses:
+        "200":
+          description: Found user by their area
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Areas"
+        "400":
+          description: Invalid status value
+  /designations:
+    post:
+      tags:
+        - designation
+      description: Creates a new designation for the store.Duplicates are not allowed
+      operationId: addDesignation
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Designation to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Designations'
+      responses:
+        '200':
+          description: Designation has created
+        '405':
+          description: Invalid input
+  /designations/{designation_id}:
+    get:
+      tags:
+        - designation
+      summary: Find designation by ID
+      description: Returns a designation
+      operationId: getDesignationById
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: designation_id
+          description: ID of designation that needs to be fetched
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Designation not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Designations"
+        "400":
+          description: Invalid ID supplied
+    put:
+      tags:
+        - designation
+      summary: Updated a designation by ID
+      description: This can only be done by the logged in user.
+      operationId: updateDesignation
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: designation_id
+          description: ID of the designations that needs to be updated
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful updated
+        "404":
+          description: Designations not found
+        "400":
+          description: Invalid model supplied
+    delete:
+      tags:
+        - designation
+      summary: Deletes a designations
+      description: ""
+      operationId: deleteDesignations
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: header
+          name: api_key
+          description: ""
+          required: true
+          type: string
+        - in: path
+          name: designation_id
+          description: ID of the designations that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful deleted
+        "404":
+          description: Designations not found
+        "400":
+          description: Invalid Designationsdel supplied
+  /designations/get_by_level:
+    get:
+      tags:
+        - designation
+      summary: Finds designations by level
+      description: Designations lavel values can be provided to fetch the designations
+      operationId: getDesignationByLavel
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: query
+          name: designationByLavel
+          description: Designation Lavel that need to be considered for filter
+          required: false
+          type: string
+          items:
+            type: string
+      responses:
+        "200":
+          description: Found designations by their level
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Designations"
+        "400":
+          description: Invalid designations value
+  /customers:
+    post:
+      tags:
+        - customer
+      description: Creates a new customer.Duplicates are not allowed
+      operationId: addCustomer
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Customer to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Customers'
+      responses:
+        '200':
+          description: Customer has created
+        '405':
+          description: Invalid input
+  /customers/{customer_id}:
+    get:
+      tags:
+        - customer
+      summary: Find customer by ID
+      description: Returns a customer
+      operationId: getCustomerById
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: customer_id
+          description: ID of the customer that needs to be fetched
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Customer not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Customers"
+        "400":
+          description: Invalid ID supplied
+    put:
+      tags:
+        - customer
+      summary: Updated a customer by ID
+      description: This can only be done by the logged in employee.
+      operationId: updateCustomer
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: customer_id
+          description: ID of the customer that needs to be updated
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful updated
+        "404":
+          description: Customer not found
+        "400":
+          description: Invalid customer supplied
+    delete:
+      tags:
+        - customer
+      summary: Deletes a customer
+      description: ""
+      operationId: deleteCustomer
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: header
+          name: api_key
+          description: ""
+          required: true
+          type: string
+        - in: path
+          name: customer_id
+          description: ID of the customer that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful deleted
+        "404":
+          description: Customer not found
+        "400":
+          description: Invalid customer supplied
+  /grades:
+    post:
+      tags:
+        - grade
+      description: Creates a new grades for the store.Duplicates are not allowed
+      operationId: addGrade
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Grades to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Grades'
+      responses:
+        '200':
+          description: Grades has created
+        '405':
+          description: Invalid input
+  /grades/{grade_name}:
+    get:
+      tags:
+        - grade
+      summary: Get grade by grade name
+      description: ""
+      operationId: getGradeByName
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: grade_name
+          description: The grade that needs to be fetched. Use user1 for testing.
+          required: true
+          type: string
+      responses:
+        "404":
+          description: Grade not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Grades"
+        "400":
+          description: Invalid username supplied
+    put:
+      tags:
+        - grade
+      summary: Updated grade
+      description: This can only be done by the logged in grade.
+      operationId: updateGrade
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: grade_name
+          description: name that need to be deleted
+          required: true
+          type: string
+        - in: body
+          name: body
+          description: Updated grade object
+          required: false
+          schema:
+            $ref: "#/definitions/Grades"
+      responses:
+        "404":
+          description: Grades not found
+        "400":
+          description: Invalid grade supplied
+    delete:
+      tags:
+        - grade
+      summary: Delete grade
+      description: This can only be done by the logged in user.
+      operationId: deleteGrades
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: grade_name
+          description: The grade that needs to be deleted
+          required: true
+          type: string
+      responses:
+        "404":
+          description: Grades not found
+        "400":
+          description: Invalid username supplied
+  /problems:
+    post:
+      tags:
+        - problem
+      description: Creates a new problem for the store.Duplicates are not allowed
+      operationId: addProblem
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Problem to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Problems'
+      responses:
+        '200':
+          description: Problem has created
+        '405':
+          description: Invalid input
+  /problems/{problem_id}:
+    get:
+      tags:
+        - problem
+      summary: Find problem by ID
+      description: Returns a problem
+      operationId: getProblemById
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: problem_id
+          description: ID of the problem that needs to be fetched
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Problem not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Problems"
+        "400":
+          description: Invalid ID supplied
+    put:
+      tags:
+        - problem
+      summary: Updated a problem by ID
+      description: This can only be done by the logged in employee.
+      operationId: updateProblem
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: problem_id
+          description: ID of the problem that needs to be updated
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful updated
+        "404":
+          description: Problem not found
+        "400":
+          description: Invalid customer supplied
+    delete:
+      tags:
+        - problem
+      summary: Deletes a problem
+      description: ""
+      operationId: deleteProblem
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: header
+          name: api_key
+          description: ""
+          required: true
+          type: string
+        - in: path
+          name: problem_id
+          description: ID of the problem that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful deleted
+        "404":
+          description: Problem not found
+        "400":
+          description: Invalid customer supplied
+  /jobs:
+    post:
+      tags:
+        - job
+      description: Creates a new job for the store.Duplicates are not allowed
+      operationId: addJob
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: JobCart to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Jobs'
+      responses:
+        '200':
+          description: Job has created
+        '405':
+          description: Invalid input
+  /jobs/{job_id}:
+    get:
+      tags:
+        - job
+      summary: Find job by ID
+      description: Returns a job
+      operationId: getJobById
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: job_id
+          description: ID of the job that needs to be fetched
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Job not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Jobs"
+        "400":
+          description: Invalid ID supplied
+    put:
+      tags:
+        - job
+      summary: Updated a job by ID
+      description: This can only be done by the logged in employee.
+      operationId: updateJob
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: job_id
+          description: ID of the job that needs to be updated
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful updated
+        "404":
+          description: Job not found
+        "400":
+          description: Invalid job supplied
+    delete:
+      tags:
+        - job
+      summary: Deletes a job
+      description: ""
+      operationId: deleteJob
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: header
+          name: api_key
+          description: ""
+          required: true
+          type: string
+        - in: path
+          name: job_id
+          description: ID of the job that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful deleted
+        "404":
+          description: Job not found
+        "400":
+          description: Invalid job supplied
+  /permissions:
+    post:
+      tags:
+        - permission
+      description: Creates a new permission for the store.Duplicates are not allowed
+      operationId: addPermission
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Permission to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Permissions'
+      responses:
+        '200':
+          description: Permission has created
+        '405':
+          description: Invalid input
+  /permissions/{permission_id}:
+    get:
+      tags:
+        - permission
+      summary: Find permission by ID
+      description: Returns a permission
+      operationId: getPermissionbById
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: permission_id
+          description: ID of the permission that needs to be fetched
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Permission not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Permissions"
+        "400":
+          description: Invalid ID supplied
+    put:
+      tags:
+        - permission
+      summary: Updated a permission by ID
+      description: This can only be done by the logged in employee.
+      operationId: updatePermission
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: permission_id
+          description: ID of the permission that needs to be updated
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful updated
+        "404":
+          description: Permission not found
+        "400":
+          description: Invalid permission supplied
+    delete:
+      tags:
+        - permission
+      summary: Deletes a permission
+      description: ""
+      operationId: deletePermission
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: header
+          name: api_key
+          description: ""
+          required: true
+          type: string
+        - in: path
+          name: permission_id
+          description: ID of the permission that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful deleted
+        "404":
+          description: Permission not found
+        "400":
+          description: Invalid permission supplied
+  /roles:
+    post:
+      tags:
+        - role
+      description: Creates a new role for the store.Duplicates are not allowed
+      operationId: addRole
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          in: body
+          description: Role to add to the store
+          required: true
+          schema:
+            $ref: '#/definitions/Roles'
+      responses:
+        '200':
+          description: Role has created
+        '405':
+          description: Invalid input
+  /roles/{role_id}:
+    get:
+      tags:
+        - role
+      summary: Find role by ID
+      description: Returns a role
+      operationId: getRoleById
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: role_id
+          description: ID of the role that needs to be fetched
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Role not found
+        "200":
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Roles"
+        "400":
+          description: Invalid ID supplied
+    put:
+      tags:
+        - role
+      summary: Updated a role by ID
+      description: This can only be done by the logged in employee.
+      operationId: updateRole
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: path
+          name: role_id
+          description: ID of the role that needs to be updated
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful updated
+        "404":
+          description: Role not found
+        "400":
+          description: Invalid role supplied
+    delete:
+      tags:
+        - role
+      summary: Deletes a role
+      description: ""
+      operationId: deleteRole
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - in: header
+          name: api_key
+          description: ""
+          required: true
+          type: string
+        - in: path
+          name: role_id
+          description: ID of the role that needs to be deleted
+          required: true
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: successful deleted
+        "404":
+          description: Role not found
+        "400":
+          description: Invalid role supplied
+
+definitions:
+  User:
+    type: object
+    properties:
+      username:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      phone:
+        type: string
+      userStatus:
+        type: string
+        description: User Status
+  Employees:
+    type: object
+    required:
+      - employee_name
+      - employee_designation_id
+    properties:
+      employee_name:
+        type: string
+      employee_designation_id:
+        type: string
+  Vehicles:
+    type: object
+    required:
+      - vehicle_model_id
+      - vehicle_chassis_no
+      - vehicle_engine_no
+      - vehicle_name
+      - vehicle_sales_date
+    properties:
+      vehicle_model_id:
+        type: integer
+        format: int64
+      vehicle_chassis_no:
+        type: string
+      vehicle_engine_no:
+        type: string
+      vehicle_name:
+        type: string
+      vehicle_description:
+        type: string
+      vehicle_sales_date:
+        type: string
+        format: date
+      vehicle_import_date:
+        type: string
+        format: date
+      vehicle_dealer_id:
+        type: string
+      vehicle_last_grade:
+        type: string
+      vehicle_total_free_service:
+        type: string
+      vehicle_free_service_status:
+        type: string
+      vehicle_allocated_service_status:
+        type: string
+      vehicle_service_date:
+        type: string
+        format: date
+      vehicle_last_milage:
+        type: string
+  Customers:
+    type: object
+    properties:
+      customer_area_id:
+        type: integer
+        format: int64
+      customer_name:
+        type: string
+  Models:
+    type: object
+    properties:
+      model_name:
+        type: string
+  Areas:
+    type: object
+    properties:
+      area_id:
+        type: integer
+        format: int64
+      area_name:
+        type: string
+      area_address:
+        type: string
+  Dealers:
+    type: object
+    properties:
+      dealer_name:
+        type: string
+      dealer_address:
+        type: string
+  Designations:
+    type: object
+    properties:
+      designation_name:
+        type: string
+      designation_descriptions:
+        type: string
+      designation_lavel:
+        type: integer
+        format: int64
+  Grades:
+    type: object
+    properties:
+      grade_name:
+        type: string
+      grade_descriptions:
+        type: string
+  Problems:
+    type: object
+    required:
+      - problem_name
+      - problem_description
+    properties:
+      problem_name:
+        type: string
+      problem_description:
+        type: string
+      problem_fee:
+        type: string
+  Jobs:
+    type: object
+    required:
+      - job_name
+      - job_problem_id
+    properties:
+      job_name:
+        type: string
+      job_problem_id:
+        type: string
+      job_mistry_name:
+        type: string
+  Permissions:
+    type: object
+    required:
+      - permission_name
+      - role_id
+    properties:
+      permission_name:
+        type: string
+      role_id:
+        type: string
+  Roles:
+    type: object
+    required:
+      - role_name
+      - permission_id
+    properties:
+      role_name:
+        type: string
+      permission_id:
+        type: string
+
+  errorModel:
+    type: object
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
