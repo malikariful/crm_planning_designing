@@ -72,9 +72,10 @@ export function index(req, res) {
 
 // Gets a single Dealer from the DB
 export function show(req, res) {
+  console.log("here----------------------------------------------");
   return Dealer.find({
     where: {
-      _id: req.params.id
+      dealer_id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
