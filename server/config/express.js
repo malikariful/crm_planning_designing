@@ -48,7 +48,7 @@ export default function (app) {
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         next();
     });
-    //temporary alloaw cross access
+    //temporary allow cross access
     app.use(methodOverride());
     app.use(cookieParser());
     app.use(passport.initialize());
@@ -69,18 +69,18 @@ export default function (app) {
      * https://github.com/krakenjs/lusca
      */
     if (env !== 'test' && !process.env.SAUCE_USERNAME) {
-        app.use(lusca({
-            csrf: {
-                angular: true
-            },
-            xframe: 'SAMEORIGIN',
-            hsts: {
-                maxAge: 31536000, //1 year, in seconds
-                includeSubDomains: true,
-                preload: true
-            },
-            xssProtection: true
-        }));
+        // app.use(lusca({
+        //     csrf: {
+        //         angular: true
+        //     },
+        //     xframe: 'SAMEORIGIN',
+        //     hsts: {
+        //         maxAge: 31536000, //1 year, in seconds
+        //         includeSubDomains: true,
+        //         preload: true
+        //     },
+        //     xssProtection: true
+        // }));
     }
 
     if ('development' === env) {

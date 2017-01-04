@@ -74,7 +74,7 @@ export function index(req, res) {
 export function show(req, res) {
   return Designation.find({
     where: {
-      _id: req.params.id
+      designation_id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
