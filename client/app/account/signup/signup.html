@@ -25,14 +25,14 @@
                     <input type="email" name="email" class="form-control" ng-model="vm.user.email"
                            required
                            placeholder="Email"
-                           mongoose-error/>
+                           sequelize-error/>
                     <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
                         Doesn't look like a valid email.
                     </p>
                     <p class="help-block" ng-show="form.email.$error.required && vm.submitted">
                         What's your email address?
                     </p>
-                    <p class="help-block" ng-show="form.email.$error.mongoose">
+                    <p class="help-block" ng-show="form.email.$error.sequelize">
                         {{ vm.errors.email }}
                     </p>
                 </div>
@@ -47,12 +47,12 @@
                            placeholder="Password"
                            ng-minlength="3"
                            required
-                           mongoose-error/>
+                           sequelize-error/>
                     <p class="help-block"
                        ng-show="(form.password.$error.minlength || form.password.$error.required) && vm.submitted">
                         Password must be at least 3 characters.
                     </p>
-                    <p class="help-block" ng-show="form.password.$error.mongoose">
+                    <p class="help-block" ng-show="form.password.$error.sequelize">
                         {{ vm.errors.password }}
                     </p>
                 </div>

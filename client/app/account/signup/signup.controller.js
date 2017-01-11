@@ -3,7 +3,7 @@
 export default class SignupController {
 
   /*@ngInject*/
-  constructor(Auth, $state) {
+  constructor( Auth, $state) {
     this.Auth = Auth;
     this.$state = $state;
   }
@@ -26,14 +26,16 @@ export default class SignupController {
           this.errors = {};
 
           // Update validity of form fields that match the sequelize errors
-          // $scope.myForm.file.$setValidity("size", false);
-
           if (err.name) {
-            console.log(err);
-            angular.forEach(err.fields, field => {
-              form[field].$setValidity('sequelize', false);
-              this.errors[field] = err.message;
-            });
+            angular.forEach(err.fields, function(field, key) {
+              form[key].$setValidity('sequelize', false);
+              this.errors[key] = err.message;
+
+            }, this);
+            // angular.forEach(err.fields, field => {
+            //   form[field].$setValidity('sequelize', true);
+            //   this.errors[field] = err.message;
+            // });
           }
         });
     }

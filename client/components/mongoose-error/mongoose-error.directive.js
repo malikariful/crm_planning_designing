@@ -5,12 +5,12 @@
  */
 
 angular.module('crmApp')
-  .directive('mongooseError', function() {
+  .directive('sequelizeError', function() {
     return {
       restrict: 'A',
       require: 'ngModel',
       link: function(scope, element, attrs, ngModel) {
-        element.on('keydown', () => ngModel.$setValidity('mongoose', true));
+        element.on('keydown', () => ngModel.$setValidity('sequelize', true));
       }
     };
   });
