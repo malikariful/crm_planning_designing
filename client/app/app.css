@@ -6318,3 +6318,18 @@ label.todo-checkbox > span:before {
 .weather-wrapper .font-x3 {
     font-size: 3em; }
 
+.navbar-default{
+    background-color:#1C2B36;
+}
+.navbar-default .navbar-brand {
+    color: #eee;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #eee;
+}
+.form-control, .form-control:focus {
+    color: black;
+}
+.adminNav{
+    margin-top: 5px;
+}
