@@ -11,15 +11,19 @@ export default class SignupController {
   register(form) {
     this.submitted = true;
     if (form.$valid) {
+      console.log(this.user.password );
+      console.log(this.user.confirmPassword );
+      if(this.user.confirmPassword !== this.user.password){
+        form.confirmPassword.$error.match = true;
+      }
       return this.Auth.createUser({
           name: this.user.name,
           email: this.user.email,
           password: this.user.password
         })
         .then(() => {
-          // Account created, redirect to home
-          alert("User has created successfully");
-          this.$state.go('main');
+          // Account created, redirect to Dashboard
+          this.$state.go('dashboard');
         })
         .catch(err => {
           err = err.data;
@@ -32,10 +36,6 @@ export default class SignupController {
               this.errors[key] = err.message;
 
             }, this);
-            // angular.forEach(err.fields, field => {
-            //   form[field].$setValidity('sequelize', true);
-            //   this.errors[field] = err.message;
-            // });
           }
         });
     }

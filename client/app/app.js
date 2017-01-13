@@ -19,11 +19,14 @@ import {
 import _Auth from '../components/auth/auth.module';
 import account from './account';
 import admin from './admin';
+import dashboard from './dashboard';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
+import pageTop from '../components/pageTop/pageTop.directive';
+import scrollPosition from '../components/scrollPosition/scrollPosition.directive';
 
 import './app.css';
 
@@ -33,7 +36,7 @@ angular.module('crmApp', [
     // ngMessages,
 
     // ngValidationMatch,
-    _Auth, account, admin, navbar, footer, main, constants, util
+    _Auth, account, admin, dashboard, navbar, footer, main, constants, util, pageTop, scrollPosition
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
