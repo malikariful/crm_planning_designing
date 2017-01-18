@@ -1,31 +1,30 @@
-<div id="wrapper" style="margin-top: 200px">
+<div id="wrapper">
     <div class="overlay"></div>
-
-    <!-- Sidebar -->
     <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
         <ul class="nav sidebar-nav">
             <!--<li class="sidebar-brand">-->
-                <!--<a href="#">-->
-                    <!--Bootstrap 3-->
-                <!--</a>-->
+            <!--<a href="#">-->
+            <!--Bootstrap 3-->
+            <!--</a>-->
             <!--</li>-->
             <li>
-                <a href="#"><i class="fa fa-fw fa-home"></i> Dashboard</a>
+                <a ui-sref="dashboard"><i class="fa fa-fw fa-home"></i> Dashboard</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-folder"></i> Page one</a>
+                <a ui-sref="dashboard.admin"><i class="fa fa-fw fa-folder"></i> Jobs</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-file-o"></i> Second page</a>
+                <a href="#"><i class="fa fa-fw fa-file-o"></i> Employees</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-cog"></i> Third page</a>
+                <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
             </li>
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Dropdown <span class="caret"></span></a>
+            <li class="Vehicles">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Vehicles
+                    <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Dropdown heading</li>
-                    <li><a href="#">Action</a></li>
+                    <li class="dropdown-header">Vehicles Modules</li>
+                    <li><a href="#">Vehicles List</a></li>
                     <li><a href="#">Another action</a></li>
                     <li><a href="#">Something else here</a></li>
                     <li><a href="#">Separated link</a></li>
@@ -33,34 +32,131 @@
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-bank"></i> Page four</a>
+                <a href="#"><i class="fa fa-fw fa-bank"></i> Customers</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-dropbox"></i> Page 5</a>
+                <a href="#"><i class="fa fa-fw fa-dropbox"></i> Dealers</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-twitter"></i> Last page</a>
+                <a href="#"><i class="fa fa-fw fa-twitter"></i> Employees</a>
             </li>
         </ul>
     </nav>
-    <!-- /#sidebar-wrapper -->
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
+    <div class="container" id="page-content-wrapper">
         <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
             <span class="hamb-top"></span>
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
         </button>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-
+        <section class="container">
+            <ui-view>
+                <div class="row active-with-click">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <article class="material-card Red">
+                            <h2>
+                                <span>Christopher Walken</span>
+                                <strong>
+                                    <i class="fa fa-fw fa-star"></i>
+                                    The Deer Hunter
+                                </strong>
+                            </h2>
+                            <div class="mc-content">
+                                <div class="img-container">
+                                    <img class="img-responsive"
+                                         src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg">
+                                </div>
+                                <div class="mc-description">
+                                    He has appeared in more than 100 films and television shows, including The Deer
+                                    Hunter, Annie Hall, The Prophecy trilogy, The Dogs of War ...
+                                </div>
+                            </div>
+                            <a class="mc-btn-action">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                            <div class="mc-footer">
+                                <h4>
+                                    Social
+                                </h4>
+                                <a class="fa fa-fw fa-facebook"></a>
+                                <a class="fa fa-fw fa-twitter"></a>
+                                <a class="fa fa-fw fa-linkedin"></a>
+                                <a class="fa fa-fw fa-google-plus"></a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <article class="material-card Pink">
+                            <h2>
+                                <span>Sean Penn</span>
+                                <strong>
+                                    <i class="fa fa-fw fa-star"></i>
+                                    Mystic River
+                                </strong>
+                            </h2>
+                            <div class="mc-content">
+                                <div class="img-container">
+                                    <img class="img-responsive"
+                                         src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-sean-penn.jpg">
+                                </div>
+                                <div class="mc-description">
+                                    He has won two Academy Awards, for his roles in the mystery drama Mystic River
+                                    (2003) and the biopic Milk (2008). Penn began his acting career in television with a
+                                    brief appearance in a 1974 episode of Little House on the Prairie ...
+                                </div>
+                            </div>
+                            <a class="mc-btn-action">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                            <div class="mc-footer">
+                                <h4>
+                                    Social
+                                </h4>
+                                <a class="fa fa-fw fa-facebook"></a>
+                                <a class="fa fa-fw fa-twitter"></a>
+                                <a class="fa fa-fw fa-linkedin"></a>
+                                <a class="fa fa-fw fa-google-plus"></a>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <article class="material-card Purple">
+                            <h2>
+                                <span>Clint Eastwood</span>
+                                <strong>
+                                    <i class="fa fa-fw fa-star"></i>
+                                    Million Dollar Baby
+                                </strong>
+                            </h2>
+                            <div class="mc-content">
+                                <div class="img-container">
+                                    <img class="img-responsive"
+                                         src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-clint-eastwood.jpg">
+                                </div>
+                                <div class="mc-description">
+                                    He rose to international fame with his role as the Man with No Name in Sergio
+                                    Leone's Dollars trilogy of spaghetti Westerns during the 1960s ...
+                                </div>
+                            </div>
+                            <a class="mc-btn-action">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                            <div class="mc-footer">
+                                <h4>
+                                    Social
+                                </h4>
+                                <a class="fa fa-fw fa-facebook"></a>
+                                <a class="fa fa-fw fa-twitter"></a>
+                                <a class="fa fa-fw fa-linkedin"></a>
+                                <a class="fa fa-fw fa-google-plus"></a>
+                            </div>
+                        </article>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </ui-view>
+
+        </section>
     </div>
-    <!-- /#page-content-wrapper -->
 
 </div>
 <!-- /#wrapper -->
@@ -93,4 +189,35 @@
             $('#wrapper').toggleClass('toggled');
         });
     });
+
+    $(function () {
+        $('.material-card > .mc-btn-action').click(function () {
+            var card = $(this).parent('.material-card');
+            var icon = $(this).children('i');
+            icon.addClass('fa-spin-fast');
+
+            if (card.hasClass('mc-active')) {
+                card.removeClass('mc-active');
+
+                window.setTimeout(function () {
+                    icon
+                            .removeClass('fa-arrow-left')
+                            .removeClass('fa-spin-fast')
+                            .addClass('fa-bars');
+
+                }, 800);
+            } else {
+                card.addClass('mc-active');
+
+                window.setTimeout(function () {
+                    icon
+                            .removeClass('fa-bars')
+                            .removeClass('fa-spin-fast')
+                            .addClass('fa-arrow-left');
+
+                }, 800);
+            }
+        });
+    });
 </script>
+
