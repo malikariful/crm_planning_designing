@@ -1,0 +1,36 @@
+.paddingTop-10 {
+    padding-top: 10px;
+}
+.gray-div {
+    min-height: 50px;
+    font-size: x-large;
+    color: #7f7777;
+    background: #DDDDDD;
+}
+.gray-div p {
+    padding: 10px;
+}
+.margin-top-15 {
+    margin-top: 15px;
+}
+.padding-10 {
+    padding: 10px;
+}
+.padding-left-10 {
+    padding: 0px 10px;
+}
+.min-wid-200 {
+    min-width: 200px;
+}
+.border-percentage {
+    position: relative;
+    /*margin-bottom: 40px;*/
+}
+.border-percentage:after {
+    content: '';
+    position: absolute;
+    width: 140%;
+    left: -20%;
+    bottom: -20px;
+    border-bottom: 1px solid #DDDDDD;
+}

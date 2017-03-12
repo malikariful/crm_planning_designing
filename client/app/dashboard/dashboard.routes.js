@@ -8,5 +8,6 @@ export default function routes($stateProvider) {
     template: require('./dashboard.html'),
     controller: 'DashboardController',
     controllerAs: 'dashboard',
+    authenticate: 'admin'
   });
 };

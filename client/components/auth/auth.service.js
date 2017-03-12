@@ -41,6 +41,8 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
         .then(res => {
           $cookies.put('token', res.data.token);
           currentUser = User.get();
+          console.log('inside login currentUser $promise');
+          console.log(currentUser.$promise);
           return currentUser.$promise;
         })
         .then(user => {
@@ -111,7 +113,6 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
      */
     getCurrentUser(callback) {
       var value = currentUser.hasOwnProperty('$promise') ? currentUser.$promise : currentUser;
-
       return $q.when(value)
         .then(user => {
           safeCb(callback)(user);
@@ -165,6 +166,8 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
     hasRole(role, callback) {
       return Auth.getCurrentUser(undefined)
         .then(user => {
+          console.log('Current user role');
+          console.log(user.role);
           var has = user.hasOwnProperty('role') ? hasRole(user.role, role) : false;
 
           safeCb(callback)(has);

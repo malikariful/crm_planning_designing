@@ -1,223 +1,123 @@
-<div id="wrapper">
-    <div class="overlay"></div>
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-        <ul class="nav sidebar-nav">
-            <!--<li class="sidebar-brand">-->
-            <!--<a href="#">-->
-            <!--Bootstrap 3-->
-            <!--</a>-->
-            <!--</li>-->
-            <li>
-                <a ui-sref="dashboard"><i class="fa fa-fw fa-home"></i> Dashboard</a>
-            </li>
-            <li>
-                <a ui-sref="dashboard.admin"><i class="fa fa-fw fa-folder"></i> Jobs</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-file-o"></i> Employees</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
-            </li>
-            <li class="Vehicles">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-fw fa-plus"></i> Vehicles
-                    <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Vehicles Modules</li>
-                    <li><a href="#">Vehicles List</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-bank"></i> Customers</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-dropbox"></i> Dealers</a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-fw fa-twitter"></i> Employees</a>
-            </li>
-        </ul>
-    </nav>
+<div class="row">
 
-    <div class="container" id="page-content-wrapper">
-        <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
-            <span class="hamb-top"></span>
-            <span class="hamb-middle"></span>
-            <span class="hamb-bottom"></span>
-        </button>
-        <section class="container">
-            <ui-view>
-                <div class="row active-with-click">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <article class="material-card Red">
-                            <h2>
-                                <span>Christopher Walken</span>
-                                <strong>
-                                    <i class="fa fa-fw fa-star"></i>
-                                    The Deer Hunter
-                                </strong>
-                            </h2>
-                            <div class="mc-content">
-                                <div class="img-container">
-                                    <img class="img-responsive"
-                                         src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg">
-                                </div>
-                                <div class="mc-description">
-                                    He has appeared in more than 100 films and television shows, including The Deer
-                                    Hunter, Annie Hall, The Prophecy trilogy, The Dogs of War ...
-                                </div>
-                            </div>
-                            <a class="mc-btn-action">
-                                <i class="fa fa-bars"></i>
-                            </a>
-                            <div class="mc-footer">
-                                <h4>
-                                    Social
-                                </h4>
-                                <a class="fa fa-fw fa-facebook"></a>
-                                <a class="fa fa-fw fa-twitter"></a>
-                                <a class="fa fa-fw fa-linkedin"></a>
-                                <a class="fa fa-fw fa-google-plus"></a>
-                            </div>
-                        </article>
+    <!-- uncomment code for absolute positioning tweek see top comment in css -->
+    <!-- <div class="absolute-wrapper"> </div> -->
+    <!-- Menu -->
+    <div class="side-menu">
+
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <div class="brand-wrapper">
+                    <!-- Hamburger -->
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- Brand -->
+                    <div class="brand-name-wrapper">
+                        <a class="navbar-brand" href="#">
+                            Dashboard
+                        </a>
                     </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <article class="material-card Pink">
-                            <h2>
-                                <span>Sean Penn</span>
-                                <strong>
-                                    <i class="fa fa-fw fa-star"></i>
-                                    Mystic River
-                                </strong>
-                            </h2>
-                            <div class="mc-content">
-                                <div class="img-container">
-                                    <img class="img-responsive"
-                                         src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-sean-penn.jpg">
+
+                    <!-- Search -->
+                    <a data-toggle="collapse" href="#search" class="btn btn-default" id="search-trigger">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </a>
+
+                    <!-- Search body -->
+                    <div id="search" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form class="navbar-form" role="search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Search">
                                 </div>
-                                <div class="mc-description">
-                                    He has won two Academy Awards, for his roles in the mystery drama Mystic River
-                                    (2003) and the biopic Milk (2008). Penn began his acting career in television with a
-                                    brief appearance in a 1974 episode of Little House on the Prairie ...
-                                </div>
-                            </div>
-                            <a class="mc-btn-action">
-                                <i class="fa fa-bars"></i>
-                            </a>
-                            <div class="mc-footer">
-                                <h4>
-                                    Social
-                                </h4>
-                                <a class="fa fa-fw fa-facebook"></a>
-                                <a class="fa fa-fw fa-twitter"></a>
-                                <a class="fa fa-fw fa-linkedin"></a>
-                                <a class="fa fa-fw fa-google-plus"></a>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <article class="material-card Purple">
-                            <h2>
-                                <span>Clint Eastwood</span>
-                                <strong>
-                                    <i class="fa fa-fw fa-star"></i>
-                                    Million Dollar Baby
-                                </strong>
-                            </h2>
-                            <div class="mc-content">
-                                <div class="img-container">
-                                    <img class="img-responsive"
-                                         src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-clint-eastwood.jpg">
-                                </div>
-                                <div class="mc-description">
-                                    He rose to international fame with his role as the Man with No Name in Sergio
-                                    Leone's Dollars trilogy of spaghetti Westerns during the 1960s ...
-                                </div>
-                            </div>
-                            <a class="mc-btn-action">
-                                <i class="fa fa-bars"></i>
-                            </a>
-                            <div class="mc-footer">
-                                <h4>
-                                    Social
-                                </h4>
-                                <a class="fa fa-fw fa-facebook"></a>
-                                <a class="fa fa-fw fa-twitter"></a>
-                                <a class="fa fa-fw fa-linkedin"></a>
-                                <a class="fa fa-fw fa-google-plus"></a>
-                            </div>
-                        </article>
+                                <button type="submit" class="btn btn-default "><span class="glyphicon glyphicon-ok"></span></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </ui-view>
 
-        </section>
+            </div>
+
+            <!-- Main Menu -->
+            <div class="side-menu-container">
+
+                <ul class="nav navbar-nav">
+
+                    <li>
+                        <a data-toggle="collapse" href="#dropdown1">
+                            <span class="glyphicon glyphicon-send"></span> Job Card <span class="caret"></span>
+                        </a>
+                        <div id="dropdown1" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="nav navbar-nav">
+                                    <li><a ui-sref="dashboard.jobCardView">View</a></li>
+                                    <li><a ui-sref="dashboard.jobCard">Set Up</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a data-toggle="collapse" href="#dropdown2">
+                            <span class="glyphicon glyphicon-send"></span> Customer <span class="caret"></span>
+                        </a>
+
+                        <div id="dropdown2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#">View</a></li>
+                                    <li><a href="#">Set Up</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a data-toggle="collapse" href="#dropdown3">
+                            <span class="glyphicon glyphicon-send"></span> Vehicle <span class="caret"></span>
+                        </a>
+
+                        <div id="dropdown3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#">View</a></li>
+                                    <li><a href="#">Set Up</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a data-toggle="collapse" href="#dropdown4">
+                            <span class="glyphicon glyphicon-user"></span> Area <span class="caret"></span>
+                        </a>
+
+                        <div id="dropdown4" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <ul class="nav navbar-nav">
+                                    <li><a href="#">View</a></li>
+                                    <li><a href="#">Set Up</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+
     </div>
 
+    <!-- Main Content -->
+    <div class="container-fluid">
+        <div class="side-body">
+            <ui-view></ui-view>
+        </div>
+    </div>
 </div>
-<!-- /#wrapper -->
-<script>
-    $(document).ready(function () {
-        var trigger = $('.hamburger'),
-                overlay = $('.overlay'),
-                isClosed = false;
-
-        trigger.click(function () {
-            hamburger_cross();
-        });
-
-        function hamburger_cross() {
-
-            if (isClosed == true) {
-                overlay.hide();
-                trigger.removeClass('is-open');
-                trigger.addClass('is-closed');
-                isClosed = false;
-            } else {
-                overlay.show();
-                trigger.removeClass('is-closed');
-                trigger.addClass('is-open');
-                isClosed = true;
-            }
-        }
-
-        $('[data-toggle="offcanvas"]').click(function () {
-            $('#wrapper').toggleClass('toggled');
-        });
-    });
-
-    $(function () {
-        $('.material-card > .mc-btn-action').click(function () {
-            var card = $(this).parent('.material-card');
-            var icon = $(this).children('i');
-            icon.addClass('fa-spin-fast');
-
-            if (card.hasClass('mc-active')) {
-                card.removeClass('mc-active');
-
-                window.setTimeout(function () {
-                    icon
-                            .removeClass('fa-arrow-left')
-                            .removeClass('fa-spin-fast')
-                            .addClass('fa-bars');
-
-                }, 800);
-            } else {
-                card.addClass('mc-active');
-
-                window.setTimeout(function () {
-                    icon
-                            .removeClass('fa-bars')
-                            .removeClass('fa-spin-fast')
-                            .addClass('fa-arrow-left');
-
-                }, 800);
-            }
-        });
-    });
-</script>
-

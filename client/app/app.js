@@ -6,6 +6,7 @@ import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
 import uiRouter from 'angular-ui-router';
+import smartTable from 'angular-smart-table';
 // import ngMessages from 'angular-messages';
 //import ngValidationMatch from 'angular-validation-match';
 
@@ -18,23 +19,22 @@ import _Auth from '../components/auth/auth.module';
 import account from './account';
 import admin from './admin';
 import dashboard from './dashboard';
+import jobCard from './jobCard';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
 import constants from './app.constants';
 import util from '../components/util/util.module';
-import pageTop from '../components/pageTop/pageTop.directive';
-import scrollPosition from '../components/scrollPosition/scrollPosition.directive';
 
 import './app.css';
 
 angular.module('crmApp', [
     // ngAnimate,
-    ngCookies, ngResource, ngSanitize, uiRouter,
+    ngCookies, ngResource, ngSanitize, uiRouter, smartTable,
     // ngMessages,
 
     // ngValidationMatch,
-    _Auth, account, admin, dashboard, navbar, footer, main, constants, util, pageTop, scrollPosition
+    _Auth, account, admin, dashboard, navbar, footer, main, constants, util, jobCard
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
