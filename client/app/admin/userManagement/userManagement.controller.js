@@ -21,5 +21,19 @@ export default class UserManagementController {
         });
 
     };
+    createUser = function () {
+        this.ModalService.showModal({
+            templateUrl: 'createUser.html',
+            controller: function () {
+
+            }
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (result) {
+                this.message = result ? "You said Yes" : "You said No";
+            });
+        });
+
+    };
 
 }
