@@ -10,16 +10,26 @@ import Sequelize from 'sequelize';
 
 var db = {
   Sequelize,
-  sequelize: new Sequelize(config.sequelize.uri, config.sequelize.options)
+  sequelize: new Sequelize('CRM', 'root', '1234567Asd#', {
+    host: 'localhost',
+    dialect: 'mysql',
+
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    },
+  })
 };
 db.sequelize.authenticate()
-    .then(function (err) {
-        console.log('Connection has been established successfully.');
-    })
-    .catch(function (err) {
-        console.log('Unable to connect to the database:', err);
-    });
-    
+  .then(function (err) {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(function (err) {
+    console.log('****************************************************');
+    console.log('Unable to connect to the database:*************', err);
+  });
+
 // Insert models below
 db.Vehicle = db.sequelize.import('../api/vehicle/vehicle.model');
 db.Role = db.sequelize.import('../api/role/role.model');
@@ -41,7 +51,11 @@ db.VehicleDetails = db.sequelize.import('ExtraDatabaseModel/vehicleDetails.model
 db.JobCartProblems = db.sequelize.import('ExtraDatabaseModel/jobCartProblems.model');
 db.RolePermissions = db.sequelize.import('ExtraDatabaseModel/rolePermissions.model');
 // db.UserRole = db.sequelize.import('../ExtraDatabaseModel/userRoles.model'); not working
-db.User.belongsToMany(db.Role, {through: 'UserRole'}); // Not added into seed
-db.Role.belongsToMany(db.User, {through: 'UserRole'});
+db.User.belongsToMany(db.Role, {
+  through: 'UserRole'
+}); // Not added into seed
+db.Role.belongsToMany(db.User, {
+  through: 'UserRole'
+});
 
 module.exports = db;

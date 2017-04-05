@@ -6,7 +6,13 @@ import ngCookies from 'angular-cookies';
 import ngResource from 'angular-resource';
 import ngSanitize from 'angular-sanitize';
 import uiRouter from 'angular-ui-router';
+import angularAnimate from 'angular-animate';
+import angularArea from 'angular-aria';
+import angularMessage from 'angular-messages';
+import angularMaterial from 'angular-material';
 import smartTable from 'angular-smart-table';
+
+
 // import ngMessages from 'angular-messages';
 //import ngValidationMatch from 'angular-validation-match';
 
@@ -30,7 +36,7 @@ import './app.css';
 
 angular.module('crmApp', [
     // ngAnimate,
-    ngCookies, ngResource, ngSanitize, uiRouter, smartTable,
+    ngCookies, ngResource, ngSanitize, uiRouter, angularAnimate, angularArea, angularMessage, angularMaterial,  smartTable,
     // ngMessages,
 
     // ngValidationMatch,
@@ -56,3 +62,13 @@ angular.element(document)
       strictDi: true
     });
   });
+
+//
+// <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+//     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+//     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+//     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+//
+//     <!-- Angular Material Library -->
+
+// <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>

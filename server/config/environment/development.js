@@ -7,7 +7,7 @@ module.exports = {
 
   // Sequelize connection opions
   sequelize: {
-    uri: 'mysql://root:user@127.0.0.1:3306/CRM',
+    uri: 'mysql://root:1234567Asd#@localhost:3306/CRM',
     options: {
       logging: false,
       define: {
@@ -22,3 +22,4 @@ module.exports = {
    seedDB: true
 
 };
+

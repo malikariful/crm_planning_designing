@@ -6,5 +6,8 @@ client/bower_components
 client/index.html
 dist
 /server/config/local.env.js
+/server/config/environment/development.js
+/server/sqldb/index.js
+
 npm-debug.log
 coverage

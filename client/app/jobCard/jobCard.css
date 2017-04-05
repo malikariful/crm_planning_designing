@@ -22,15 +22,50 @@
 .min-wid-200 {
     min-width: 200px;
 }
-.border-percentage {
-    position: relative;
-    /*margin-bottom: 40px;*/
-}
-.border-percentage:after {
-    content: '';
+/*.border-percentage {*/
+    /*position: relative;*/
+    /*!*margin-bottom: 40px;*!*/
+/*}*/
+/*.border-percentage:after {*/
+    /*content: '';*/
+    /*position: absolute;*/
+    /*width: 140%;*/
+    /*left: -20%;*/
+    /*bottom: -20px;*/
+    /*border-bottom: 1px solid #DDDDDD;*/
+/*}*/
+.inputdemoIcons {
+    /*
+  .right-icon {
     position: absolute;
-    width: 140%;
-    left: -20%;
-    bottom: -20px;
-    border-bottom: 1px solid #DDDDDD;
+    top: 4px;
+    right: 2px;
+    left: auto;
+    margin-top: 0;
+  }
+  */ }
+.inputdemoIcons .inputIconDemo {
+    min-height: 48px; }
+.inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.email {
+    color: green; }
+.inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.name {
+    color: dodgerblue; }
+.inputdemoIcons md-input-container.md-input-invalid > md-icon.email,
+.inputdemoIcons md-input-container.md-input-invalid > md-icon.name {
+    color: red; }
+
+.border-bottom-1{
+    /*border-bottom: 1px dashed grey;*/
+}
+.margin-top-50{
+    margin-top: 50px !important;
+}
+.margin-top-5{
+    margin-top: 5px !important;
+}
+.border-bottom-style{
+    width: 100%;
+    box-shadow: 0px 24px 3px -24px black;
+    border-bottom: 0;
+    height: 50px;
 }

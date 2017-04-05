@@ -9,6 +9,7 @@ export default function routes($stateProvider) {
     controller: 'JobCardController',
     controllerAs: 'jobCard',
     authenticate: 'admin'
+
   });
   $stateProvider.state('dashboard.jobCardView', {
     url: '/dashboard-jobCardView',
