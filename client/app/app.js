@@ -24,6 +24,7 @@ import {
 import _Auth from '../components/auth/auth.module';
 import account from './account';
 import admin from './admin';
+import userManagement from './admin/userManagement';
 import dashboard from './dashboard';
 import jobCard from './jobCard';
 import navbar from '../components/navbar/navbar.component';
@@ -40,7 +41,7 @@ angular.module('crmApp', [
     // ngMessages,
 
     // ngValidationMatch,
-    _Auth, account, admin, dashboard, navbar, footer, main, constants, util, jobCard
+    _Auth, account, admin, userManagement, dashboard, navbar, footer, main, constants, util, jobCard
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

@@ -47,6 +47,7 @@ body {
 /* inject:css */
 @import 'account/account.css';
 @import 'admin/admin.css';
+@import 'admin/userManagement/userManagement.css';
 @import 'dashboard/dashboard.css';
 @import 'jobCard/jobCard.css';
 @import 'main/main.css';
