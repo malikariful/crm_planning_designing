@@ -2,16 +2,18 @@
 
 export default class UserManagementController {
     /*@ngInject*/
-    constructor(User, ModalService) {
-        // Use the User $resource to fetch all users
-        this.users = User.query();
-        console.log(this.users);
+    constructor(User, ModalService, Auth, $rootScope) {
+        this.Auth = Auth;
+         $rootScope.users = User.query();
+
+        console.log($rootScope.users);
         this.ModalService = ModalService;
     }
 
+
     delete(user) {
         user.$remove();
-        this.users.splice(this.users.indexOf(user), 1);
+        users.splice(this.users.indexOf(user), 1);
     }
 
     showAModal = function () {
@@ -22,23 +24,77 @@ export default class UserManagementController {
             }
         }).then(function (modal) {
             modal.element.modal();
-            modal.close.then(function (result) {
-                this.message = result ? "You said Yes" : "You said No";
+            modal.close.then(function (user) {
             });
         });
 
     };
+
     createUser = function () {
         this.ModalService.showModal({
             templateUrl: 'createUser.html',
-            controller: function () {
+            controller: ['$rootScope', '$scope', 'close', 'Auth','User',
+                function ($rootScope, $scope, close, Auth, User) {
+                    $scope.roles = [
+                        {
+                            "name": "admin"
+                        },
+                        {
+                            "name": "user"
+                        },
+                        {
+                            "name": "customer"
+                        },
+                        {
+                            "name": "employee"
+                        }
+                    ];
+                    $scope.createUser = function () {
+                        return Auth.createUserFromManagement({
+                            name: $scope.user.name,
+                            firstName: $scope.user.firstName,
+                            lastName: $scope.user.lastName,
+                            email: $scope.user.email,
+                            role: $scope.user.role[0].name,
+                            password: '123456'
+                        })
+                            .then(() => {
+                                $rootScope.users = User.query();
+                                close(null, 500);
 
-            }
+                            })
+                            .catch(err => {
+                                err = err.data;
+                                this.errors = {};
+                                if (err.name) {
+                                    angular.forEach(err.fields, function (field, key) {
+                                        form[key].$setValidity('sequelize', false);
+                                        this.errors[key] = err.message;
+
+                                    }, this);
+                                }
+                                close(null, 500);
+                            });
+
+                    };
+                    // $scope.close = function () {
+                    //     close({
+                    //         user: $scope.user,
+                    //         Auth: Auth
+                    //     }, 500);
+                    //
+                    // };
+                    $scope.close = function () {
+                        close(null, 500);
+                    };
+                }
+            ]
+
         }).then(function (modal) {
             modal.element.modal();
             modal.close.then(function (result) {
-                this.message = result ? "You said Yes" : "You said No";
             });
+
         });
 
     };

@@ -28,7 +28,10 @@ export function index(req, res) {
     attributes: [
       '_id',
       'name',
+      'firstName',
+      'lastName',
       'email',
+      'activate',
       'role',
       'createdAt',
       'updatedAt',
@@ -45,9 +48,11 @@ export function index(req, res) {
  * Creates a new user
  */
 export function create(req, res, next) {
+  console.log('req----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
+  console.log(req.body);
   var newUser = User.build(req.body);
   newUser.setDataValue('provider', 'local');
-  newUser.setDataValue('role', 'user');
+  // newUser.setDataValue('role', 'user');
   return newUser.save()
     .then(function(user) {
       var token = jwt.sign({ _id: user._id }, config.secrets.session, {
@@ -130,7 +135,10 @@ export function me(req, res, next) {
     attributes: [
       '_id',
       'name',
+      'firstName',
+      'lastName',
       'email',
+      'activate',
       'role',
       'provider'
     ]

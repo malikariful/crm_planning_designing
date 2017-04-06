@@ -16,6 +16,9 @@ export default function(sequelize, DataTypes) {
       autoIncrement: true
     },
     name: DataTypes.STRING,
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    activate: DataTypes.BOOLEAN,
     email: {
       type: DataTypes.STRING,
       unique: {
