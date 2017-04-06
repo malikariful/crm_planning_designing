@@ -1,25 +1,26 @@
 <div class="container">
-    <h2>Users</h2>
-    <div class="row">
-        <div class="col-md-4 padding-0">
-            <button class="btn btn-primary" ng-click="userManagement.createUser();" >
-                <span class="glyphicon glyphicon-flash"></span> <span>Create a new User</span>
-            </button>
+    <div class="mainDiv">
+        <h2>Users</h2>
+        <div class="row">
+            <div class="col-md-4 padding-0">
+                <button class="btn btn-primary" ng-click="userManagement.createUser();">
+                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new User</span>
+                </button>
+            </div>
         </div>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Login</th>
-                <th>Email</th>
-                <th>Profiles</th>
-                <th>Created Date</th>
-                <th>Last Modified Date</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Login</th>
+                    <th>Email</th>
+                    <th>Profiles</th>
+                    <th>Created Date</th>
+                    <th>Last Modified Date</th>
+                </tr>
+                </thead>
+                <tbody>
                 <tr ng-repeat="user in userManagement.users">
                     <td>{{user._id}}</td>
                     <td>{{user.name}}</td>
@@ -44,16 +45,16 @@
                             <button type="submit"
                                     ng-click="userManagement.delete(user)"
                                     class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-trash"></span>
+                                <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                         </div>
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
-
 </div>
 
 <script type="text/ng-template" id="modal.html">
@@ -61,15 +62,18 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal"
+                            aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Yes or No?</h4>
                 </div>
                 <div class="modal-body">
                     <p>It's your call...</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                    <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">No
+                    </button>
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Yes
+                    </button>
                 </div>
             </div>
         </div>
@@ -98,7 +102,8 @@
                         <div class="form-group">
                             <label class="control-label">Login</label>
                             <input type="text" class="form-control" name="login"
-                                   ng-model="vm.user.login" ng-required="vm.user.id == null" ng-minlength=1 ng-maxlength=50 ng-pattern="/^[_'.@A-Za-z0-9-]*$/">
+                                   ng-model="vm.user.login" ng-required="vm.user.id == null" ng-minlength=1
+                                   ng-maxlength=50 ng-pattern="/^[_'.@A-Za-z0-9-]*$/">
 
                             <div ng-show="editForm.login.$invalid">
                                 <p class="help-block"
@@ -163,7 +168,8 @@
                         </div>
                         <div class="form-group">
                             <label for="activated">
-                                <input ng-disabled="vm.user.id === null" type="checkbox" id="activated" name="activated" ng-model="vm.user.activated">
+                                <input ng-disabled="vm.user.id === null" type="checkbox" id="activated" name="activated"
+                                       ng-model="vm.user.activated">
                                 <span>Activated</span>
                             </label>
                         </div>
@@ -185,6 +191,6 @@
                         </button>
                     </div>
                 </form>
+            </div>
         </div>
-    </div>
 </script>
