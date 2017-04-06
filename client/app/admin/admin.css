@@ -1,4 +1,6 @@
 .trash { color:rgb(209, 91, 71); }
+.pencil { color: rgb(17, 109, 209); }
+.eye { color:rgb(57, 66, 116); }
 
 .user-list li {
 	display: flex;

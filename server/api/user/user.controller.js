@@ -30,6 +30,8 @@ export function index(req, res) {
       'name',
       'email',
       'role',
+      'createdAt',
+      'updatedAt',
       'provider'
     ]
   })

@@ -166,10 +166,7 @@ export function AuthService($location, $http, $cookies, $q, appConfig, Util, Use
     hasRole(role, callback) {
       return Auth.getCurrentUser(undefined)
         .then(user => {
-          console.log('Current user role');
-          console.log(user.role);
           var has = user.hasOwnProperty('role') ? hasRole(user.role, role) : false;
-
           safeCb(callback)(has);
           return has;
         });

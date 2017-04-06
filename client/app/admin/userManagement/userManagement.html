@@ -16,22 +16,19 @@
                 <th>Email</th>
                 <th>Profiles</th>
                 <th>Created Date</th>
-                <th>Last Modified By</th>
                 <th>Last Modified Date</th>
             </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>007</td>
-                    <td>tarekahsan709@gmail.com</td>
+                <tr ng-repeat="user in userManagement.users">
+                    <td>{{user._id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
                     <td>
                         <button class="btn btn-success btn-xs">Activated</button>
                     </td>
-                    <td>tarek</td>
-                    <td>12-12-2005</td>
-                    <td>12-12-2005</td>
-                    <td>12-12-2005</td>
+                    <td>{{user.createdAt | date}}</td>
+                    <td>{{user.updatedAt | date}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit" ng-click="userManagement.showAModal();" class="btn btn-info btn-sm">
@@ -45,21 +42,17 @@
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
-                                    ng-click="userManagement.showAModal();"
+                                    ng-click="userManagement.delete(user)"
                                     class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                         </div>
                     </td>
                 </tr>
-
             </tbody>
-
-
         </table>
     </div>
-
 
 </div>
 

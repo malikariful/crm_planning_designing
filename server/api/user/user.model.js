@@ -51,7 +51,7 @@ export default function(sequelize, DataTypes) {
           role: this.role
         };
       },
-
+      
       // Non-sensitive info we'll be putting in the token
       token: function() {
         return {

@@ -3,8 +3,8 @@
 export default function routes($stateProvider) {
   'ngInject';
 
-  $stateProvider.state('dashboard.admin', {
-    url: '/dashboard.admin',
+  $stateProvider.state('admin', {
+    url: '/admin',
     template: require('./admin.html'),
     controller: 'AdminController',
     controllerAs: 'admin',

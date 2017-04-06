@@ -2,9 +2,16 @@
 
 export default class UserManagementController {
     /*@ngInject*/
-    constructor(ModalService) {
-        this.ModalService = ModalService;
+    constructor(User, ModalService) {
         // Use the User $resource to fetch all users
+        this.users = User.query();
+        console.log(this.users);
+        this.ModalService = ModalService;
+    }
+
+    delete(user) {
+        user.$remove();
+        this.users.splice(this.users.indexOf(user), 1);
     }
 
     showAModal = function () {
