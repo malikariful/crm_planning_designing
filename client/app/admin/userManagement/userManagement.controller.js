@@ -3,37 +3,35 @@
 export default class UserManagementController {
     /*@ngInject*/
     constructor(User, ModalService, Auth, $rootScope) {
+        this.$rootScope = $rootScope;
         this.Auth = Auth;
-         $rootScope.users = User.query();
-
-        console.log($rootScope.users);
+        this.$rootScope.users = User.query();
         this.ModalService = ModalService;
     }
 
-
     delete(user) {
         user.$remove();
-        users.splice(this.users.indexOf(user), 1);
+        this.$rootScope.users.splice(this.$rootScope.users.indexOf(user), 1);
     }
 
     showAModal = function () {
-        this.ModalService.showModal({
-            templateUrl: 'modal.html',
-            controller: function () {
-
-            }
-        }).then(function (modal) {
-            modal.element.modal();
-            modal.close.then(function (user) {
-            });
-        });
+        // this.ModalService.showModal({
+        //     templateUrl: 'modal.html',
+        //     controller: function () {
+        //
+        //     }
+        // }).then(function (modal) {
+        //     modal.element.modal();
+        //     modal.close.then(function (user) {
+        //     });
+        // });
 
     };
 
     createUser = function () {
         this.ModalService.showModal({
             templateUrl: 'createUser.html',
-            controller: ['$rootScope', '$scope', 'close', 'Auth','User',
+            controller: ['$rootScope', '$scope', 'close', 'Auth', 'User',
                 function ($rootScope, $scope, close, Auth, User) {
                     $scope.roles = [
                         {
@@ -77,13 +75,6 @@ export default class UserManagementController {
                             });
 
                     };
-                    // $scope.close = function () {
-                    //     close({
-                    //         user: $scope.user,
-                    //         Auth: Auth
-                    //     }, 500);
-                    //
-                    // };
                     $scope.close = function () {
                         close(null, 500);
                     };
