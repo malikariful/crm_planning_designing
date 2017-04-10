@@ -3,8 +3,9 @@
 export default class UserManagementController {
     /*@ngInject*/
 
-    constructor(User, ModalService, Auth, $rootScope) {
+    constructor(User, ModalService, Auth, $rootScope, $scope) {
         this.$rootScope = $rootScope;
+        this.$scope = $scope;
         this.Auth = Auth;
         this.$rootScope.users = User.query();
         this.ModalService = ModalService;
@@ -16,23 +17,43 @@ export default class UserManagementController {
     }
 
     showAModal = function () {
-        // this.ModalService.showModal({
-        //     templateUrl: 'modal.html',
-        //     controller: function () {
-        //
-        //     }
-        // }).then(function (modal) {
-        //     modal.element.modal();
-        //     modal.close.then(function (user) {
-        //     });
-        // });
+        this.ModalService.showModal({
+            templateUrl: 'modal.html',
+            controller: function () {
+
+            }
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (user) {
+            });
+        });
+
+    };
+
+
+    showUser = function (user) {
+        this.ModalService.showModal({
+            templateUrl: 'showUser.html',
+            controller: ['$scope','user', function ($scope, user) {
+                console.log('Inside controller show user');
+                console.log(user);
+                $scope.user = user;
+            }],
+            inputs: {
+                user: user
+            }
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (user) {
+            });
+        });
 
     };
 
     createUser = function () {
         this.ModalService.showModal({
             templateUrl: 'createUser.html',
-            controller: ['$rootScope', '$scope', 'close', 'Auth', 'User','$element',
+            controller: ['$rootScope', '$scope', 'close', 'Auth', 'User', '$element',
                 function ($rootScope, $scope, close, Auth, User, $element) {
                     $scope.roles = [
                         {
@@ -49,7 +70,7 @@ export default class UserManagementController {
                         }
                     ];
                     $scope.createUser = function (editForm) {
-                        if(editForm.$valid){
+                        if (editForm.$valid) {
                             return Auth.createUserFromManagement({
                                 name: $scope.user.name,
                                 firstName: $scope.user.firstName,
@@ -72,7 +93,7 @@ export default class UserManagementController {
                                             $scope.errors[key] = err.message;
                                         }, this);
                                     }
-                                    setTimeout(function(){
+                                    setTimeout(function () {
                                         $element.modal('hide');
                                         close(null, 200);
                                     }, 3000);
@@ -86,7 +107,7 @@ export default class UserManagementController {
             modal.close.then(function (result) {
             });
 
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.log('error contains a detailed error message.');
             console.log(error);
         });

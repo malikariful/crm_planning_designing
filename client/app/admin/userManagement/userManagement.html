@@ -32,7 +32,7 @@
                     <td>{{user.updatedAt | date}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
-                            <button type="submit" ng-click="userManagement.showAModal();" class="btn btn-info btn-sm">
+                            <button type="submit" ng-click="userManagement.showUser(user);" class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
@@ -73,6 +73,46 @@
                     <button type="button" ng-click="close('No')" class="btn btn-default" data-dismiss="modal">No
                     </button>
                     <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Yes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="showUser.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div>
+                        <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
+                             name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
+                        <h3 class="media-heading">{{user.name}}</h3>
+
+                    </div>
+                    <hr>
+                    <table class="table table-striped">
+                        <span><strong>Role: </strong></span>
+                        <span class="label label-warning">{{user.role}}</span>
+                        <hr>
+                        <tr class="media-heading">First Name: {{user.firstName}}</tr>
+                        <hr>
+                        <p class="media-heading">Last Name: {{user.lastName}}</p>
+                        <hr>
+                        <p class="media-heading">Email: {{user.email}}</p>
+                        <hr>
+                        <p class="media-heading">Activate: <span class="label label-success">{{user.activate || 'yes'}}</span></p>
+                        <hr>
+                        <p class="media-heading">Created At: {{user.createdAt | date}}</p>
+                        <hr>
+                        <p class="media-heading">Created By: System</p>
+                    </table>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">close
                     </button>
                 </div>
             </div>
