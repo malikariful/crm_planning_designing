@@ -50,6 +50,67 @@ export default class UserManagementController {
 
     };
 
+    editUser = function (user) {
+        this.ModalService.showModal({
+            templateUrl: 'editUser.html',
+            controller: ['$scope','Auth','user','$element', function ($scope, Auth, user, $element) {
+                $scope.user = user;
+                $scope.updateUser = function (updateForm) {
+                    if (updateForm.$valid){
+                        return Auth.updateUser({
+                            id: $scope.user._id,
+                            name: $scope.user.name,
+                            firstName: $scope.user.firstName,
+                            lastName: $scope.user.lastName,
+                            email: $scope.user.email,
+                            role: $scope.user.role
+                        })
+                            .then(() => {
+                                // $rootScope.users = User.query();
+                                $element.modal('hide');
+                                close(null, 500);
+                            })
+                            .catch(err => {
+                                alert('err');
+                                console.log(err);
+                                return false;
+                                err = err.data;
+                                $scope.errors = {};
+                                if (err.name) {
+                                    angular.forEach(err.fields, function (field, key) {
+                                        updateForm[key].$setValidity('sequelize', false);
+                                        $scope.errors[key] = err.message;
+                                    }, this);
+                                }
+                                setTimeout(function () {
+                                    $element.modal('hide');
+                                    close(null, 200);
+                                }, 3000);
+                            });
+                    }
+
+                }
+
+            }],
+            inputs: {
+                user: user
+            }
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (user) {
+            });
+        });
+
+    };
+
+    // email
+    // firstName
+    // lastName
+    // name
+    // role
+    // _id
+
+
     createUser = function () {
         this.ModalService.showModal({
             templateUrl: 'createUser.html',

@@ -37,7 +37,7 @@
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
-                                    ng-click="userManagement.showAModal();"
+                                    ng-click="userManagement.editUser(user);"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm"></span>
@@ -89,7 +89,6 @@
                         <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
                              name="aboutme" width="140" height="140" border="0" class="img-circle"></a>
                         <h3 class="media-heading">{{user.name}}</h3>
-
                     </div>
                     <hr>
                     <table class="table table-striped">
@@ -119,6 +118,69 @@
         </div>
     </div>
 </script>
+
+<script type="text/ng-template" id="editUser.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form name="updateUserFrom" novalidate show-validation>
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Name</label>
+                            <input name="name" ng-model="user.name" type="text" required>
+                            <div ng-messages="updateUserFrom.name.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">You must write a user name.</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-icon-float md-block">
+                            <label>First Name</label>
+                            <input name="firstName" ng-model="user.firstName" type="text" required>
+
+                            <div ng-messages="updateUserFrom.firstName.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">You must write a first name.</div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Last Name</label>
+                            <input name="lastName" ng-model="user.lastName" type="text" required>
+
+                            <div ng-messages="updateUserFrom.lastName.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">You must write a last name.</div>
+                            </div>
+
+                        </md-input-container>
+
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Email</label>
+                            <input ng-model="user.email" type="email">
+
+                            <div ng-messages="updateUserFrom.lastName.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">You must write a last name.</div>
+                            </div>
+
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <md-switch class="md-primary" name="special" ng-model="user.activate">
+                                Activate
+                            </md-switch>
+                        </md-input-container>
+                        <!--<p class="media-heading">Role: <span class="label label-warning">{{user.role}}</span></p>-->
+                    </form>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="updateUser(updateUserFrom)">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
 <script type="text/ng-template" id="createUser.html">
     <div class="modal fade">
         <div class="modal-dialog">
