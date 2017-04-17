@@ -11,10 +11,7 @@ import angularArea from 'angular-aria';
 import angularMessage from 'angular-messages';
 import angularMaterial from 'angular-material';
 import smartTable from 'angular-smart-table';
-
-
-// import ngMessages from 'angular-messages';
-//import ngValidationMatch from 'angular-validation-match';
+// import dataGrid from 'angular-data-grid';
 
 
 import {
@@ -26,7 +23,10 @@ import account from './account';
 import admin from './admin';
 import userManagement from './admin/userManagement';
 import dashboard from './dashboard';
+import vehicle from './vehicle';
 import jobCard from './jobCard';
+import employer from './employer';
+import dealer from './dealer';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
 import main from './main/main.component';
@@ -41,7 +41,7 @@ angular.module('crmApp', [
     // ngMessages,
 
     // ngValidationMatch,
-    _Auth, account, admin, userManagement, dashboard, navbar, footer, main, constants, util, jobCard
+    _Auth, account, admin, userManagement, dashboard, navbar, footer, main, constants, util, jobCard, vehicle, employer, dealer
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
@@ -63,13 +63,3 @@ angular.element(document)
       strictDi: true
     });
   });
-
-//
-// <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-//     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-//     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-//     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-//
-//     <!-- Angular Material Library -->
-
-// <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>

@@ -1,6 +1,6 @@
 'use strict';
 
-export default class JobCardController {
+export default class JobCardSetUpController {
 
   /*@ngInject*/
   constructor( $state, $scope) {

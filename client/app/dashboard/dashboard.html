@@ -1,126 +1,76 @@
-<div class="row">
-
-    <!-- uncomment code for absolute positioning tweek see top comment in css -->
-    <!-- <div class="absolute-wrapper"> </div> -->
-    <!-- Menu -->
-    <div class="side-menu">
-
-        <nav class="navbar navbar-default" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <div class="brand-wrapper">
-                    <!-- Hamburger -->
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Brand -->
-                    <div class="brand-name-wrapper">
-                        <a class="navbar-brand" href="#">
-                            Dashboard
-                        </a>
-                    </div>
-
-                    <!-- Search -->
-                    <a data-toggle="collapse" href="#search" class="btn btn-default" id="search-trigger">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </a>
-
-                    <!-- Search body -->
-                    <div id="search" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <form class="navbar-form" role="search">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                </div>
-                                <button type="submit" class="btn btn-default "><span
-                                        class="glyphicon glyphicon-ok"></span></button>
-                            </form>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3 col-md-3 col-lg-3">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Job</span>
+                        <span class="md-subhead">Details of Job card</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <i class="fa fa-cart-plus fa-4x" aria-hidden="true"></i>
                         </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Main Menu -->
-            <div class="side-menu-container">
-
-                <ul class="nav navbar-nav">
-
-                    <li>
-                        <a data-toggle="collapse" href="#dropdown1">
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i> Job Card
-                        </a>
-                        <div id="dropdown1" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <ul class="nav navbar-nav">
-                                    <li><a ui-sref="dashboard.jobCardView">View</a></li>
-                                    <li><a ui-sref="dashboard.jobCard">Set Up</a></li>
-                                </ul>
-                            </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ui-sref="jobCard">Details</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Employer</span>
+                        <span class="md-subhead">Details of employer</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <i class="fa fa-user-secret fa-4x" aria-hidden="true"></i>
                         </div>
-                    </li>
-
-                    <li>
-                        <a data-toggle="collapse" href="#dropdown2">
-                             <i class="fa fa-users" aria-hidden="true"></i> Customer
-                        </a>
-
-                        <div id="dropdown2" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="#">View</a></li>
-                                    <li><a href="#">Set Up</a></li>
-                                </ul>
-                            </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ui-sref="employer">Details</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Vehicles</span>
+                        <span class="md-subhead">Details of vehicle</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <i class="fa fa-motorcycle fa-4x" aria-hidden="true"></i>
                         </div>
-                    </li>
-
-                    <li>
-                        <a data-toggle="collapse" href="#dropdown3">
-                            <i class="fa fa-motorcycle" aria-hidden="true"></i> Vehicle
-
-                        </a>
-
-                        <div id="dropdown3" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="#">View</a></li>
-                                    <li><a href="#">Set Up</a></li>
-                                </ul>
-                            </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ui-sref="vehicle">Details</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-3">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Dealer</span>
+                        <span class="md-subhead">Details of dealer</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <i class="fa fa-umbrella fa-4x" aria-hidden="true"></i>
                         </div>
-                    </li>
-
-                    <li>
-                        <a data-toggle="collapse" href="#dropdown4">
-                            <i class="fa fa-compass" aria-hidden="true"></i> Area
-
-                        </a>
-
-                        <div id="dropdown4" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                <ul class="nav navbar-nav">
-                                    <li><a href="#">View</a></li>
-                                    <li><a href="#">Set Up</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </li>
-
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </nav>
-
-    </div>
-
-    <!-- Main Content -->
-    <div class="container-fluid">
-        <div class="side-body">
-            <ui-view></ui-view>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button ui-sref="dealer">Details</md-button>
+                </md-card-actions>
+            </md-card>
         </div>
     </div>
 </div>

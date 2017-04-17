@@ -1,8 +1,8 @@
-<div ng-init="jobCardView.onInit();" class="paddingTop-10">
+<div ng-init="jobCardView.onInit();" class="paddingTop-10 container">
 
-        <button type="button" ng-click="jobCardView.addRandomItem()" class="btn btn-sm btn-success">
+        <button type="button" ui-sref="jobCardSetup" class="btn btn-sm btn-success">
             <i class="glyphicon glyphicon-plus">
-            </i> Add random item
+            </i> Add New Job
         </button>
 
         <table st-table="displayedCollection" st-safe-src="jobCardView.rowCollection" class="table table-striped">
