@@ -16,13 +16,18 @@
 
 
     <md-content layout-padding>
-        <form name="dealerForm">
+
+        <form name="dealerForm" ng-submit="dealerSetUp.createDealer(dealerForm)" novalidate>
+
             <div layout="row">
                 <md-input-container flex="50">
                     <label>Dealer Name</label>
-                    <input required name="dealerName" ng-model="dealer.dname">
-                    <div ng-messages="dealerForm.dealerName.$error">
+                    <input minlength="3" md-maxlength="30" required name="dealerName" ng-model="dealer.dname">
+                    <div ng-messages="dealerForm.dealerName.$error" multiple>
                         <div ng-message="required">This is required.</div>
+                        <div ng-message="md-maxlength">The address must be less than 30 characters long.</div>
+                        <div ng-message="minlength">The address must be more than 3 characters long.</div>
+
                     </div>
                 </md-input-container>
 
@@ -37,10 +42,11 @@
 
             <md-input-container class="md-block">
                 <label>Address</label>
-                <input md-maxlength="30" required md-no-asterisk name="address" ng-model="dealer.address">
+                <input minlength="3" md-maxlength="30" required md-no-asterisk name="address" ng-model="dealer.address">
                 <div ng-messages="dealerForm.address.$error">
                     <div ng-message="required">This is required.</div>
                     <div ng-message="md-maxlength">The address must be less than 30 characters long.</div>
+                    <div ng-message="minlength">The address must be more than 3 characters long.</div>
                 </div>
             </md-input-container>
 
@@ -60,20 +66,21 @@
 
             <md-input-container class="md-block" flex-gt-sm>
                 <label>Phone Number</label>
-                <input name="phone" ng-model="dealer.phone" ng-pattern="/^[(][0-9]{3}[)] [0-9]{3}-[0-9]{4}$/" />
+                <input name="phone" ng-model="dealer.phone" required />
 
                 <div class="hint" ng-show="showHints">(###) ###-####</div>
 
                 <div ng-messages="dealerForm.phone.$error" ng-hide="showHints">
-                    <div ng-message="pattern">(###) ###-#### - Please enter a valid phone number.</div>
+                    <div ng-message="required">(###) ###-#### - Please enter a valid phone number.</div>
                 </div>
             </md-input-container>
 
             <div>
-                <md-button class="md-raised md-button" type="submit">Submit</md-button>
+                <md-button ng-disabled="dealerForm.$invalid" class="md-raised md-button" type="submit">Submit</md-button>
             </div>
 
         </form>
+
     </md-content>
 
 </div>

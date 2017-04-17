@@ -10,6 +10,12 @@ export default class DealerSetUpController {
             rate: 500,
             special: true
         };
+    }
 
+
+    createDealer(form){
+        if (form.$valid) {
+           console.log(this.$scope.dealer);
+        }
     }
 }
