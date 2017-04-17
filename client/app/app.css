@@ -49,8 +49,11 @@ body {
 @import 'admin/admin.css';
 @import 'admin/userManagement/userManagement.css';
 @import 'dashboard/dashboard.css';
+@import 'dealer/dealer.css';
+@import 'employer/employer.css';
 @import 'jobCard/jobCard.css';
 @import 'main/main.css';
+@import 'vehicle/vehicle.css';
 @import '../components/footer/footer.css';
 @import '../components/pageTop/pageTop.css';
 /* endinject */

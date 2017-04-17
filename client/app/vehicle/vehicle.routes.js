@@ -10,4 +10,12 @@ export default function routes($stateProvider) {
     controllerAs: 'vehicle',
     authenticate: 'admin'
   });
+
+  $stateProvider.state('vehicleSetUp', {
+    url: '/vehicleSetUp',
+    template: require('./vehicleSetUp.html'),
+    controller: 'VehicleSetUpController',
+    controllerAs: 'vehicleSetUp',
+    authenticate: 'admin'
+  });
 };

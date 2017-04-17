@@ -10,4 +10,12 @@ export default function routes($stateProvider) {
     controllerAs: 'employer',
     authenticate: 'admin'
   });
+
+  $stateProvider.state('employerSetUp', {
+    url: '/employerSetUp',
+    template: require('./employerSetUp.html'),
+    controller: 'EmployerSetUpController',
+    controllerAs: 'employerSetUp',
+    authenticate: 'admin'
+  });
 };
