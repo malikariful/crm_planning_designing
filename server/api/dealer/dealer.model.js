@@ -12,6 +12,23 @@ export default function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    dealer_email: {
+      type: DataTypes.STRING,
+      unique: {
+        msg: 'The specified email address is already in use.'
+      },
+      validate: {
+        isEmail: true
+      }
+    },
+    dealer_phone: {
+      type: DataTypes.INTEGER(12),
+      allowNull: true
+    },
+    dealer_type: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     dealer_address: {
       type: DataTypes.STRING,
       allowNull: true
