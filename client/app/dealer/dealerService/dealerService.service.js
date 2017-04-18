@@ -2,10 +2,18 @@
 const angular = require('angular');
 
 /*@ngInject*/
-export function dealerServiceService() {
-	// AngularJS will instantiate a singleton by calling "new" on this function
+export function dealerService($resource) {
+    'ngInject';
+
+    return $resource('/api/dealers/:id/:controller', {
+        id: '@_id'
+    }, {
+        update: {
+            method: 'PUT'
+        }
+    });
 }
 
 export default angular.module('crm.dealerService', [])
-  .service('dealerService', dealerServiceService)
+  .service('dealerService', dealerService)
   .name;

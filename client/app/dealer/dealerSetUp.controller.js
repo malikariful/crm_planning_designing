@@ -4,7 +4,9 @@ export default class DealerSetUpController {
     /*@ngInject*/
     constructor($scope, dealerService) {
         this.$scope = $scope;
-        this.dealerService = dealerService;
+        this.dealer = dealerService.query();
+        console.log('Dealers');
+        console.log(this.dealer);
         $scope.project = {
             description: 'Nuclear Missile Defense System',
             rate: 500,
