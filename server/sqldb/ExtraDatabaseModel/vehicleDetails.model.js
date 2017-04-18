@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true,
             references: {
                 model: 'Dealer',
-                key: 'dealer_id'
+                key: '_id'
             }
         },
         vehicle_detail_last_grade: {

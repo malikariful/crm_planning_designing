@@ -8,11 +8,9 @@ export default class DealerController {
 
     }
 
-    removeItem = function removeItem(row) {
-        var index = this.dealers.indexOf(row);
-        if (index !== -1) {
-            this.dealers.splice(index, 1);
-        }
+    removeItem = function removeItem(dealer) {
+        dealer.$remove();
+        this.dealers.splice(this.dealers.indexOf(dealer), 1);
     }
 
 }

@@ -8,6 +8,7 @@ export default class AdminController {
   }
 
   delete(user) {
+    console.log(user);
     user.$remove();
     this.users.splice(this.users.indexOf(user), 1);
   }

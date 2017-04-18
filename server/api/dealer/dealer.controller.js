@@ -75,7 +75,7 @@ export function show(req, res) {
   console.log("here----------------------------------------------");
   return Dealer.find({
     where: {
-      dealer_id: req.params.id
+      _id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
