@@ -85,7 +85,8 @@ export function show(req, res) {
 // Creates a new Dealer in the DB
 export function create(req, res) {
   console.log("------------------------------------------here in creating a new dealer----------------------------------------------");
-  console.log(req);
+  console.log(req.body);
+  console.log("------------------------------------------here in creating a new dealer----------------------------------------------");
 
   return Dealer.create(req.body)
     .then(respondWithResult(res, 201))
