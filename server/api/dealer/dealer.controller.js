@@ -72,7 +72,6 @@ export function index(req, res) {
 
 // Gets a single Dealer from the DB
 export function show(req, res) {
-  console.log("here----------------------------------------------");
   return Dealer.find({
     where: {
       _id: req.params.id
@@ -85,6 +84,9 @@ export function show(req, res) {
 
 // Creates a new Dealer in the DB
 export function create(req, res) {
+  console.log("------------------------------------------here in creating a new dealer----------------------------------------------");
+  console.log(req);
+
   return Dealer.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));

@@ -5,7 +5,6 @@ export default class DealerController {
     constructor($scope, dealerService) {
         this.dealers = dealerService.query();
         this.$scope = $scope;
-
     }
 
     removeItem = function removeItem(dealer) {

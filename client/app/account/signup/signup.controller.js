@@ -11,8 +11,6 @@ export default class SignupController {
   register(form) {
     this.submitted = true;
     if (form.$valid) {
-      console.log(this.user.password );
-      console.log(this.user.confirmPassword );
       if(this.user.confirmPassword !== this.user.password){
         form.confirmPassword.$error.match = true;
       }

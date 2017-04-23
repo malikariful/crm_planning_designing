@@ -4,9 +4,9 @@ export default class DealerSetUpController {
     /*@ngInject*/
     constructor($scope, dealerService) {
         this.$scope = $scope;
+        // this.dealerService = dealerService;
         this.dealer = dealerService.query();
-        console.log('Dealers');
-        console.log(this.dealer);
+        this.dealerResourceObj =  new dealerService();
         $scope.project = {
             description: 'Nuclear Missile Defense System',
             rate: 500,
@@ -17,7 +17,20 @@ export default class DealerSetUpController {
 
     createDealer(form){
         if (form.$valid) {
-           console.log(this.$scope.dealer);
+            // console.log('Before inserting data to resource object');
+            // console.log(this.dealerResourceObj);
+            //
+            // this.dealerResourceObj.data = this.$scope.dealer;
+            // console.log('After inserting data to resource object');
+            // console.log(this.dealerResourceObj);
+            //
+            // return false;
+
+            this.dealerResourceObj.$save(this.$scope.dealer, function(response) {
+                console.log(response);
+            });
         }
     }
+
+
 }
