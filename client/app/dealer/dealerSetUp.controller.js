@@ -2,62 +2,63 @@
 
 export default class DealerSetUpController {
     /*@ngInject*/
-    constructor($scope, dealerService) {
+    constructor($scope, $state, dealerService, $mdDialog) {
+        this.$state = $state;
         this.$scope = $scope;
-        this.dealerService = dealerService;
+        this.$mdDialog = $mdDialog;
+        this.dealerService = new dealerService();
         this.dealer = dealerService.query();
-        // this.dealerResourceObj =  new dealerService();
-        $scope.project = {
-            description: 'Nuclear Missile Defense System',
-            rate: 500,
-            special: true
-        };
     }
 
 
-    createDealer(form){
+    createDealer(form) {
         if (form.$valid) {
-            console.log(this.$scope.dealer);
-
-            // return false;
-            // console.log('Before inserting data to resource object');
-            // console.log(this.dealerResourceObj);
-            //
-            // this.dealerResourceObj.data = this.$scope.dealer;
-            // console.log('After inserting data to resource object');
-            // console.log(this.dealerResourceObj);
-            //dealer_name
-            // return false;
-
-            this.dealerService.save({
+            this.dealerService.data = {
                 dealer_name: this.$scope.dealer.dname,
                 dealer_email: this.$scope.dealer.email,
                 dealer_phone: this.$scope.dealer.phone,
                 dealer_type: this.$scope.dealer.type,
                 dealer_address: this.$scope.dealer.address
-            }, function(response) {
-                console.log(response);
-            });
+            };
+
+            this.dealerService.$save()
+                .then(res => {
+                    if (res.$resolved) {
+                        console.log("res saving obj");
+                        console.log(res);
+                        this.showAlert(res);
+                    }
+                })
+                .catch(function (req) {
+                    console.log("error saving obj");
+                })
+                .finally(function () {
+                    console.log("always called")
+                });
         }
+    }
+
+    showAlert(res) {
+        alert = this.$mdDialog.alert({
+            title: 'Attention',
+            textContent: 'Dealer has created successfully',
+            ok: 'Close'
+        });
+
+        this.$mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
+        this.$state.go('dealer');
+
     }
 
 
 }
-// address
-//     :
-//     "badda"
-// dname
-//     :
-//     "tarek"
-// email
-//     :
-//     "tarek@gmail.com"
-// phone
-//     :
-//     "01711353535"
-// type
-//     :
-//     "permanent"
-// __proto__
-//     :
-//     Object
+//
+// res.$save()
+//     .then(function(res)  { console.log("authenticated") })
+//     .catch(function(req) { console.log("error saving obj"); })
+//     .finally(function()  { console.log("always called") });
+
