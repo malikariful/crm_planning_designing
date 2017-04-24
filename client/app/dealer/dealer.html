@@ -23,7 +23,7 @@
             <td>{{row.dealer_name}}</td>
             <td>{{row.dealer_address}}</td>
             <td>
-                <button type="button" ng-click="dealer.removeItem(row)" class="btn btn-sm btn-danger">
+                <button type="button" ng-click="dealer.showConfirm($event, row)" class="btn btn-sm btn-danger">
                     <i class="glyphicon glyphicon-remove-circle">
                     </i>
                 </button>

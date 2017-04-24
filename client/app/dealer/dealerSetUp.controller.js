@@ -40,8 +40,8 @@ export default class DealerSetUpController {
 
     showAlert(res) {
         alert = this.$mdDialog.alert({
-            title: 'Attention',
-            textContent: 'Dealer has created successfully',
+            title: 'Dealer has created successfully',
+            textContent: '',
             ok: 'Close'
         });
 
