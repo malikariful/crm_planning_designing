@@ -3,6 +3,8 @@
 export default class DealerController {
     /*@ngInject*/
     constructor($scope, dealerService, $mdDialog, ModalService) {
+        this.itemsByPage=10;
+
         this.dealers = dealerService.query();
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
