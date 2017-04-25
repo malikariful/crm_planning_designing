@@ -23,12 +23,96 @@
             <td>{{row.dealer_name}}</td>
             <td>{{row.dealer_address}}</td>
             <td>
-                <button type="button" ng-click="dealer.showConfirm($event, row)" class="btn btn-sm btn-danger">
+                <button type="button" ng-click="dealer.showDealer(row)" class="btn btn-sm btn-info">
+                    <i class="glyphicon glyphicon-eye-open">
+                    </i>
+                </button>
+
+                <button type="button" ng-click="dealer.editDealer(row)" class="btn btn-sm btn-primary">
+                    <i class="glyphicon glyphicon-pencil">
+                    </i>
+                </button>
+
+                <button type="button" ng-click="dealer.deleteDealer($event, row)" class="btn btn-sm btn-danger">
                     <i class="glyphicon glyphicon-remove-circle">
                     </i>
                 </button>
+
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+
+<script type="text/ng-template" id="showDealer.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div layout="column" ng-cloak class="md-inline-form">
+
+                        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                            <div>
+                                <md-input-container>
+                                    <label>Dealer name</label>
+                                    <input ng-readonly="true" ng-model="dealer.dealer_name">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Dealer email</label>
+                                    <input ng-readonly="true" ng-model="dealer.dealer_email">
+                                </md-input-container>
+
+                            </div>
+                        </md-content>
+
+                        <md-content layout-padding>
+                            <div>
+                                <form name="userForm">
+
+                                    <div layout-gt-xs="row">
+                                        <md-input-container class="md-block" flex-gt-xs>
+                                            <label>Dealer phone</label>
+                                            <input ng-readonly="true" ng-model="dealer.dealer_phone">
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block" flex-gt-xs>
+                                            <label>Dealer type</label>
+                                            <input ng-readonly="true" ng-model="dealer.dealer_type">
+                                        </md-input-container>
+                                    </div>
+
+                                    <md-input-container class="md-block">
+                                        <label>Address</label>
+                                        <input ng-model="dealer.dealer_address">
+                                    </md-input-container>
+
+                                </form>
+                            </div>
+                        </md-content>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="editDealer.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Edit Dealer</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
