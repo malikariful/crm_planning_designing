@@ -154,10 +154,10 @@
 
                         <md-input-container class="md-icon-float md-block">
                             <label>Email</label>
-                            <input ng-model="user.email" type="email">
+                            <input name="email" ng-model="user.email" type="email">
 
-                            <div ng-messages="updateUserFrom.lastName.$error" role="alert" multiple>
-                                <div ng-message="required" class="my-message">You must write a last name.</div>
+                            <div ng-messages="updateUserFrom.email.$error" role="alert" multiple>
+                                <div ng-message="required" class="my-message">You must write a email.</div>
                             </div>
 
                         </md-input-container>

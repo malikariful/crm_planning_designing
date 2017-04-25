@@ -49,6 +49,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
+                    <p>Dealer details</p>
+
                     <div layout="column" ng-cloak class="md-inline-form">
 
                         <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
@@ -84,7 +86,7 @@
 
                                     <md-input-container class="md-block">
                                         <label>Address</label>
-                                        <input ng-model="dealer.dealer_address">
+                                        <input ng-readonly="true" ng-model="dealer.dealer_address">
                                     </md-input-container>
 
                                 </form>
@@ -106,7 +108,61 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>Edit Dealer</p>
+                    <p>Edit Dealer Information</p>
+                    <form name="updateDealerFrom" novalidate show-validation>
+                        <div layout="column" ng-cloak class="md-inline-form">
+                            <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                                <div>
+                                    <md-input-container>
+                                        <label>Dealer name</label>
+                                        <input name="dealerName" required ng-model="dealer.dealer_name" >
+                                        <div ng-messages="updateDealerFrom.dealerName.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">You must write a dealer name.</div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Dealer email</label>
+                                        <input name="dealerEmail" required ng-model="dealer.dealer_email"  type="email">
+                                        <div ng-messages="updateDealerFrom.dealerEmail.$error" role="alert" multiple>
+                                            <div ng-message="required" class="my-message">You must write a email.</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                            </md-content>
+
+                            <md-content layout-padding>
+                                <div>
+                                    <form name="userForm">
+
+                                        <div layout-gt-xs="row">
+                                            <md-input-container class="md-block" flex-gt-xs>
+                                                <label>Dealer phone</label>
+                                                <input name="dealerPhone" required ng-model="dealer.dealer_phone">
+                                                <div ng-messages="updateDealerFrom.dealerPhone.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">You must write a phone number.</div>
+                                                </div>
+                                            </md-input-container>
+
+                                            <!--<md-input-container class="md-block" flex-gt-xs>-->
+                                                <!--<label>Dealer type</label>-->
+                                                <!--<input ng-model="dealer.dealer_type">-->
+                                            <!--</md-input-container>-->
+                                        </div>
+
+                                        <md-input-container class="md-block">
+                                            <label>Address</label>
+                                            <input name="dealerAddress" required ng-model="dealer.dealer_address">
+                                            <div ng-messages="updateDealerFrom.dealerAddress.$error" role="alert" multiple>
+                                                <div ng-message="required" class="my-message">You must write down the address.</div>
+                                            </div>
+                                        </md-input-container>
+
+                                    </form>
+                                </div>
+                            </md-content>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">close
