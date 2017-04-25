@@ -50,8 +50,32 @@ export default class DealerController {
     editDealer = function (dealer) {
         this.ModalService.showModal({
             templateUrl: 'editDealer.html',
-            controller: ['$scope', 'dealer', function ($scope, dealer) {
+            controller: ['$scope', 'dealer', '$mdDialog', 'dealerService', function ($scope, dealer, $mdDialog, dealerService) {
                 $scope.dealer = dealer;
+
+                $scope.updateDealerFrom = function (ev, from) {
+                    if (from.$valid && from.$dirty) {
+
+                        var dealerData = {
+                            dealer_name: $scope.dealer.dealer_name,
+                            dealer_email: $scope.dealer.dealer_email,
+                            dealer_phone: $scope.dealer.dealer_phone,
+                            dealer_type: 'permanent',
+                            dealer_address: $scope.dealer.dealer_address
+                        };
+
+                        dealerService.update({
+                            id: $scope.dealer._id
+                        }, dealerData, function (response) {
+                            if (response.$resolved) {
+                                alert('Dealer has updated successfully');
+                            }
+                        });
+
+                    }
+
+                };
+
             }],
             inputs: {
                 dealer: dealer
@@ -65,28 +89,3 @@ export default class DealerController {
 
 }
 
-
-// createdAt
-//     :
-//     "2017-04-24T10:26:02.000Z"
-// dealer_address
-//     :
-//     "Badda"
-// dealer_email
-//     :
-//     "sajal@gmail.com"
-// dealer_name
-//     :
-//     "Sajal"
-// dealer_phone
-//     :
-//     1913500623
-// dealer_type
-//     :
-//     "permanent"
-// updatedAt
-//     :
-//     "2017-04-24T10:26:02.000Z"
-// _id
-//     :
-//     24
