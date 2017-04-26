@@ -64,40 +64,20 @@
                         <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
                             <div>
                                 <md-input-container>
-                                    <label>vehicle name</label>
-                                    <input ng-readonly="true" ng-model="vehicle.vehicle_name">
+                                    <label>Model</label>
+                                    <input ng-readonly="true" ng-model="vehicle.Vehicle_model.vehicle_model_name">
                                 </md-input-container>
 
                                 <md-input-container>
-                                    <label>vehicle email</label>
-                                    <input ng-readonly="true" ng-model="vehicle.vehicle_email">
+                                    <label>Chassis</label>
+                                    <input ng-readonly="true" ng-model="vehicle.vehicle_master_chassis_no">
                                 </md-input-container>
 
-                            </div>
-                        </md-content>
+                                <md-input-container>
+                                    <label>Engine</label>
+                                    <input ng-readonly="true" ng-model="vehicle.vehicle_master_engine_no">
+                                </md-input-container>
 
-                        <md-content layout-padding>
-                            <div>
-                                <form name="userForm">
-
-                                    <div layout-gt-xs="row">
-                                        <md-input-container class="md-block" flex-gt-xs>
-                                            <label>vehicle phone</label>
-                                            <input ng-readonly="true" ng-model="vehicle.vehicle_phone">
-                                        </md-input-container>
-
-                                        <md-input-container class="md-block" flex-gt-xs>
-                                            <label>vehicle type</label>
-                                            <input ng-readonly="true" ng-model="vehicle.vehicle_type">
-                                        </md-input-container>
-                                    </div>
-
-                                    <md-input-container class="md-block">
-                                        <label>Address</label>
-                                        <input ng-readonly="true" ng-model="vehicle.vehicle_address">
-                                    </md-input-container>
-
-                                </form>
                             </div>
                         </md-content>
                     </div>
@@ -110,6 +90,7 @@
         </div>
     </div>
 </script>
+
 
 <script type="text/ng-template" id="editVehicle.html">
     <div class="modal fade">

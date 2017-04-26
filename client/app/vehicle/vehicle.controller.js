@@ -35,11 +35,11 @@ export default class VehicleController {
 
     showVehicle = function (vehicle) {
         this.ModalService.showModal({
-            templateUrl: 'showDealer.html',
+            templateUrl: 'showVehicle.html',
             controller: ['$scope', 'vehicle', function ($scope, vehicle) {
-                console.log('Inside controller show vehicle');
-                console.log(vehicle);
                 $scope.vehicle = vehicle;
+                console.log('Inside vehicles modal');
+                console.log($scope.vehicle);
             }],
             inputs: {
                 vehicle: vehicle
@@ -97,16 +97,3 @@ export default class VehicleController {
     };
 
 }
-
-// vehicle_master_chassis_no
-//     :
-//     "53346-1309"
-// vehicle_master_engine_no
-//     :
-//     "11673-517"
-// vehicle_master_id
-//     :
-//     6
-// vehicle_master_model_id
-//     :
-//     1
