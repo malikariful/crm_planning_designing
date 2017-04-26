@@ -18,7 +18,7 @@ var db = {
       max: 5,
       min: 0,
       idle: 10000
-    },
+    }
   })
 };
 db.sequelize.authenticate()
@@ -51,6 +51,10 @@ db.VehicleDetails = db.sequelize.import('ExtraDatabaseModel/vehicleDetails.model
 db.JobCartProblems = db.sequelize.import('ExtraDatabaseModel/jobCartProblems.model');
 db.RolePermissions = db.sequelize.import('ExtraDatabaseModel/rolePermissions.model');
 // db.UserRole = db.sequelize.import('../ExtraDatabaseModel/userRoles.model'); not working
+
+db.Vehicle.belongsTo(db.VehicleModel);
+
+
 db.User.belongsToMany(db.Role, {
   through: 'UserRole'
 }); // Not added into seed

@@ -12,6 +12,7 @@
 
 import jsonpatch from 'fast-json-patch';
 import {Vehicle} from '../../sqldb';
+import {VehicleModel} from '../../sqldb';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -65,7 +66,13 @@ function handleError(res, statusCode) {
 
 // Gets a list of Vehicles
 export function index(req, res) {
-  return Vehicle.findAll()
+  return Vehicle.findAll({
+      include: [
+          {
+              model: VehicleModel
+          }
+      ]
+  })
     .then(respondWithResult(res))
     .catch(handleError(res));
 }

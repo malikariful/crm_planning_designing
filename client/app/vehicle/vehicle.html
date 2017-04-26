@@ -2,34 +2,207 @@
 
     <button type="button" ui-sref="vehicleSetUp" class="btn btn-sm btn-success">
         <i class="glyphicon glyphicon-plus">
-        </i> Add New Vehicle
+        </i> Add New vehicle
     </button>
 
-    <table st-table="displayedCollection" st-safe-src="vehicle.rowCollection" class="table table-striped">
+    <table st-table="displayedCollection" st-safe-src="vehicle.vehicles" class="table table-striped">
         <thead>
         <tr>
-            <th st-sort="firstName">first name</th>
-            <th st-sort="lastName">last name</th>
-            <th st-sort="birthDate">birth date</th>
-            <th st-sort="balance">balance</th>
+            <th colspan="5"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
         </tr>
         <tr>
-            <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+            <th st-sort="id">Id</th>
+            <th st-sort="chassisNo">Chassis no</th>
+            <th st-sort="engineNo">Engine no</th>
+            <th st-sort="action">Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="row in displayedCollection">
-            <td>{{row.firstName}}</td>
-            <td>{{row.lastName}}</td>
-            <td>{{row.birthDate}}</td>
-            <td>{{row.balance}}</td>
+            <td>{{row.vehicle_master_id}}</td>
+            <td>{{row.vehicle_master_chassis_no}}</td>
+            <td>{{row.vehicle_master_engine_no}}</td>
             <td>
-                <button type="button" ng-click="vehicle.removeItem(row)" class="btn btn-sm btn-danger">
+                <button type="button" ng-click="vehicle.showVehicle(row)" class="btn btn-sm btn-info">
+                    <i class="glyphicon glyphicon-eye-open">
+                    </i>
+                </button>
+
+                <button type="button" ng-click="vehicle.editVehicle(row)" class="btn btn-sm btn-primary">
+                    <i class="glyphicon glyphicon-pencil">
+                    </i>
+                </button>
+
+                <button type="button" ng-click="vehicle.deleteVehicle($event, row)" class="btn btn-sm btn-danger">
                     <i class="glyphicon glyphicon-remove-circle">
                     </i>
                 </button>
+
             </td>
         </tr>
         </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="vehicle.itemsByPage" st-displayed-pages="10"></div>
+            </td>
+        </tr>
+        </tfoot>
     </table>
 </div>
+
+<script type="text/ng-template" id="showVehicle.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>vehicle details</p>
+
+                    <div layout="column" ng-cloak class="md-inline-form">
+
+                        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                            <div>
+                                <md-input-container>
+                                    <label>vehicle name</label>
+                                    <input ng-readonly="true" ng-model="vehicle.vehicle_name">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>vehicle email</label>
+                                    <input ng-readonly="true" ng-model="vehicle.vehicle_email">
+                                </md-input-container>
+
+                            </div>
+                        </md-content>
+
+                        <md-content layout-padding>
+                            <div>
+                                <form name="userForm">
+
+                                    <div layout-gt-xs="row">
+                                        <md-input-container class="md-block" flex-gt-xs>
+                                            <label>vehicle phone</label>
+                                            <input ng-readonly="true" ng-model="vehicle.vehicle_phone">
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block" flex-gt-xs>
+                                            <label>vehicle type</label>
+                                            <input ng-readonly="true" ng-model="vehicle.vehicle_type">
+                                        </md-input-container>
+                                    </div>
+
+                                    <md-input-container class="md-block">
+                                        <label>Address</label>
+                                        <input ng-readonly="true" ng-model="vehicle.vehicle_address">
+                                    </md-input-container>
+
+                                </form>
+                            </div>
+                        </md-content>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="editVehicle.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Edit vehicle Information</p>
+                    <form name="vehicleFrom" novalidate show-validation>
+                        <div layout="column" ng-cloak class="md-inline-form">
+                            <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+
+                                <md-input-container>
+                                    <label>vehicle name</label>
+                                    <input minlength="3" md-maxlength="30" name="vehicleName" required
+                                           ng-model="vehicle.vehicle_name">
+
+                                    <div ng-messages="updatevehicleFrom.vehicleName.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">You must write a vehicle
+                                            name.
+                                        </div>
+                                        <div ng-message="md-maxlength">The name must be less than 30 characters
+                                            long.
+                                        </div>
+                                        <div ng-message="minlength">The name must be more than 3 characters long.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>vehicle email</label>
+                                    <input name="vehicleEmail" required ng-model="vehicle.vehicle_email" type="email">
+                                    <div ng-messages="updatevehicleFrom.vehicleEmail.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">You must write a email.</div>
+                                    </div>
+                                </md-input-container>
+                            </md-content>
+
+                            <md-content layout-padding>
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>vehicle phone</label>
+                                        <input name="vehiclePhone" required ng-model="vehicle.vehicle_phone">
+                                        <div ng-messages="updateVehicleFrom.vehiclePhone.$error" role="alert"
+                                             multiple>
+                                            <div ng-message="required" class="my-message">You must write a phone
+                                                number.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <!--<md-input-container class="md-block" flex-gt-xs>-->
+                                    <!--<label>vehicle type</label>-->
+                                    <!--<input ng-model="vehicle.vehicle_type">-->
+                                    <!--</md-input-container>-->
+                                </div>
+
+                                <md-input-container class="md-block">
+                                    <label>Address</label>
+                                    <input minlength="3" md-maxlength="30" name="vehicleAddress" required
+                                           ng-model="vehicle.vehicle_address">
+                                    <div ng-messages="updateVehicleFrom.vehicleAddress.$error" role="alert"
+                                         multiple>
+                                        <div ng-message="required" class="my-message">You must write down the
+                                            address.
+                                        </div>
+                                        <div ng-message="md-maxlength">The address must be less than 30
+                                            characters long.
+                                        </div>
+                                        <div ng-message="minlength">The address must be more than 3 characters
+                                            long.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                            </md-content>
+                        </div>
+
+                        <div>
+                            <md-button ng-disabled="updateVehicleFrom.$invalid"
+                                       ng-click="updateVehicleFrom($event, vehicleFrom)" class="md-raised md-button"
+                                       type="submit">Update
+                            </md-button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

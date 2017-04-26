@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true,
             references: {
                 model: 'Vehicle_master',
-                key: 'vehicle_master_id'
+                key: '_id'
             }
         }
     }, {

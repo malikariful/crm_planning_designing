@@ -21,10 +21,78 @@ var CustomerVehicle = sqldb.CustomerVehicle;
 var VehicleDetails = sqldb.VehicleDetails;
 var JobCartProblems = sqldb.JobCartProblems;
 var RolePermissions = sqldb.RolePermissions;
-
-
 var Thing = sqldb.Thing;
 var User = sqldb.User;
+
+
+User.sync()
+    .then(() => User.destroy({where: {}}))
+    .then(() => {
+        User.bulkCreate([{
+            provider: 'local',
+            name: 'Test User',
+            email: 'test@example.com',
+            password: 'test'
+        }, {
+            provider: 'local',
+            role: 'admin',
+            name: 'Admin',
+            email: 'tarekahsan709@gmail.com',
+            password: 'admin'
+        }])
+            .then(() => {
+                console.log('finished populating users');
+            });
+    });
+
+
+// VehicleModel.sync()
+//     .then(() => {
+//         return VehicleModel.destroy({where: {}});
+//     })
+//     .then(() => {
+//         VehicleModel.bulkCreate([{
+//             "vehicle_model_name": "sed accumsan felis ut at dolor quis odio consequat varius integer ac"
+//         }, {
+//             "vehicle_model_name": "at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel"
+//         }, {
+//             "vehicle_model_name": "odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla"
+//         }, {
+//             "vehicle_model_name": "semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci"
+//         }, {
+//             "vehicle_model_name": "iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget"
+//         }]);
+//     });
+
+
+Vehicle.sync()
+    .then(() => {
+        return Vehicle.destroy({where: {}});
+    })
+    .then(() => {
+        Vehicle.bulkCreate([{
+            "vehicle_master_chassis_no": "53346-1309",
+            "vehicle_master_engine_no": "11673-517",
+            "VehicleModelId": 36
+        }, {
+            "vehicle_master_chassis_no": "0409-7809",
+            "vehicle_master_engine_no": "0268-6560",
+            "VehicleModelId": 37
+        }, {
+            "vehicle_master_chassis_no": "0944-4201",
+            "vehicle_master_engine_no": "64159-7048",
+            "VehicleModelId": 38
+        }, {
+            "vehicle_master_chassis_no": "49349-126",
+            "vehicle_master_engine_no": "49715-007",
+            "VehicleModelId": 39
+        }, {
+            "vehicle_master_chassis_no": "42787-102",
+            "vehicle_master_engine_no": "11673-245",
+            "VehicleModelId": 40
+        }]);
+    });
+
 
 // Area.sync()
 //     .then(() => {
@@ -269,53 +337,8 @@ var User = sqldb.User;
 //         }]);
 //     });
 
-//
-// Vehicle.sync()
-//     .then(() => {
-//         return Vehicle.destroy({where: {}});
-//     })
-//     .then(() => {
-//         Vehicle.bulkCreate([{
-//             "vehicle_master_chassis_no": "53346-1309",
-//             "vehicle_master_engine_no": "11673-517",
-//             "vehicle_master_model_id": 1
-//         }, {
-//             "vehicle_master_chassis_no": "0409-7809",
-//             "vehicle_master_engine_no": "0268-6560",
-//             "vehicle_master_model_id": 2
-//         }, {
-//             "vehicle_master_chassis_no": "0944-4201",
-//             "vehicle_master_engine_no": "64159-7048",
-//             "vehicle_master_model_id": 3
-//         }, {
-//             "vehicle_master_chassis_no": "49349-126",
-//             "vehicle_master_engine_no": "49715-007",
-//             "vehicle_master_model_id": 4
-//         }, {
-//             "vehicle_master_chassis_no": "42787-102",
-//             "vehicle_master_engine_no": "11673-245",
-//             "vehicle_master_model_id": 5
-//         }]);
-//     });
 
 
-// VehicleModel.sync()
-//     .then(() => {
-//         return VehicleModel.destroy({where: {}});
-//     })
-//     .then(() => {
-//         VehicleModel.bulkCreate([{
-//             "vehicle_model_name": "sed accumsan felis ut at dolor quis odio consequat varius integer ac"
-//         }, {
-//             "vehicle_model_name": "at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel"
-//         }, {
-//             "vehicle_model_name": "odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla"
-//         }, {
-//             "vehicle_model_name": "semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci"
-//         }, {
-//             "vehicle_model_name": "iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget"
-//         }]);
-//     });
 
 //
 
@@ -464,57 +487,39 @@ var User = sqldb.User;
 //         }]);
 //     });
 
-Thing.sync()
-    .then(() => {
-        return Thing.destroy({where: {}});
-    })
-    .then(() => {
-        Thing.bulkCreate([{
-            name: 'Development Tools',
-            info: 'Integration with popular tools such as Webpack, Gulp, Babel, TypeScript, Karma, ' +
-            'Mocha, ESLint, Node Inspector, Livereload, Protractor, Pug, ' +
-            'Stylus, Sass, and Less.'
-        }, {
-            name: 'Server and Client integration',
-            info: 'Built with a powerful and fun stack: MongoDB, Express, ' +
-            'AngularJS, and Node.'
-        }, {
-            name: 'Smart Build System',
-            info: 'Build system ignores `spec` files, allowing you to keep ' +
-            'tests alongside code. Automatic injection of scripts and ' +
-            'styles into your index.html'
-        }, {
-            name: 'Modular Structure',
-            info: 'Best practice client and server structures allow for more ' +
-            'code reusability and maximum scalability'
-        }, {
-            name: 'Optimized Build',
-            info: 'Build process packs up your templates as a single JavaScript ' +
-            'payload, minifies your scripts/css/images, and rewrites asset ' +
-            'names for caching.'
-        }, {
-            name: 'Deployment Ready',
-            info: 'Easily deploy your app to Heroku or Openshift with the heroku ' +
-            'and openshift subgenerators'
-        }]);
-    });
-
-// User.sync()
-//     .then(() => User.destroy({where: {}}))
+// Thing.sync()
 //     .then(() => {
-//         User.bulkCreate([{
-//             provider: 'local',
-//             name: 'Test User',
-//             email: 'test@example.com',
-//             password: 'test'
+//         return Thing.destroy({where: {}});
+//     })
+//     .then(() => {
+//         Thing.bulkCreate([{
+//             name: 'Development Tools',
+//             info: 'Integration with popular tools such as Webpack, Gulp, Babel, TypeScript, Karma, ' +
+//             'Mocha, ESLint, Node Inspector, Livereload, Protractor, Pug, ' +
+//             'Stylus, Sass, and Less.'
 //         }, {
-//             provider: 'local',
-//             role: 'admin',
-//             name: 'Admin',
-//             email: 'admin@example.com',
-//             password: 'admin'
-//         }])
-//             .then(() => {
-//                 console.log('finished populating users');
-//             });
+//             name: 'Server and Client integration',
+//             info: 'Built with a powerful and fun stack: MongoDB, Express, ' +
+//             'AngularJS, and Node.'
+//         }, {
+//             name: 'Smart Build System',
+//             info: 'Build system ignores `spec` files, allowing you to keep ' +
+//             'tests alongside code. Automatic injection of scripts and ' +
+//             'styles into your index.html'
+//         }, {
+//             name: 'Modular Structure',
+//             info: 'Best practice client and server structures allow for more ' +
+//             'code reusability and maximum scalability'
+//         }, {
+//             name: 'Optimized Build',
+//             info: 'Build process packs up your templates as a single JavaScript ' +
+//             'payload, minifies your scripts/css/images, and rewrites asset ' +
+//             'names for caching.'
+//         }, {
+//             name: 'Deployment Ready',
+//             info: 'Easily deploy your app to Heroku or Openshift with the heroku ' +
+//             'and openshift subgenerators'
+//         }]);
 //     });
+//
+
