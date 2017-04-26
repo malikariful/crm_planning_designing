@@ -3,16 +3,13 @@
  */
 /* jshint indent: 2 */
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     return sequelize.define('Vehicle_detail', {
-        vehicle_detail_id: {
+        _id: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
             primaryKey: true,
-            references: {
-                model: 'Vehicle_master',
-                key: '_id'
-            }
+            autoIncrement: true
         },
         vehicle_detail_name: {
             type: DataTypes.STRING,
@@ -29,14 +26,6 @@ module.exports = function(sequelize, DataTypes) {
         vehicle_details_import_date: {
             type: DataTypes.DATE,
             allowNull: true
-        },
-        vehicle_detail_dealer_id: {
-            type: DataTypes.INTEGER(11),
-            allowNull: true,
-            references: {
-                model: 'Dealer',
-                key: '_id'
-            }
         },
         vehicle_detail_last_grade: {
             type: DataTypes.INTEGER(11),

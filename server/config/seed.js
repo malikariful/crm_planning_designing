@@ -45,7 +45,7 @@ User.sync()
             });
     });
 
-
+//
 // VehicleModel.sync()
 //     .then(() => {
 //         return VehicleModel.destroy({where: {}});
@@ -73,23 +73,31 @@ User.sync()
 //         Vehicle.bulkCreate([{
 //             "vehicle_master_chassis_no": "53346-1309",
 //             "vehicle_master_engine_no": "11673-517",
-//             "VehicleModelId": 36
+//             "VehicleModelId": 1,
+//             "VehicleDetailId": 1
+//
 //         }, {
 //             "vehicle_master_chassis_no": "0409-7809",
 //             "vehicle_master_engine_no": "0268-6560",
-//             "VehicleModelId": 37
+//             "VehicleModelId": 2,
+//             "VehicleDetailId": 2,
+//
 //         }, {
 //             "vehicle_master_chassis_no": "0944-4201",
 //             "vehicle_master_engine_no": "64159-7048",
-//             "VehicleModelId": 38
+//             "VehicleModelId": 3,
+//              "VehicleDetailId":3,
+//
 //         }, {
 //             "vehicle_master_chassis_no": "49349-126",
 //             "vehicle_master_engine_no": "49715-007",
-//             "VehicleModelId": 39
+//             "VehicleModelId": 4,
+//             "VehicleDetailId": 4,
 //         }, {
 //             "vehicle_master_chassis_no": "42787-102",
 //             "vehicle_master_engine_no": "11673-245",
-//             "VehicleModelId": 40
+//             "VehicleModelId": 5,
+//             "VehicleDetailId": 5
 //         }]);
 //     });
 
@@ -127,7 +135,7 @@ User.sync()
 //         }]);
 //     });
 
-//
+
 // Dealer.sync()
 //     .then(() => {
 //         return Dealer.destroy({where: {}});
@@ -352,7 +360,8 @@ User.sync()
 //             "customer_vehicle_vehicle_id": 1
 //         }]);
 //     });
-
+//
+//
 //
 // VehicleDetails.sync()
 //     .then(() => {
@@ -360,7 +369,6 @@ User.sync()
 //     })
 //     .then(() => {
 //         VehicleDetails.bulkCreate([{
-//             "vehicle_detail_id": 1,
 //             "vehicle_detail_name": "est et tempus semper est quam pharetra magna ac consequat metus",
 //             "vehicle_detail_description": "consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia",
 //             "vehicle_detail_sales_date": "3/3/2016",
@@ -371,9 +379,9 @@ User.sync()
 //             "vehicle_detail_free_service_status": 1,
 //             "vehicle_detail_allocated_service_date": "10/17/2016",
 //             "vehicle_detail_service_date": "2/29/2016",
-//             "vehicle_detail_last_milage": 1
+//             "vehicle_detail_last_milage": 1,
+//             "DealerId": 1,
 //         }, {
-//             "vehicle_detail_id": 2,
 //             "vehicle_detail_name": "id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie",
 //             "vehicle_detail_description": "primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti",
 //             "vehicle_detail_sales_date": "6/2/2016",
@@ -384,9 +392,9 @@ User.sync()
 //             "vehicle_detail_free_service_status": 2,
 //             "vehicle_detail_allocated_service_date": "12/12/2016",
 //             "vehicle_detail_service_date": "8/26/2016",
-//             "vehicle_detail_last_milage": 2
+//             "vehicle_detail_last_milage": 2,
+//             "DealerId": 2,
 //         }, {
-//             "vehicle_detail_id": 3,
 //             "vehicle_detail_name": "praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla",
 //             "vehicle_detail_description": "ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse",
 //             "vehicle_detail_sales_date": "12/20/2016",
@@ -397,9 +405,9 @@ User.sync()
 //             "vehicle_detail_free_service_status": 3,
 //             "vehicle_detail_allocated_service_date": "10/28/2016",
 //             "vehicle_detail_service_date": "2/6/2016",
-//             "vehicle_detail_last_milage": 3
+//             "vehicle_detail_last_milage": 3,
+//             "DealerId": 3,
 //         }, {
-//             "vehicle_detail_id": 4,
 //             "vehicle_detail_name": "sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam tristique",
 //             "vehicle_detail_description": "ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae",
 //             "vehicle_detail_sales_date": "8/29/2016",
@@ -410,9 +418,9 @@ User.sync()
 //             "vehicle_detail_free_service_status": 4,
 //             "vehicle_detail_allocated_service_date": "4/18/2016",
 //             "vehicle_detail_service_date": "4/6/2016",
-//             "vehicle_detail_last_milage": 4
+//             "vehicle_detail_last_milage": 4,
+//             "DealerId": 4
 //         }, {
-//             "vehicle_detail_id": 5,
 //             "vehicle_detail_name": "nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam",
 //             "vehicle_detail_description": "montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id",
 //             "vehicle_detail_sales_date": "4/8/2016",
@@ -423,10 +431,11 @@ User.sync()
 //             "vehicle_detail_free_service_status": 5,
 //             "vehicle_detail_allocated_service_date": "1/27/2016",
 //             "vehicle_detail_service_date": "7/31/2016",
-//             "vehicle_detail_last_milage": 5
+//             "vehicle_detail_last_milage": 5,
+//             "DealerId": 5
 //         }]);
 //     });
-//
+
 
 //
 // JobCartProblems.sync()

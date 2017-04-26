@@ -5,7 +5,7 @@ export default class VehicleController {
     constructor($scope, vehicleService, $mdDialog, ModalService) {
         this.itemsByPage = 10;
         this.vehicles = vehicleService.query();
-        console.log('this vehicles');
+        console.log('this is mega vehicles');
         console.log(this.vehicles);
         
         this.$mdDialog = $mdDialog;
