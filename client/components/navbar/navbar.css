@@ -1,0 +1,10 @@
+.navbar-default {
+    margin-bottom: 0px;
+}
+.navbar-inverse {
+    background-color: #428bca;
+    border-color: #428bca;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: rgb(250,250,250) !important;
+}

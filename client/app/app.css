@@ -55,5 +55,6 @@ body {
 @import 'main/main.css';
 @import 'vehicle/vehicle.css';
 @import '../components/footer/footer.css';
+@import '../components/navbar/navbar.css';
 @import '../components/pageTop/pageTop.css';
 /* endinject */

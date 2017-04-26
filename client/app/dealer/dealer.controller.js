@@ -3,7 +3,7 @@
 export default class DealerController {
     /*@ngInject*/
     constructor($scope, dealerService, $mdDialog, ModalService) {
-        this.itemsByPage=10;
+        this.itemsByPage = 10;
 
         this.dealers = dealerService.query();
         this.$mdDialog = $mdDialog;
@@ -52,7 +52,7 @@ export default class DealerController {
     editDealer = function (dealer) {
         this.ModalService.showModal({
             templateUrl: 'editDealer.html',
-            controller: ['$scope', 'dealer', '$mdDialog', 'dealerService', function ($scope, dealer, $mdDialog, dealerService) {
+            controller: ['$scope', 'dealer', 'dealerService', '$mdToast', function ($scope, dealer, dealerService, $mdToast) {
                 $scope.dealer = dealer;
 
                 $scope.updateDealerFrom = function (ev, from) {
@@ -68,9 +68,14 @@ export default class DealerController {
 
                         dealerService.update({
                             id: $scope.dealer._id
-                        }, dealerData, function (response) {
+                        }, dealerData, response => {
                             if (response.$resolved) {
-                                alert('Dealer has updated successfully');
+                                $mdToast.show(
+                                    $mdToast.simple()
+                                        .textContent('Dealer has updated successfully!')
+                                        .position('bottom right')
+                                        .hideDelay(3000)
+                                );
                             }
                         });
 
