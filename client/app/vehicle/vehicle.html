@@ -11,17 +11,18 @@
             <th colspan="5"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
         </tr>
         <tr>
-            <th st-sort="id">Id</th>
-            <th st-sort="chassisNo">Chassis no</th>
-            <th st-sort="engineNo">Engine no</th>
+            <th st-sort="chassisNo">Chassis Number</th>
+            <th st-sort="engineNo">Engine Number</th>
+            <th st-sort="model">Model Number</th>
             <th st-sort="action">Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="row in displayedCollection">
-            <td>{{row.vehicle_master_id}}</td>
             <td>{{row.vehicle_master_chassis_no}}</td>
             <td>{{row.vehicle_master_engine_no}}</td>
+            <td>{{row.Vehicle_model.vehicle_model_name}}</td>
+
             <td>
                 <button type="button" ng-click="vehicle.showVehicle(row)" class="btn btn-sm btn-info">
                     <i class="glyphicon glyphicon-eye-open">

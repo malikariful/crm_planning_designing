@@ -65,33 +65,33 @@ User.sync()
 //     });
 
 
-Vehicle.sync()
-    .then(() => {
-        return Vehicle.destroy({where: {}});
-    })
-    .then(() => {
-        Vehicle.bulkCreate([{
-            "vehicle_master_chassis_no": "53346-1309",
-            "vehicle_master_engine_no": "11673-517",
-            "VehicleModelId": 36
-        }, {
-            "vehicle_master_chassis_no": "0409-7809",
-            "vehicle_master_engine_no": "0268-6560",
-            "VehicleModelId": 37
-        }, {
-            "vehicle_master_chassis_no": "0944-4201",
-            "vehicle_master_engine_no": "64159-7048",
-            "VehicleModelId": 38
-        }, {
-            "vehicle_master_chassis_no": "49349-126",
-            "vehicle_master_engine_no": "49715-007",
-            "VehicleModelId": 39
-        }, {
-            "vehicle_master_chassis_no": "42787-102",
-            "vehicle_master_engine_no": "11673-245",
-            "VehicleModelId": 40
-        }]);
-    });
+// Vehicle.sync()
+//     .then(() => {
+//         return Vehicle.destroy({where: {}});
+//     })
+//     .then(() => {
+//         Vehicle.bulkCreate([{
+//             "vehicle_master_chassis_no": "53346-1309",
+//             "vehicle_master_engine_no": "11673-517",
+//             "VehicleModelId": 36
+//         }, {
+//             "vehicle_master_chassis_no": "0409-7809",
+//             "vehicle_master_engine_no": "0268-6560",
+//             "VehicleModelId": 37
+//         }, {
+//             "vehicle_master_chassis_no": "0944-4201",
+//             "vehicle_master_engine_no": "64159-7048",
+//             "VehicleModelId": 38
+//         }, {
+//             "vehicle_master_chassis_no": "49349-126",
+//             "vehicle_master_engine_no": "49715-007",
+//             "VehicleModelId": 39
+//         }, {
+//             "vehicle_master_chassis_no": "42787-102",
+//             "vehicle_master_engine_no": "11673-245",
+//             "VehicleModelId": 40
+//         }]);
+//     });
 
 
 // Area.sync()
