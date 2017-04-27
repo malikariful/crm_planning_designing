@@ -13,8 +13,8 @@
 import jsonpatch from 'fast-json-patch';
 import {Vehicle} from '../../sqldb';
 import {VehicleModel} from '../../sqldb';
-import {Job} from '../../sqldb';
 import {VehicleDetails} from '../../sqldb';
+import {Dealer} from '../../sqldb';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -71,7 +71,14 @@ export function index(req, res) {
     return Vehicle.findAll({
         include: [
             {
-                model: VehicleDetails
+                model: VehicleModel
+            }, {
+                model: VehicleDetails,
+                include: [
+                    {
+                        model: Dealer
+                    }
+                ]
             }
         ]
     })
@@ -140,3 +147,4 @@ export function destroy(req, res) {
         .then(removeEntity(res))
         .catch(handleError(res));
 }
+// include: [VehicleModel, VehicleDetails]
