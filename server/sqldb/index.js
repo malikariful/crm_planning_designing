@@ -31,8 +31,9 @@ db.sequelize.authenticate()
   });
 
 // Insert models below
+db.VehicleDetail = db.sequelize.import('../api/vehicleDetail/vehicleDetail.model');
 db.Vehicle = db.sequelize.import('../api/vehicle/vehicle.model');
-db.VehicleDetails = db.sequelize.import('ExtraDatabaseModel/vehicleDetails.model');
+db.VehicleDetails = db.sequelize.import('../api/vehicleDetail/vehicleDetail.model');
 
 db.Role = db.sequelize.import('../api/role/role.model');
 db.Problem = db.sequelize.import('../api/problem/problem.model');

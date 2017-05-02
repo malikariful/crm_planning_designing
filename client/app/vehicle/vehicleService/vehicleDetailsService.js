@@ -5,7 +5,7 @@ const angular = require('angular');
 export function vehicleDetailsService($resource) {
     'ngInject';
 
-    return $resource('/api/vehicleModels/:id/:controller', {
+    return $resource('/api/vehicleDetails/:id/:controller', {
         id: '@_id'
     }, {
         update: {
