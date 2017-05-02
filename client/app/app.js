@@ -19,6 +19,8 @@ import {
 } from './app.config';
 
 import _Auth from '../components/auth/auth.module';
+import dateConversionDirective from './common/dateConversion/dateConversion.directive';
+import dateStringFilterModule from './common/dateStringFilter/dateStringFilter.filter';
 import account from './account';
 import admin from './admin';
 import userManagement from './admin/userManagement';
@@ -43,7 +45,7 @@ angular.module('crmApp', [
     // ngMessages,
 
     // ngValidationMatch,
-    _Auth, account, admin, userManagement, dashboard, navbar, footer, main, constants, util, jobCard, vehicle, employer, dealerService, dealer, vehiclesService
+    _Auth, account, admin, userManagement, dashboard, navbar, footer, main, constants, util, dateConversionDirective, dateStringFilterModule, jobCard, vehicle, employer, dealerService, dealer, vehiclesService
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
