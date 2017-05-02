@@ -2,15 +2,18 @@
 
 export default class VehicleSetUpController {
     /*@ngInject*/
-    constructor($scope, $state, dealerService, $mdDialog) {
+    constructor($scope, $state, vehicleService, $mdDialog) {
         this.$state = $state;
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
-        this.dealerService = new dealerService();
-        this.dealer = dealerService.query();
+        this.vehicleService = new vehicleService();
+        this.vehicle = vehicleService.query();
+        this.myDate = new Date();
+        this.isOpen = false;
+
     }
     
-    createDealer(form) {
+    createVehicle(form) {
         if (form.$valid) {
             this.dealerService.data = {
                 dealer_name: this.$scope.dealer.dname,
@@ -39,7 +42,7 @@ export default class VehicleSetUpController {
 
     showAlert(res) {
         alert = this.$mdDialog.alert({
-            title: 'Dealer has created successfully',
+            title: 'vehicle has created successfully',
             textContent: '',
             ok: 'Close'
         });

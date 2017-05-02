@@ -63,11 +63,6 @@
 
                         <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
                             <div>
-                                <div flex-gt-sm="50">
-                                    <span>Free Status</span>
-                                    <md-checkbox ng-model="vehicle.Vehicle_detail.vehicle_detail_free_service_status"></md-checkbox>
-                                </div>
-
                                 <md-input-container class="md-block">
                                     <label>Model</label>
                                     <input ng-readonly="true" ng-model="vehicle.Vehicle_model.vehicle_model_name">
@@ -110,13 +105,16 @@
                                                ng-model="vehicle.Vehicle_detail.vehicle_detail_last_milage">
                                     </md-input-container>
 
-
-
                                     <md-input-container class="md-block">
                                         <label>Vehicle free service</label>
                                         <input ng-readonly="true"
                                                ng-model="vehicle.Vehicle_detail.vehicle_details_total_free_service">
                                     </md-input-container>
+
+                                    <div flex-gt-sm="50">
+                                        <span>Free Status</span>
+                                        <md-checkbox ng-model="vehicle.Vehicle_detail.vehicle_detail_free_service_status"></md-checkbox>
+                                    </div>
                                 </div>
 
                                 <div layout-gt-xs="row">
