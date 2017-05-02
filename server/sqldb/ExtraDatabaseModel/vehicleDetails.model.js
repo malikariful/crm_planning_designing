@@ -36,7 +36,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: true
         },
         vehicle_detail_free_service_status: {
-            type: DataTypes.INTEGER(1),
+            type: DataTypes.BOOLEAN,
             allowNull: true
         },
         vehicle_detail_allocated_service_date: {
