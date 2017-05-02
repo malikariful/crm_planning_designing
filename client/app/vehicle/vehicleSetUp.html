@@ -17,7 +17,6 @@
         </md-card-title>
     </md-card>
 
-
     <md-content layout-padding>
 
         <form name="vehicleForm" ng-submit="vehicleSetUp.createVehicle(dealerForm)" novalidate>
@@ -50,12 +49,12 @@
                     </div>
                 </md-input-container>
 
-                <md-input-container flex="30">
+                <md-input-container class="md-block" flex-gt-sm>
                     <label>Select Vehicle Model</label>
-                    <md-select name="type" ng-model="vehicle.model" required>
-                        <md-option value="permanent">Pulser</md-option>
-                        <md-option value="temporary">CT-100</md-option>
-                        <md-option value="temporary">Bajaj-50</md-option>
+                    <md-select ng-model="vehicle.selectedVehicleModel">
+                        <md-option ng-repeat="model in vehicleSetUp.vehicleModels" value="{{model._id}}">
+                            {{model.vehicle_model_name}}
+                        </md-option>
                     </md-select>
                 </md-input-container>
 
@@ -118,18 +117,15 @@
 
             </div>
 
-            <md-input-container flex="30">
-                <label>Select Dealer </label>
-
-                <md-select name="dealerSelected" ng-model="vehicle.dealerSelected" required>
-                    <md-option value="permanent">jodu</md-option>
-                    <md-option value="temporary">Modu</md-option>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Select Dealer</label>
+                <md-select ng-model="vehicle.selectedDealer">
+                    <md-option ng-repeat="dealer in vehicleSetUp.dealers" value="{{dealer._id}}">
+                        {{dealer.dealer_name}}
+                    </md-option>
                 </md-select>
-
-                <div ng-messages="vehicleForm.dealerSelected.$error">
-                    <div ng-message="required">You must select a dealer.</div>
-                </div>
             </md-input-container>
+
 
             <div class="pull-right">
                 <md-button ng-disabled="vehicleForm.$invalid" class="md-raised md-button" type="submit">Create</md-button>

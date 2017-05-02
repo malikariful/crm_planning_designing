@@ -2,7 +2,7 @@
 
 export default class VehicleSetUpController {
     /*@ngInject*/
-    constructor($scope, $state, vehicleService, $mdDialog) {
+    constructor($scope, $state, vehicleService, vehicleModelService, dealerService, $mdDialog) {
         this.$state = $state;
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
@@ -10,12 +10,19 @@ export default class VehicleSetUpController {
         this.vehicle = vehicleService.query();
         this.myDate = new Date();
         this.isOpen = false;
-
+        this.vehicleModels = vehicleModelService.query();
+        this.dealers = dealerService.query();
     }
     
     createVehicle(form) {
         if (form.$valid) {
-            this.dealerService.data = {
+
+            console.log('Create Vehicle');
+            console.log(this.$scope);
+
+            return false;
+
+            this.vehicleService.data = {
                 dealer_name: this.$scope.dealer.dname,
                 dealer_email: this.$scope.dealer.email,
                 dealer_phone: this.$scope.dealer.phone,
