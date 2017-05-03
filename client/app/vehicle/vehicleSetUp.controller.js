@@ -12,6 +12,8 @@ export default class VehicleSetUpController {
         this.vehicle = vehicleService.query();
         this.vehicleModels = vehicleModelService.query();
         this.vehicleDetail = vehicleDetailsService.query();
+        
+
         this.dealers = dealerService.query();
     }
 

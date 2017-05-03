@@ -2,15 +2,21 @@
 
 export default class VehicleController {
     /*@ngInject*/
-    constructor($scope, vehicleService, $mdDialog, ModalService) {
+    constructor($scope, vehicleService, $mdDialog, ModalService, vehicleDetailsService) {
         this.itemsByPage = 10;
         this.vehicles = vehicleService.query();
-        console.log('this is mega vehicles');
-        console.log(this.vehicles);
-        
+        // console.log('this is vehicles');
+        // console.log(this.vehicles);
+
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
         this.ModalService = ModalService;
+
+        this.vehicleDetail = vehicleDetailsService.query();
+
+        // console.log('vehicleDetail');
+        // console.log(this.vehicleDetail);
+
     }
 
     removeItem(vehicle) {
@@ -34,12 +40,22 @@ export default class VehicleController {
     };
 
     showVehicle = function (vehicle) {
+
         this.ModalService.showModal({
             templateUrl: 'showVehicle.html',
-            controller: ['$scope', 'vehicle', function ($scope, vehicle) {
+            controller: ['$scope', 'vehicle', 'vehicleDetailsService', function ($scope, vehicle, vehicleDetailsService) {
                 $scope.vehicle = vehicle;
-                console.log('Inside vehicles modal');
-                console.log($scope.vehicle);
+                // console.log('selected vehicle id');
+                // console.log($scope.vehicle._id);
+
+                vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
+
+                    console.log('vehicleDetail');
+                    console.log(vehicleDetail);
+
+                    $scope.vehicleDetails = vehicleDetail;
+                });
+
             }],
             inputs: {
                 vehicle: vehicle

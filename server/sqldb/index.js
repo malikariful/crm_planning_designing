@@ -33,7 +33,6 @@ db.sequelize.authenticate()
 // Insert models below
 db.VehicleDetail = db.sequelize.import('../api/vehicleDetail/vehicleDetail.model');
 db.Vehicle = db.sequelize.import('../api/vehicle/vehicle.model');
-db.VehicleDetails = db.sequelize.import('../api/vehicleDetail/vehicleDetail.model');
 
 db.Role = db.sequelize.import('../api/role/role.model');
 db.Problem = db.sequelize.import('../api/problem/problem.model');
@@ -54,9 +53,9 @@ db.JobCartProblems = db.sequelize.import('ExtraDatabaseModel/jobCartProblems.mod
 db.RolePermissions = db.sequelize.import('ExtraDatabaseModel/rolePermissions.model');
 // db.UserRole = db.sequelize.import('../ExtraDatabaseModel/userRoles.model'); not working
 
-db.VehicleDetails.belongsTo(db.Dealer);
+db.VehicleDetail.belongsTo(db.Dealer);
 db.Vehicle.belongsTo(db.VehicleModel);
-db.Vehicle.belongsTo(db.VehicleDetails);
+db.Vehicle.hasOne(db.VehicleDetail);
 
 
 db.User.belongsToMany(db.Role, {

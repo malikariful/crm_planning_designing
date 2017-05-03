@@ -13,10 +13,12 @@
 import jsonpatch from 'fast-json-patch';
 import {Vehicle} from '../../sqldb';
 import {VehicleModel} from '../../sqldb';
-import {VehicleDetails} from '../../sqldb';
-import {Dealer} from '../../sqldb';
+// import {VehicleDetails} from '../../sqldb';
+// import {Dealer} from '../../sqldb';
 
 function respondWithResult(res, statusCode) {
+    console.log('response from vehicle ');
+    console.log(res);
     statusCode = statusCode || 200;
     return function (entity) {
         if (entity) {
@@ -68,17 +70,11 @@ function handleError(res, statusCode) {
 
 // Gets a list of Vehicles
 export function index(req, res) {
+
     return Vehicle.findAll({
         include: [
             {
                 model: VehicleModel
-            }, {
-                model: VehicleDetails,
-                include: [
-                    {
-                        model: Dealer
-                    }
-                ]
             }
         ]
     })
@@ -148,3 +144,27 @@ export function destroy(req, res) {
         .catch(handleError(res));
 }
 // include: [VehicleModel, VehicleDetails]
+
+
+
+
+// Gets a list of Vehicles
+// export function index(req, res) {
+//     return Vehicle.findAll({
+//         include: [
+//             {
+//                 model: VehicleModel
+//             }, {
+//                 model: VehicleDetails,
+//                 include: [
+//                     {
+//                         model: Dealer
+//                     }
+//                 ]
+//             }
+//         ]
+//     })
+//         .then(respondWithResult(res))
+//         .catch(handleError(res));
+// }
+//

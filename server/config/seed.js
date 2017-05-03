@@ -18,34 +18,34 @@ var Role = sqldb.Role;
 var Vehicle = sqldb.Vehicle;
 var VehicleModel = sqldb.VehicleModel;
 var CustomerVehicle = sqldb.CustomerVehicle;
-var VehicleDetails = sqldb.VehicleDetails;
+var VehicleDetail = sqldb.VehicleDetail;
 var JobCartProblems = sqldb.JobCartProblems;
 var RolePermissions = sqldb.RolePermissions;
 var Thing = sqldb.Thing;
 var User = sqldb.User;
 
-
-User.sync()
-    .then(() => User.destroy({where: {}}))
-    .then(() => {
-        User.bulkCreate([{
-            provider: 'local',
-            name: 'Test User',
-            email: 'test@example.com',
-            password: 'test'
-        }, {
-            provider: 'local',
-            role: 'admin',
-            name: 'Admin',
-            email: 'tarekahsan709@gmail.com',
-            password: 'admin'
-        }])
-            .then(() => {
-                console.log('finished populating users');
-            });
-    });
-
 //
+// User.sync()
+//     .then(() => User.destroy({where: {}}))
+//     .then(() => {
+//         User.bulkCreate([{
+//             provider: 'local',
+//             name: 'Test User',
+//             email: 'test@example.com',
+//             password: 'test'
+//         }, {
+//             provider: 'local',
+//             role: 'admin',
+//             name: 'Admin',
+//             email: 'tarekahsan709@gmail.com',
+//             password: 'admin'
+//         }])
+//             .then(() => {
+//                 console.log('finished populating users');
+//             });
+//     });
+//
+
 // VehicleModel.sync()
 //     .then(() => {
 //         return VehicleModel.destroy({where: {}});
@@ -63,8 +63,8 @@ User.sync()
 //             "vehicle_model_name": "iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget"
 //         }]);
 //     });
-
-
+//
+//
 // Vehicle.sync()
 //     .then(() => {
 //         return Vehicle.destroy({where: {}});
@@ -73,31 +73,109 @@ User.sync()
 //         Vehicle.bulkCreate([{
 //             "vehicle_master_chassis_no": "53346-1309",
 //             "vehicle_master_engine_no": "11673-517",
-//             "VehicleModelId": 1,
-//             "VehicleDetailId": 1
+//             "VehicleModelId": 1
+//
 //
 //         }, {
 //             "vehicle_master_chassis_no": "0409-7809",
 //             "vehicle_master_engine_no": "0268-6560",
-//             "VehicleModelId": 2,
-//             "VehicleDetailId": 2,
+//             "VehicleModelId": 2
+//
 //
 //         }, {
 //             "vehicle_master_chassis_no": "0944-4201",
 //             "vehicle_master_engine_no": "64159-7048",
-//             "VehicleModelId": 3,
-//              "VehicleDetailId":3,
+//             "VehicleModelId": 3
+//
 //
 //         }, {
 //             "vehicle_master_chassis_no": "49349-126",
 //             "vehicle_master_engine_no": "49715-007",
-//             "VehicleModelId": 4,
-//             "VehicleDetailId": 4,
+//             "VehicleModelId": 4
+//
 //         }, {
 //             "vehicle_master_chassis_no": "42787-102",
 //             "vehicle_master_engine_no": "11673-245",
-//             "VehicleModelId": 5,
-//             "VehicleDetailId": 5
+//             "VehicleModelId": 5
+//
+//         }]);
+//     });
+
+// VehicleDetail.sync()
+//     .then(() => {
+//         return VehicleDetail.destroy({where: {}});
+//     })
+//     .then(() => {
+//         VehicleDetail.bulkCreate([{
+//             "vehicle_detail_name": "est et tempus semper est quam pharetra magna ac consequat metus",
+//             "vehicle_detail_description": "consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia",
+//             "vehicle_detail_sales_date": "3/3/2016",
+//             "vehicle_details_import_date": "8/3/2016",
+//             "vehicle_detail_dealer_id": 1,
+//             "vehicle_detail_last_grade": 1,
+//             "vehicle_details_total_free_service": 1,
+//             "vehicle_detail_free_service_status": 1,
+//             "vehicle_detail_allocated_service_date": "10/17/2016",
+//             "vehicle_detail_service_date": "2/29/2016",
+//             "vehicle_detail_last_milage": 1,
+//             "DealerId": 1,
+//             "VehicleMasterId":1
+//         }, {
+//             "vehicle_detail_name": "id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie",
+//             "vehicle_detail_description": "primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti",
+//             "vehicle_detail_sales_date": "6/2/2016",
+//             "vehicle_details_import_date": "5/19/2016",
+//             "vehicle_detail_dealer_id": 2,
+//             "vehicle_detail_last_grade": 2,
+//             "vehicle_details_total_free_service": 2,
+//             "vehicle_detail_free_service_status": 2,
+//             "vehicle_detail_allocated_service_date": "12/12/2016",
+//             "vehicle_detail_service_date": "8/26/2016",
+//             "vehicle_detail_last_milage": 2,
+//             "DealerId": 2,
+//             "VehicleMasterId":2
+//         }, {
+//             "vehicle_detail_name": "praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla",
+//             "vehicle_detail_description": "ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse",
+//             "vehicle_detail_sales_date": "12/20/2016",
+//             "vehicle_details_import_date": "9/26/2016",
+//             "vehicle_detail_dealer_id": 3,
+//             "vehicle_detail_last_grade": 3,
+//             "vehicle_details_total_free_service": 3,
+//             "vehicle_detail_free_service_status": 3,
+//             "vehicle_detail_allocated_service_date": "10/28/2016",
+//             "vehicle_detail_service_date": "2/6/2016",
+//             "vehicle_detail_last_milage": 3,
+//             "DealerId": 3,
+//             "VehicleMasterId":3
+//         }, {
+//             "vehicle_detail_name": "sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam tristique",
+//             "vehicle_detail_description": "ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae",
+//             "vehicle_detail_sales_date": "8/29/2016",
+//             "vehicle_details_import_date": "6/16/2016",
+//             "vehicle_detail_dealer_id": 4,
+//             "vehicle_detail_last_grade": 4,
+//             "vehicle_details_total_free_service": 4,
+//             "vehicle_detail_free_service_status": 4,
+//             "vehicle_detail_allocated_service_date": "4/18/2016",
+//             "vehicle_detail_service_date": "4/6/2016",
+//             "vehicle_detail_last_milage": 4,
+//             "DealerId": 4,
+//             "VehicleMasterId":4
+//         }, {
+//             "vehicle_detail_name": "nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam",
+//             "vehicle_detail_description": "montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id",
+//             "vehicle_detail_sales_date": "4/8/2016",
+//             "vehicle_details_import_date": "10/27/2016",
+//             "vehicle_detail_dealer_id": 5,
+//             "vehicle_detail_last_grade": 5,
+//             "vehicle_details_total_free_service": 5,
+//             "vehicle_detail_free_service_status": 5,
+//             "vehicle_detail_allocated_service_date": "1/27/2016",
+//             "vehicle_detail_service_date": "7/31/2016",
+//             "vehicle_detail_last_milage": 5,
+//             "DealerId": 5,
+//             "VehicleMasterId": 5
 //         }]);
 //     });
 
@@ -362,79 +440,8 @@ User.sync()
 //     });
 //
 //
-//
-// VehicleDetails.sync()
-//     .then(() => {
-//         return VehicleDetails.destroy({where: {}});
-//     })
-//     .then(() => {
-//         VehicleDetails.bulkCreate([{
-//             "vehicle_detail_name": "est et tempus semper est quam pharetra magna ac consequat metus",
-//             "vehicle_detail_description": "consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia",
-//             "vehicle_detail_sales_date": "3/3/2016",
-//             "vehicle_details_import_date": "8/3/2016",
-//             "vehicle_detail_dealer_id": 1,
-//             "vehicle_detail_last_grade": 1,
-//             "vehicle_details_total_free_service": 1,
-//             "vehicle_detail_free_service_status": 1,
-//             "vehicle_detail_allocated_service_date": "10/17/2016",
-//             "vehicle_detail_service_date": "2/29/2016",
-//             "vehicle_detail_last_milage": 1,
-//             "DealerId": 1,
-//         }, {
-//             "vehicle_detail_name": "id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie",
-//             "vehicle_detail_description": "primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti",
-//             "vehicle_detail_sales_date": "6/2/2016",
-//             "vehicle_details_import_date": "5/19/2016",
-//             "vehicle_detail_dealer_id": 2,
-//             "vehicle_detail_last_grade": 2,
-//             "vehicle_details_total_free_service": 2,
-//             "vehicle_detail_free_service_status": 2,
-//             "vehicle_detail_allocated_service_date": "12/12/2016",
-//             "vehicle_detail_service_date": "8/26/2016",
-//             "vehicle_detail_last_milage": 2,
-//             "DealerId": 2,
-//         }, {
-//             "vehicle_detail_name": "praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla",
-//             "vehicle_detail_description": "ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse",
-//             "vehicle_detail_sales_date": "12/20/2016",
-//             "vehicle_details_import_date": "9/26/2016",
-//             "vehicle_detail_dealer_id": 3,
-//             "vehicle_detail_last_grade": 3,
-//             "vehicle_details_total_free_service": 3,
-//             "vehicle_detail_free_service_status": 3,
-//             "vehicle_detail_allocated_service_date": "10/28/2016",
-//             "vehicle_detail_service_date": "2/6/2016",
-//             "vehicle_detail_last_milage": 3,
-//             "DealerId": 3,
-//         }, {
-//             "vehicle_detail_name": "sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam tristique",
-//             "vehicle_detail_description": "ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae",
-//             "vehicle_detail_sales_date": "8/29/2016",
-//             "vehicle_details_import_date": "6/16/2016",
-//             "vehicle_detail_dealer_id": 4,
-//             "vehicle_detail_last_grade": 4,
-//             "vehicle_details_total_free_service": 4,
-//             "vehicle_detail_free_service_status": 4,
-//             "vehicle_detail_allocated_service_date": "4/18/2016",
-//             "vehicle_detail_service_date": "4/6/2016",
-//             "vehicle_detail_last_milage": 4,
-//             "DealerId": 4
-//         }, {
-//             "vehicle_detail_name": "nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam",
-//             "vehicle_detail_description": "montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id",
-//             "vehicle_detail_sales_date": "4/8/2016",
-//             "vehicle_details_import_date": "10/27/2016",
-//             "vehicle_detail_dealer_id": 5,
-//             "vehicle_detail_last_grade": 5,
-//             "vehicle_details_total_free_service": 5,
-//             "vehicle_detail_free_service_status": 5,
-//             "vehicle_detail_allocated_service_date": "1/27/2016",
-//             "vehicle_detail_service_date": "7/31/2016",
-//             "vehicle_detail_last_milage": 5,
-//             "DealerId": 5
-//         }]);
-//     });
+
+
 
 
 //
