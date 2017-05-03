@@ -5,17 +5,12 @@ export default class VehicleController {
     constructor($scope, vehicleService, $mdDialog, ModalService, vehicleDetailsService) {
         this.itemsByPage = 10;
         this.vehicles = vehicleService.query();
-        // console.log('this is vehicles');
-        // console.log(this.vehicles);
 
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
         this.ModalService = ModalService;
 
         this.vehicleDetail = vehicleDetailsService.query();
-
-        // console.log('vehicleDetail');
-        // console.log(this.vehicleDetail);
 
     }
 
@@ -45,14 +40,7 @@ export default class VehicleController {
             templateUrl: 'showVehicle.html',
             controller: ['$scope', 'vehicle', 'vehicleDetailsService', function ($scope, vehicle, vehicleDetailsService) {
                 $scope.vehicle = vehicle;
-                // console.log('selected vehicle id');
-                // console.log($scope.vehicle._id);
-
                 vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
-
-                    console.log('vehicleDetail');
-                    console.log(vehicleDetail);
-
                     $scope.vehicleDetails = vehicleDetail;
                 });
 

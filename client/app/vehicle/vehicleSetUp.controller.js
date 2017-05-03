@@ -7,12 +7,12 @@ export default class VehicleSetUpController {
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
         this.vehicleService = new vehicleService();
-        this.vehicleDetailService = new vehicleService();
+        this.vehicleDetailService = new vehicleDetailsService();
 
         this.vehicle = vehicleService.query();
         this.vehicleModels = vehicleModelService.query();
         this.vehicleDetail = vehicleDetailsService.query();
-        
+
 
         this.dealers = dealerService.query();
     }
@@ -23,35 +23,43 @@ export default class VehicleSetUpController {
             console.log('Create Vehicle');
             console.log(this.$scope);
 
+            this.vehicleService.data = {
+                vehicle_master_chassis_no: this.$scope.vehicle.chassisNo,
+                vehicle_master_engine_no: this.$scope.vehicle.engineNo,
+                VehicleModelId: this.$scope.vehicle.selectedVehicleModel
+            };
 
-            // this.vehicleDetailService.data = {
-            //     vehicle_detail_name: this.$scope.vehicle.details,
-            //     vehicle_detail_sales_date: this.$scope.vehicle.salesDate,
-            //     vehicle_details_import_date: this.$scope.vehicle.importDate,
-            //     vehicle_detail_allocated_service_date: this.$scope.vehicle.allocatedServiceDate,
-            //     vehicle_detail_service_date: this.$scope.vehicle.servicingDate,
-            //     vehicle_detail_last_grade: this.$scope.vehicle.grade,
-            //     vehicle_details_total_free_service: this.$scope.vehicle.freeService,
-            //     vehicle_detail_last_milage: this.$scope.vehicle.mileage,
-            //     DealerId: this.$scope.vehicle.selectedDealer
-            // };
-
-
-            this.vehicleDetailService.$save({
-                vehicle_detail_name: this.$scope.vehicle.details,
-                vehicle_detail_sales_date: this.$scope.vehicle.salesDate,
-                vehicle_details_import_date: this.$scope.vehicle.importDate,
-                vehicle_detail_allocated_service_date: this.$scope.vehicle.allocatedServiceDate,
-                vehicle_detail_service_date: this.$scope.vehicle.servicingDate,
-                vehicle_detail_last_grade: this.$scope.vehicle.grade,
-                vehicle_details_total_free_service: this.$scope.vehicle.freeService,
-                vehicle_detail_last_milage: this.$scope.vehicle.mileage,
-                DealerId: this.$scope.vehicle.selectedDealer
-            })
+            this.vehicleService.$save()
                 .then(res => {
                     if (res.$resolved) {
-                        console.log("res saving obj");
-                        console.log(res);
+                        // console.log("res saving obj");
+                        // console.log(res);
+                        this.vehicleDetailService.data = {
+                            vehicle_detail_name: this.$scope.vehicle.details,
+                            vehicle_detail_sales_date: this.$scope.vehicle.salesDate,
+                            vehicle_details_import_date: this.$scope.vehicle.importDate,
+                            vehicle_detail_allocated_service_date: this.$scope.vehicle.allocatedServiceDate,
+                            vehicle_detail_service_date: this.$scope.vehicle.servicingDate,
+                            vehicle_detail_last_grade: this.$scope.vehicle.grade,
+                            vehicle_details_total_free_service: this.$scope.vehicle.freeService,
+                            vehicle_detail_last_milage: this.$scope.vehicle.mileage,
+                            DealerId: this.$scope.vehicle.selectedDealer,
+                            VehicleMasterId: res._id
+                        };
+                        this.vehicleDetailService.$save()
+                            .then(res => {
+                                if (res.$resolved) {
+                                    console.log("res saving obj");
+                                    console.log(res);
+                                    this.showAlert(res);
+                                }
+                            })
+                            .catch(function (req) {
+                                console.log("error saving obj");
+                            })
+                            .finally(function () {
+                                console.log("always called")
+                            });
                     }
                 })
                 .catch(function (req) {
@@ -61,31 +69,7 @@ export default class VehicleSetUpController {
                     console.log("always called")
                 });
 
-            // return false;
 
-
-            // this.vehicleService.data = {
-            //     dealer_name: this.$scope.dealer.dname,
-            //     dealer_email: this.$scope.dealer.email,
-            //     dealer_phone: this.$scope.dealer.phone,
-            //     dealer_type: this.$scope.dealer.type,
-            //     dealer_address: this.$scope.dealer.address
-            // };
-
-            // this.vehicleService.$save()
-            //     .then(res => {
-            //         if (res.$resolved) {
-            //             console.log("res saving obj");
-            //             console.log(res);
-            //             this.showAlert(res);
-            //         }
-            //     })
-            //     .catch(function (req) {
-            //         console.log("error saving obj");
-            //     })
-            //     .finally(function () {
-            //         console.log("always called")
-            //     });
         }
     }
 

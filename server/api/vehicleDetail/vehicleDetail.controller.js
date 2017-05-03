@@ -98,7 +98,8 @@ export function show(req, res) {
 
 // Creates a new VehicleDetail in the DB
 export function create(req, res) {
-    return VehicleDetail.create(req.body)
+    
+    return VehicleDetail.create(req.body.data)
         .then(respondWithResult(res, 201))
         .catch(handleError(res));
 }
