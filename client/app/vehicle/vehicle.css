@@ -1,3 +1,13 @@
 .margin-top-40{
     margin-top: 40px;
 }
+.btn-success {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #428bca;
+}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
+    color: #fff;
+    background-color: #428bca;
+    border-color: #428bca;
+}

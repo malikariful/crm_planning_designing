@@ -182,72 +182,122 @@
                     <p>Edit vehicle Information</p>
                     <form name="vehicleFrom" novalidate show-validation>
                         <div layout="column" ng-cloak class="md-inline-form">
-                            <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
 
-                                <md-input-container>
-                                    <label>vehicle name</label>
-                                    <input minlength="3" md-maxlength="30" name="vehicleName" required
-                                           ng-model="vehicle.vehicle_name">
+                            <md-content layout-gt-sm="row" layout-padding>
+                                <div>
 
-                                    <div ng-messages="updatevehicleFrom.vehicleName.$error" role="alert" multiple>
-                                        <div ng-message="required" class="my-message">You must write a vehicle
-                                            name.
-                                        </div>
-                                        <div ng-message="md-maxlength">The name must be less than 30 characters
-                                            long.
-                                        </div>
-                                        <div ng-message="minlength">The name must be more than 3 characters long.
-                                        </div>
+                                    <md-input-container>
+
+                                        <select class="dropdown" ng-options="model._id as model.vehicle_model_name for model in vehicleModels" ng-model="vehicle.selectedVehicleModel">
+                                            <option style="display:none" value="">select a model</option>
+                                        </select>
+                                        {{vehicle.selectedVehicleModel}}
+
+                                    </md-input-container>
+
+                                    <div class="dropdown">
+                                        <select class="dropdown" ng-options="model._id as model.vehicle_model_name for model in vehicleModels" ng-model="vehicle.selectedVehicleModel">
+                                            <option style="display:none" value="">select a model</option>
+                                        </select>
                                     </div>
-                                </md-input-container>
 
-                                <md-input-container>
-                                    <label>vehicle email</label>
-                                    <input name="vehicleEmail" required ng-model="vehicle.vehicle_email" type="email">
-                                    <div ng-messages="updatevehicleFrom.vehicleEmail.$error" role="alert" multiple>
-                                        <div ng-message="required" class="my-message">You must write a email.</div>
-                                    </div>
-                                </md-input-container>
+
+
+                                    <md-input-container>
+                                        <label>Chassis</label>
+                                        <input ng-model="vehicle.vehicle_master_chassis_no">
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Engine</label>
+                                        <input ng-model="vehicle.vehicle_master_engine_no">
+                                    </md-input-container>
+                                </div>
                             </md-content>
 
                             <md-content layout-padding>
-                                <div layout-gt-xs="row">
+                                <div>
                                     <md-input-container class="md-block" flex-gt-xs>
-                                        <label>vehicle phone</label>
-                                        <input name="vehiclePhone" required ng-model="vehicle.vehicle_phone">
-                                        <div ng-messages="updateVehicleFrom.vehiclePhone.$error" role="alert"
-                                             multiple>
-                                            <div ng-message="required" class="my-message">You must write a phone
-                                                number.
-                                            </div>
-                                        </div>
+                                        <label>Descriptions</label>
+                                        <input ng-model="vehicleDetail.vehicle_detail_description">
                                     </md-input-container>
 
-                                    <!--<md-input-container class="md-block" flex-gt-xs>-->
-                                    <!--<label>vehicle type</label>-->
-                                    <!--<input ng-model="vehicle.vehicle_type">-->
-                                    <!--</md-input-container>-->
-                                </div>
+                                    <md-input-container class="md-block">
+                                        <label>Vehicle details name</label>
+                                        <input ng-model="vehicleDetail.vehicle_detail_name">
+                                    </md-input-container>
 
-                                <md-input-container class="md-block">
-                                    <label>Address</label>
-                                    <input minlength="3" md-maxlength="30" name="vehicleAddress" required
-                                           ng-model="vehicle.vehicle_address">
-                                    <div ng-messages="updateVehicleFrom.vehicleAddress.$error" role="alert"
-                                         multiple>
-                                        <div ng-message="required" class="my-message">You must write down the
-                                            address.
-                                        </div>
-                                        <div ng-message="md-maxlength">The address must be less than 30
-                                            characters long.
-                                        </div>
-                                        <div ng-message="minlength">The address must be more than 3 characters
-                                            long.
+                                    <div layout-gt-xs="row">
+                                        <md-input-container class="md-block">
+                                            <label>Last Grade</label>
+                                            <input
+                                                   ng-model="vehicleDetail.vehicle_detail_last_grade">
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block">
+                                            <label>Last Mileage</label>
+                                            <input
+                                                   ng-model="vehicleDetail.vehicle_detail_last_milage">
+                                        </md-input-container>
+
+                                        <md-input-container class="md-block">
+                                            <label>Vehicle free service</label>
+                                            <input
+                                                   ng-model="vehicleDetail.vehicle_details_total_free_service">
+                                        </md-input-container>
+
+                                        <div flex-gt-sm="50">
+                                            <span>Free Status</span>
+                                            <md-checkbox ng-model="vehicleDetail.vehicle_detail_free_service_status"></md-checkbox>
                                         </div>
                                     </div>
-                                </md-input-container>
+
+                                    <div layout-gt-xs="row">
+                                        <md-input-container class="" flex-gt-xs>
+                                            <label>Service Date</label><br>
+                                            <span>{{vehicleDetail.vehicle_detail_allocated_service_date | dateStringFilter}}</span>
+
+                                        </md-input-container>
+
+                                        <md-input-container class="" flex-gt-xs>
+                                            <label>Vehicle sales date</label><br>
+                                            <p>{{vehicleDetail.vehicle_detail_sales_date | dateStringFilter}}</p>
+                                        </md-input-container>
+
+                                        <md-input-container class="" flex-gt-xs>
+                                            <label>Vehicle service date</label><br>
+                                            <p>{{vehicleDetail.vehicle_detail_service_date | dateStringFilter}}</p>
+
+                                        </md-input-container>
+
+                                        <md-input-container class="" flex-gt-xs>
+                                            <label>Vehicle import date</label><br>
+                                            <p>{{vehicleDetail.vehicle_details_import_date | dateStringFilter}}</p>
+
+                                        </md-input-container>
+                                    </div>
+
+
+                                    <md-input-container class="md-block">
+                                        <label>Dealer name</label>
+                                        <input ng-model="vehicleDetail.Dealer.dealer_name">
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Dealer phone</label>
+                                        <input  ng-model="vehicleDetail.Dealer.dealer_phone">
+                                    </md-input-container>
+
+                                    <md-input-container>
+                                        <label>Dealer Type</label>
+                                        <input ng-model="vehicleDetail.Dealer.dealer_type">
+                                    </md-input-container>
+
+                                </div>
 
                             </md-content>
+
+
                         </div>
 
                         <div>

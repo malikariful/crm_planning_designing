@@ -58,8 +58,18 @@ export default class VehicleController {
     editVehicle = function (vehicle) {
         this.ModalService.showModal({
             templateUrl: 'editVehicle.html',
-            controller: ['$scope', 'vehicle', 'vehicleService', '$mdToast', function ($scope, vehicle, vehicleService, $mdToast) {
+            controller: ['$scope', 'vehicle', 'vehicleService', 'vehicleDetailsService', 'vehicleModelService', '$mdToast', function ($scope, vehicle, vehicleService, vehicleDetailsService, vehicleModelService, $mdToast) {
+
                 $scope.vehicle = vehicle;
+
+                vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
+                    $scope.vehicleDetail = vehicleDetail;
+                });
+
+                $scope.vehicleModels = vehicleModelService.query();
+                console.log('Models');
+                console.log($scope.vehicleModels);
+
 
                 $scope.updatevehicleFrom = function (ev, from) {
                     if (from.$valid && from.$dirty) {
