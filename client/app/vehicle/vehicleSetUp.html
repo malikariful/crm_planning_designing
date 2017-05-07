@@ -92,7 +92,7 @@
 
                 <md-input-container flex="30">
                     <label>Last grade</label>
-                    <input  md-no-asterisk name="grade" ng-model="vehicle.grade" required>
+                    <input type="number"  md-no-asterisk name="grade" ng-model="vehicle.grade" required min="0"  >
                     <div ng-messages="vehicleForm.grade.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
@@ -100,7 +100,7 @@
 
                 <md-input-container flex="30">
                     <label>Number of free service</label>
-                    <input type="number" md-no-asterisk name="freeService" ng-model="vehicle.freeService" required>
+                    <input type="number" min="0" md-no-asterisk name="freeService" ng-model="vehicle.freeService" required>
 
                     <div ng-messages="vehicleForm.freeService.$error">
                         <div ng-message="required">This is required.</div>
@@ -109,7 +109,7 @@
 
                 <md-input-container flex="30">
                     <label>Last Mileage</label>
-                    <input type="number" md-no-asterisk name="mileage" ng-model="vehicle.mileage"  required>
+                    <input type="number" min="0" md-no-asterisk name="mileage" ng-model="vehicle.mileage"  required>
                     <div ng-messages="vehicleForm.mileage.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
