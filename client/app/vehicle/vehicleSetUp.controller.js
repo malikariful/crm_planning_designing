@@ -2,8 +2,9 @@
 
 export default class VehicleSetUpController {
     /*@ngInject*/
-    constructor($scope, $state, vehicleService, vehicleDetailsService, vehicleModelService, dealerService, $mdDialog) {
+    constructor($rootScope, $scope, $state, vehicleService, vehicleDetailsService, vehicleModelService, dealerService, $mdDialog) {
         this.$state = $state;
+        this.$rootScope = $rootScope;
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
         this.vehicleService = new vehicleService();
@@ -19,37 +20,31 @@ export default class VehicleSetUpController {
 
     createVehicle(form) {
         if (form.$valid) {
-
-            console.log('Create Vehicle');
-            console.log(this.$scope);
-
             this.vehicleService.data = {
                 vehicle_master_chassis_no: this.$scope.vehicle.chassisNo,
                 vehicle_master_engine_no: this.$scope.vehicle.engineNo,
                 VehicleModelId: this.$scope.vehicle.selectedVehicleModel
             };
+            this.vehicleDetailService.data = {
+                vehicle_detail_name: this.$scope.vehicle.details,
+                vehicle_detail_sales_date: this.$scope.vehicle.salesDate,
+                vehicle_details_import_date: this.$scope.vehicle.importDate,
+                vehicle_detail_allocated_service_date: this.$scope.vehicle.allocatedServiceDate,
+                vehicle_detail_service_date: this.$scope.vehicle.servicingDate,
+                vehicle_detail_last_grade: this.$scope.vehicle.grade,
+                vehicle_details_total_free_service: this.$scope.vehicle.freeService,
+                vehicle_detail_last_milage: this.$scope.vehicle.mileage,
+                DealerId: this.$scope.vehicle.selectedDealer
+            };
 
             this.vehicleService.$save()
                 .then(res => {
                     if (res.$resolved) {
-                        // console.log("res saving obj");
-                        // console.log(res);
-                        this.vehicleDetailService.data = {
-                            vehicle_detail_name: this.$scope.vehicle.details,
-                            vehicle_detail_sales_date: this.$scope.vehicle.salesDate,
-                            vehicle_details_import_date: this.$scope.vehicle.importDate,
-                            vehicle_detail_allocated_service_date: this.$scope.vehicle.allocatedServiceDate,
-                            vehicle_detail_service_date: this.$scope.vehicle.servicingDate,
-                            vehicle_detail_last_grade: this.$scope.vehicle.grade,
-                            vehicle_details_total_free_service: this.$scope.vehicle.freeService,
-                            vehicle_detail_last_milage: this.$scope.vehicle.mileage,
-                            DealerId: this.$scope.vehicle.selectedDealer,
-                            VehicleMasterId: res._id
-                        };
+                        this.vehicleDetailService.data.VehicleMasterId = res._id;
                         this.vehicleDetailService.$save()
                             .then(res => {
                                 if (res.$resolved) {
-                                    console.log("res saving obj");
+                                    console.log("res saving vehicle details obj");
                                     console.log(res);
                                     this.showAlert(res);
                                 }
@@ -85,7 +80,7 @@ export default class VehicleSetUpController {
             .finally(function () {
                 alert = undefined;
             });
-        this.$state.go('dealer');
+        this.$state.go('vehicle');
 
     }
 
