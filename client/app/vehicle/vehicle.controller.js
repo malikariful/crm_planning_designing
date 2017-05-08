@@ -18,9 +18,6 @@ export default class VehicleController {
         this.ModalService = ModalService;
 
         this.vehicleDetail = vehicleDetailsService.query();
-        this.myDate = new Date();
-
-
     }
 
     removeItem(vehicle) {
@@ -110,10 +107,6 @@ export default class VehicleController {
                             id: $scope.vehicle._id
                         }, vehicleData, response => {
                             if (response.$resolved) {
-
-                                console.log('vehicleDetail._id');
-                                console.log(vehicleDetailsId);
-
                                 vehicleDetailsService.update({
                                     id: vehicleDetailsId
                                 }, vehicleDetailsData, response => {

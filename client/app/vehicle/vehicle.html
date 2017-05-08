@@ -57,11 +57,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
-                    <p>vehicle details</p>
-
                     <div layout="column" ng-cloak class="md-inline-form">
-
-                        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                        <div>
+                            <span>Free Status</span>
+                            <md-checkbox ng-model="vehicleDetails.vehicle_detail_free_service_status"></md-checkbox>
+                        </div>
+                        <md-content layout-gt-sm="row" layout-padding>
                             <div>
                                 <md-input-container class="md-block">
                                     <label>Model</label>
@@ -77,46 +78,24 @@
                                     <label>Engine</label>
                                     <input ng-readonly="true" ng-model="vehicle.vehicle_master_engine_no">
                                 </md-input-container>
-                            </div>
-                        </md-content>
 
-                        <md-content layout-padding>
-                            <div>
-                                <md-input-container class="md-block" flex-gt-xs>
-                                    <label>Descriptions</label>
-                                    <input ng-readonly="true" ng-model="vehicleDetails.vehicle_detail_description">
+                                <md-input-container >
+                                    <label>Last Grade</label>
+                                    <input ng-readonly="true"
+                                           ng-model="vehicleDetails.vehicle_detail_last_grade">
                                 </md-input-container>
 
-                                <md-input-container class="md-block">
-                                    <label>Vehicle details name</label>
-                                    <input ng-readonly="true" ng-model="vehicleDetails.vehicle_detail_name">
+                                <md-input-container>
+                                    <label>Last Mileage</label>
+                                    <input ng-readonly="true"
+                                           ng-model="vehicleDetails.vehicle_detail_last_milage">
                                 </md-input-container>
 
-                                <div layout-gt-xs="row">
-                                    <md-input-container class="md-block">
-                                        <label>Last Grade</label>
-                                        <input ng-readonly="true"
-                                               ng-model="vehicleDetails.vehicle_detail_last_grade">
-                                    </md-input-container>
-
-                                    <md-input-container class="md-block">
-                                        <label>Last Mileage</label>
-                                        <input ng-readonly="true"
-                                               ng-model="vehicleDetails.vehicle_detail_last_milage">
-                                    </md-input-container>
-
-                                    <md-input-container class="md-block">
-                                        <label>Vehicle free service</label>
-                                        <input ng-readonly="true"
-                                               ng-model="vehicleDetails.vehicle_details_total_free_service">
-                                    </md-input-container>
-
-                                    <div flex-gt-sm="50">
-                                        <span>Free Status</span>
-                                        <md-checkbox
-                                                ng-model="vehicleDetails.vehicle_detail_free_service_status"></md-checkbox>
-                                    </div>
-                                </div>
+                                <md-input-container>
+                                    <label>Free service</label>
+                                    <input ng-readonly="true"
+                                           ng-model="vehicleDetails.vehicle_details_total_free_service">
+                                </md-input-container>
 
                                 <div layout-gt-xs="row">
                                     <md-input-container class="" flex-gt-xs>
@@ -143,6 +122,20 @@
                                     </md-input-container>
                                 </div>
 
+                            </div>
+                        </md-content>
+
+
+                        <md-content layout-padding>
+                                <md-input-container class="md-block">
+                                    <label>Descriptions</label>
+                                    <input ng-readonly="true" ng-model="vehicleDetails.vehicle_detail_description">
+                                </md-input-container>
+
+                                <md-input-container class="md-block">
+                                    <label>Vehicle details name</label>
+                                    <input ng-readonly="true" ng-model="vehicleDetails.vehicle_detail_name">
+                                </md-input-container>
 
                                 <md-input-container class="md-block">
                                     <label>Dealer name</label>
@@ -158,8 +151,6 @@
                                     <label>Dealer Type</label>
                                     <input ng-readonly="true" ng-model="vehicleDetails.Dealer.dealer_type">
                                 </md-input-container>
-
-                            </div>
 
                         </md-content>
 

@@ -75,16 +75,24 @@
 
             <div layout="row">
                 <div flex="30">
-                    <md-datepicker ng-model="vehicle.salesDate" md-placeholder="Sales date"></md-datepicker>
+                    <label class="text-color-gray">Sales date</label>
+                    </br>
+                    <md-datepicker ng-model="vehicle.salesDate" md-placeholder="Select date"></md-datepicker>
                 </div>
                 <div flex="30">
-                    <md-datepicker ng-model="vehicle.importDate" md-placeholder="Import date"></md-datepicker>
+                    <label class="text-color-gray">Import date</label>
+                    </br>
+                    <md-datepicker ng-model="vehicle.importDate" md-placeholder="Select date"></md-datepicker>
                 </div>
                 <div flex="50">
-                    <md-datepicker ng-model="vehicle.allocatedServiceDate" md-placeholder="Allocated date"></md-datepicker>
+                    <label class="text-color-gray">Allocated date</label>
+                    </br>
+                    <md-datepicker ng-model="vehicle.allocatedServiceDate" md-placeholder="Select date"></md-datepicker>
                 </div>
                 <div flex="30">
-                    <md-datepicker ng-model="vehicle.servicingDate" md-placeholder="Servicing date"></md-datepicker>
+                    <label class="text-color-gray">Servicing date</label>
+                    </br>
+                    <md-datepicker ng-model="vehicle.servicingDate" md-placeholder="Select date"></md-datepicker>
                 </div>
             </div>
 
@@ -92,7 +100,7 @@
 
                 <md-input-container flex="30">
                     <label>Last grade</label>
-                    <input type="number"  md-no-asterisk name="grade" ng-model="vehicle.grade" required min="0"  >
+                    <input type="number" md-no-asterisk name="grade" ng-model="vehicle.grade" required min="0">
                     <div ng-messages="vehicleForm.grade.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
@@ -109,7 +117,7 @@
 
                 <md-input-container flex="30">
                     <label>Last Mileage</label>
-                    <input type="number" min="0" md-no-asterisk name="mileage" ng-model="vehicle.mileage"  required>
+                    <input type="number" min="0" md-no-asterisk name="mileage" ng-model="vehicle.mileage" required>
                     <div ng-messages="vehicleForm.mileage.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
@@ -128,7 +136,8 @@
 
 
             <div class="pull-right">
-                <md-button ng-disabled="vehicleForm.$invalid" class="md-raised md-button" type="submit">Create</md-button>
+                <md-button ng-disabled="vehicleForm.$invalid" class="md-raised md-button" type="submit">Create
+                </md-button>
             </div>
 
         </form>
