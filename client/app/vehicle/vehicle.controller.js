@@ -11,6 +11,8 @@ export default class VehicleController {
         this.ModalService = ModalService;
 
         this.vehicleDetail = vehicleDetailsService.query();
+        this.myDate = new Date();
+
 
     }
 
@@ -64,12 +66,16 @@ export default class VehicleController {
 
                 vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
                     $scope.vehicleDetail = vehicleDetail;
+                    $scope.vehicleDetail.vehicle_detail_allocated_service_date = new Date($scope.vehicleDetail.vehicle_detail_allocated_service_date);
+                    $scope.vehicleDetail.vehicle_detail_sales_date = new Date($scope.vehicleDetail.vehicle_detail_sales_date);
+                    $scope.vehicleDetail.vehicle_detail_service_date = new Date($scope.vehicleDetail.vehicle_detail_service_date);
+                    $scope.vehicleDetail.vehicle_details_import_date = new Date($scope.vehicleDetail.vehicle_details_import_date);
+                    console.log('vehicleDetail');
+                    console.log($scope.vehicleDetail);
+
                 });
 
                 $scope.vehicleModels = vehicleModelService.query();
-                console.log('Models');
-                console.log($scope.vehicleModels);
-
 
                 $scope.updatevehicleFrom = function (ev, from) {
                     if (from.$valid && from.$dirty) {

@@ -113,7 +113,8 @@
 
                                     <div flex-gt-sm="50">
                                         <span>Free Status</span>
-                                        <md-checkbox ng-model="vehicleDetails.vehicle_detail_free_service_status"></md-checkbox>
+                                        <md-checkbox
+                                                ng-model="vehicleDetails.vehicle_detail_free_service_status"></md-checkbox>
                                     </div>
                                 </div>
 
@@ -181,26 +182,26 @@
                 <div class="modal-body">
                     <p>Edit vehicle Information</p>
                     <form name="vehicleFrom" novalidate show-validation>
+
+
+                        <div class="row">
+
+                            <select class="form-control"
+                                    ng-options="model._id as model.vehicle_model_name for model in vehicleModels"
+                                    ng-model="vehicle.selectedVehicleModel">
+                                <option style="display:none" value="">Select a Motorcycle Model</option>
+                            </select>
+
+                        </div>
+
                         <div layout="column" ng-cloak class="md-inline-form">
 
                             <md-content layout-gt-sm="row" layout-padding>
                                 <div>
 
-                                    <md-input-container>
-
-                                        <select class="dropdown" ng-options="model._id as model.vehicle_model_name for model in vehicleModels" ng-model="vehicle.selectedVehicleModel">
-                                            <option style="display:none" value="">select a model</option>
-                                        </select>
-                                        {{vehicle.selectedVehicleModel}}
-
-                                    </md-input-container>
-
                                     <div class="dropdown">
-                                        <select class="dropdown" ng-options="model._id as model.vehicle_model_name for model in vehicleModels" ng-model="vehicle.selectedVehicleModel">
-                                            <option style="display:none" value="">select a model</option>
-                                        </select>
-                                    </div>
 
+                                    </div>
 
 
                                     <md-input-container>
@@ -231,33 +232,38 @@
                                         <md-input-container class="md-block">
                                             <label>Last Grade</label>
                                             <input
-                                                   ng-model="vehicleDetail.vehicle_detail_last_grade">
+                                                    ng-model="vehicleDetail.vehicle_detail_last_grade">
                                         </md-input-container>
 
                                         <md-input-container class="md-block">
                                             <label>Last Mileage</label>
                                             <input
-                                                   ng-model="vehicleDetail.vehicle_detail_last_milage">
+                                                    ng-model="vehicleDetail.vehicle_detail_last_milage">
                                         </md-input-container>
 
                                         <md-input-container class="md-block">
                                             <label>Vehicle free service</label>
                                             <input
-                                                   ng-model="vehicleDetail.vehicle_details_total_free_service">
+                                                    ng-model="vehicleDetail.vehicle_details_total_free_service">
                                         </md-input-container>
 
                                         <div flex-gt-sm="50">
                                             <span>Free Status</span>
-                                            <md-checkbox ng-model="vehicleDetail.vehicle_detail_free_service_status"></md-checkbox>
+                                            <md-checkbox
+                                                    ng-model="vehicleDetail.vehicle_detail_free_service_status"></md-checkbox>
                                         </div>
                                     </div>
 
                                     <div layout-gt-xs="row">
-                                        <md-input-container class="" flex-gt-xs>
-                                            <label>Service Date</label><br>
-                                            <span>{{vehicleDetail.vehicle_detail_allocated_service_date | dateStringFilter}}</span>
+                                        <!--<div flex-gt-xs>-->
+                                            <!--<h4>Service Date</h4>-->
+                                            <!--<md-datepicker ng-model="vehicleDetail.vehicle_detail_allocated_service_date" md-placeholder="Enter date"></md-datepicker>-->
+                                        <!--</div>-->
 
-                                        </md-input-container>
+                                        <div flex-gt-xs>
+                                            <h4>Opening the calendar when the input is focused</h4>
+                                            <md-datepicker ng-model="vehicleDetail.vehicle_detail_allocated_service_date" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                        </div>
 
                                         <md-input-container class="" flex-gt-xs>
                                             <label>Vehicle sales date</label><br>
@@ -285,7 +291,7 @@
 
                                     <md-input-container>
                                         <label>Dealer phone</label>
-                                        <input  ng-model="vehicleDetail.Dealer.dealer_phone">
+                                        <input ng-model="vehicleDetail.Dealer.dealer_phone">
                                     </md-input-container>
 
                                     <md-input-container>
