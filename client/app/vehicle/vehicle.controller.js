@@ -2,9 +2,6 @@
 
 function removeTimeFromDate(input) {
     input=new Date(input).toUTCString();
-    console.log('input');
-    console.log(input);
-
     input=input.split(' ').slice(0, 4).join(' ')
     return `${input}`;
 };
@@ -72,6 +69,8 @@ export default class VehicleController {
             controller: ['$scope', 'vehicle', 'vehicleService', 'vehicleDetailsService', 'vehicleModelService', '$mdToast', function ($scope, vehicle, vehicleService, vehicleDetailsService, vehicleModelService, $mdToast) {
 
                 $scope.vehicle = vehicle;
+                console.log('vehicle');
+                console.log($scope.vehicle.VehicleModelId);
 
                 vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
                     $scope.vehicleDetail = vehicleDetail;
@@ -79,9 +78,6 @@ export default class VehicleController {
                     $scope.vehicleDetail.vehicle_detail_sales_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_sales_date);
                     $scope.vehicleDetail.vehicle_detail_service_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_service_date);
                     $scope.vehicleDetail.vehicle_details_import_date = removeTimeFromDate($scope.vehicleDetail.vehicle_details_import_date);
-                    console.log('vehicleDetail');
-                    console.log($scope.vehicleDetail.vehicle_details_import_date);
-
                 });
 
                 $scope.vehicleModels = vehicleModelService.query();

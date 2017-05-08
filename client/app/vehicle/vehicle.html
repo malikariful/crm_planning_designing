@@ -183,10 +183,10 @@
                     <form name="vehicleFrom" novalidate show-validation>
 
                         <div layout="row">
-                            <select class="form-control"
+                            <select
+                                    class="form-control"
                                     ng-options="model._id as model.vehicle_model_name for model in vehicleModels"
-                                    ng-model="vehicle.selectedVehicleModel">
-                                <option style="display:none" value="">Select a Motorcycle Model</option>
+                                    ng-model="vehicle.VehicleModelId">
                             </select>
                         </div>
 
@@ -221,10 +221,6 @@
                                     <label>Vehicle details name</label>
                                     <input ng-model="vehicleDetail.vehicle_detail_name">
                                 </md-input-container>
-
-
-
-
 
 
                                 <div layout="row">
