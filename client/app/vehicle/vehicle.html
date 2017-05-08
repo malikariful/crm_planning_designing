@@ -293,35 +293,20 @@
                                 </datepicker>
                             </div>
 
-                            <!--<md-input-container class="md-block">-->
-                            <!--<label>Dealer name</label>-->
-                            <!--<input ng-model="vehicleDetail.Dealer.dealer_name">-->
-                            <!--</md-input-container>-->
-
-                            <!--<md-input-container>-->
-                            <!--<label>Dealer phone</label>-->
-                            <!--<input ng-model="vehicleDetail.Dealer.dealer_phone">-->
-                            <!--</md-input-container>-->
-
-                            <!--<md-input-container>-->
-                            <!--<label>Dealer Type</label>-->
-                            <!--<input ng-model="vehicleDetail.Dealer.dealer_type">-->
-                            <!--</md-input-container>-->
-
                         </div>
 
                         <div class="row margin-top-15">
                             <span>Change Dealer</span>
                             <select
                                     class="form-control"
-                                    ng-options="model._id as model.vehicle_model_name for model in vehicleModels"
-                                    ng-model="vehicle.VehicleModelId">
+                                    ng-options="dealer._id as dealer.dealer_name for dealer in Dealers"
+                                    ng-model="vehicleDetail.DealerId">
                             </select>
                         </div>
 
                         <div class="margin-top-15">
-                            <md-button ng-disabled="updateVehicleFrom.$invalid"
-                                       ng-click="updateVehicleFrom($event, vehicleFrom)" class="md-raised md-button"
+                            <md-button ng-disabled="updateVehicle.$invalid"
+                                       ng-click="updateVehicle($event, vehicleFrom)" class="md-raised md-button"
                                        type="submit">Update
                             </md-button>
                         </div>

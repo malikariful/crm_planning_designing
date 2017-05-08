@@ -18,8 +18,16 @@ import {Dealer} from '../../sqldb';
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
     return function (entity) {
-        if (entity) {
+        if (entity && entity != entity instanceof Array) {
             return res.status(statusCode).json(entity);
+        } else if(entity instanceof Array){
+            var entityConverted = entity.reduce(function(acc, cur, i) {
+                acc[i] = cur;
+                return acc;
+            }, {});
+
+            return res.status(statusCode).json(entityConverted);
+
         }
         return null;
     };
@@ -110,7 +118,7 @@ export function upsert(req, res) {
         delete req.body._id;
     }
 
-    return VehicleDetail.upsert(req.body, {
+    return VehicleDetail.update(req.body, {
         where: {
             _id: req.params.id
         }

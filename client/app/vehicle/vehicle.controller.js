@@ -1,16 +1,17 @@
 'use strict';
 
 function removeTimeFromDate(input) {
-    input=new Date(input).toUTCString();
-    input=input.split(' ').slice(0, 4).join(' ')
+    input = new Date(input).toUTCString();
+    input = input.split(' ').slice(0, 4).join(' ')
     return `${input}`;
 };
 
 export default class VehicleController {
     /*@ngInject*/
-    constructor($scope, vehicleService, $mdDialog, ModalService, vehicleDetailsService) {
+    constructor($scope, vehicleService, $mdDialog, ModalService, vehicleDetailsService, dealerService) {
         this.itemsByPage = 10;
         this.vehicles = vehicleService.query();
+        this.dealers = dealerService.query();
 
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
@@ -66,11 +67,11 @@ export default class VehicleController {
     editVehicle = function (vehicle) {
         this.ModalService.showModal({
             templateUrl: 'editVehicle.html',
-            controller: ['$scope', 'vehicle', 'vehicleService', 'vehicleDetailsService', 'vehicleModelService', '$mdToast', function ($scope, vehicle, vehicleService, vehicleDetailsService, vehicleModelService, $mdToast) {
+            controller: ['$scope', 'vehicle', 'vehicleService', 'vehicleDetailsService', 'vehicleModelService', '$mdToast', 'dealers', function ($scope, vehicle, vehicleService, vehicleDetailsService, vehicleModelService, $mdToast, dealers) {
 
+                $scope.Dealers = dealers;
                 $scope.vehicle = vehicle;
-                console.log('vehicle');
-                console.log($scope.vehicle.VehicleModelId);
+                $scope.vehicleModels = vehicleModelService.query();
 
                 vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
                     $scope.vehicleDetail = vehicleDetail;
@@ -80,29 +81,61 @@ export default class VehicleController {
                     $scope.vehicleDetail.vehicle_details_import_date = removeTimeFromDate($scope.vehicleDetail.vehicle_details_import_date);
                 });
 
-                $scope.vehicleModels = vehicleModelService.query();
+                $scope.updateVehicle = function (ev, from) {
 
-                $scope.updatevehicleFrom = function (ev, from) {
                     if (from.$valid && from.$dirty) {
 
                         var vehicleData = {
-                            vehicle_name: $scope.vehicle.vehicle_name,
-                            vehicle_email: $scope.vehicle.vehicle_email,
-                            vehicle_phone: $scope.vehicle.vehicle_phone,
-                            vehicle_type: 'permanent',
-                            vehicle_address: $scope.vehicle.vehicle_address
+                            vehicle_master_chassis_no: $scope.vehicle.vehicle_master_chassis_no,
+                            vehicle_master_engine_no: $scope.vehicle.vehicle_master_engine_no,
+                            VehicleModelId: $scope.vehicle.VehicleModelId
                         };
+                        var vehicleDetailsData = {
+                            vehicle_detail_name: $scope.vehicleDetail.vehicle_detail_name,
+                            vehicle_detail_description: $scope.vehicleDetail.vehicle_detail_description,
+                            vehicle_detail_sales_date: $scope.vehicleDetail.vehicle_detail_sales_date,
+                            vehicle_details_import_date: $scope.vehicleDetail.vehicle_details_import_date,
+                            vehicle_detail_last_grade: $scope.vehicleDetail.vehicle_detail_last_grade,
+                            vehicle_details_total_free_service: $scope.vehicleDetail.vehicle_details_total_free_service,
+                            vehicle_detail_free_service_status: $scope.vehicleDetail.vehicle_detail_free_service_status,
+                            vehicle_detail_allocated_service_date: $scope.vehicleDetail.vehicle_detail_allocated_service_date,
+                            vehicle_detail_service_date: $scope.vehicleDetail.vehicle_detail_service_date,
+                            vehicle_detail_last_milage: $scope.vehicleDetail.vehicle_detail_last_milage,
+                            DealerId: $scope.vehicleDetail.DealerId,
+                            VehicleMasterId: $scope.vehicle._id
+                        };
+                        var vehicleDetailsId = $scope.vehicleDetail._id;
 
                         vehicleService.update({
                             id: $scope.vehicle._id
                         }, vehicleData, response => {
                             if (response.$resolved) {
-                                $mdToast.show(
-                                    $mdToast.simple()
-                                        .textContent('vehicle has updated successfully!')
-                                        .position('bottom right')
-                                        .hideDelay(3000)
-                                );
+
+                                console.log('vehicleDetail._id');
+                                console.log(vehicleDetailsId);
+
+                                vehicleDetailsService.update({
+                                    id: vehicleDetailsId
+                                }, vehicleDetailsData, response => {
+                                    if (response.$resolved) {
+                                        $mdToast.show(
+                                            $mdToast.simple()
+                                                .textContent('vehicle has updated successfully!')
+                                                .position('bottom right')
+                                                .hideDelay(3000)
+                                        );
+                                    } else {
+                                        $mdToast.show(
+                                            $mdToast.simple()
+                                                .textContent('vehicle not updated')
+                                                .position('bottom right')
+                                                .hideDelay(3000)
+                                        );
+                                    }
+                                });
+
+
+
                             }
                         });
 
@@ -112,7 +145,8 @@ export default class VehicleController {
 
             }],
             inputs: {
-                vehicle: vehicle
+                vehicle: vehicle,
+                dealers: this.dealers
             }
         }).then(function (modal) {
             modal.element.modal();
