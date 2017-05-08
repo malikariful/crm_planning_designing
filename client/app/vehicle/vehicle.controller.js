@@ -2,6 +2,9 @@
 
 function removeTimeFromDate(input) {
     input=new Date(input).toUTCString();
+    console.log('input');
+    console.log(input);
+
     input=input.split(' ').slice(0, 4).join(' ')
     return `${input}`;
 };
