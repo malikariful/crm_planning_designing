@@ -16,6 +16,7 @@
     "angular-smart-table": "^2.1.8",
     "angular-ui-router": "~0.2.15",
     "angular-validation-match": "~1.5.2",
+    "angularjs-datepicker": "^2.1.19",
     "babel-polyfill": "^6.7.2",
     "babel-runtime": "^6.6.1",
     "body-parser": "^1.13.3",

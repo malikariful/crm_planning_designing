@@ -1,4 +1,6 @@
 @import '~bootstrap/dist/css/bootstrap.css';
+@import '~angularjs-datepicker/dist/angular-datepicker.css';
+
 /**
  * Bootstrap Fonts
  */

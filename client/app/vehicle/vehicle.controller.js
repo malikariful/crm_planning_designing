@@ -1,5 +1,11 @@
 'use strict';
 
+function removeTimeFromDate(input) {
+    input=new Date(input).toUTCString();
+    input=input.split(' ').slice(0, 4).join(' ')
+    return `${input}`;
+};
+
 export default class VehicleController {
     /*@ngInject*/
     constructor($scope, vehicleService, $mdDialog, ModalService, vehicleDetailsService) {
@@ -66,12 +72,12 @@ export default class VehicleController {
 
                 vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
                     $scope.vehicleDetail = vehicleDetail;
-                    $scope.vehicleDetail.vehicle_detail_allocated_service_date = new Date($scope.vehicleDetail.vehicle_detail_allocated_service_date);
-                    $scope.vehicleDetail.vehicle_detail_sales_date = new Date($scope.vehicleDetail.vehicle_detail_sales_date);
-                    $scope.vehicleDetail.vehicle_detail_service_date = new Date($scope.vehicleDetail.vehicle_detail_service_date);
-                    $scope.vehicleDetail.vehicle_details_import_date = new Date($scope.vehicleDetail.vehicle_details_import_date);
+                    $scope.vehicleDetail.vehicle_detail_allocated_service_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_allocated_service_date);
+                    $scope.vehicleDetail.vehicle_detail_sales_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_sales_date);
+                    $scope.vehicleDetail.vehicle_detail_service_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_service_date);
+                    $scope.vehicleDetail.vehicle_details_import_date = removeTimeFromDate($scope.vehicleDetail.vehicle_details_import_date);
                     console.log('vehicleDetail');
-                    console.log($scope.vehicleDetail);
+                    console.log($scope.vehicleDetail.vehicle_details_import_date);
 
                 });
 
@@ -117,3 +123,4 @@ export default class VehicleController {
     };
 
 }
+

@@ -11,7 +11,8 @@ import angularArea from 'angular-aria';
 import angularMessage from 'angular-messages';
 import angularMaterial from 'angular-material';
 import smartTable from 'angular-smart-table';
-// import dataGrid from 'angular-data-grid';
+import datePicker from '../../node_modules/angularjs-datepicker/index'
+
 
 
 import {
@@ -43,7 +44,7 @@ import './app.css';
 
 angular.module('crmApp', [
     // ngAnimate,
-    ngCookies, ngResource, ngSanitize, uiRouter, angularAnimate, angularArea, angularMessage, angularMaterial,  smartTable,
+    ngCookies, ngResource, ngSanitize, uiRouter, angularAnimate, angularArea, angularMessage, angularMaterial,  smartTable, datePicker,
     // ngMessages,
 
     // ngValidationMatch,
