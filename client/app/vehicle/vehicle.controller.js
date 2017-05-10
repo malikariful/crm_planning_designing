@@ -66,12 +66,16 @@ export default class VehicleController {
             templateUrl: 'editVehicle.html',
             controller: ['$scope', 'vehicle', 'vehicleService', 'vehicleDetailsService', 'vehicleModelService', '$mdToast', 'dealers', function ($scope, vehicle, vehicleService, vehicleDetailsService, vehicleModelService, $mdToast, dealers) {
 
+                var vehicleDetailsId;
                 $scope.Dealers = dealers;
                 $scope.vehicle = vehicle;
                 $scope.vehicleModels = vehicleModelService.query();
 
                 vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
+                    console.log('vehicle details');
+                    console.log(vehicleDetail);
                     $scope.vehicleDetail = vehicleDetail;
+                    vehicleDetailsId = $scope.vehicleDetail._id;
                     $scope.vehicleDetail.vehicle_detail_allocated_service_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_allocated_service_date);
                     $scope.vehicleDetail.vehicle_detail_sales_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_sales_date);
                     $scope.vehicleDetail.vehicle_detail_service_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_service_date);
@@ -101,7 +105,6 @@ export default class VehicleController {
                             DealerId: $scope.vehicleDetail.DealerId,
                             VehicleMasterId: $scope.vehicle._id
                         };
-                        var vehicleDetailsId = $scope.vehicleDetail._id;
 
                         vehicleService.update({
                             id: $scope.vehicle._id

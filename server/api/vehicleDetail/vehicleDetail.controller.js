@@ -20,14 +20,12 @@ function respondWithResult(res, statusCode) {
     return function (entity) {
         if (entity && entity != entity instanceof Array) {
             return res.status(statusCode).json(entity);
-        } else if(entity instanceof Array){
-            var entityConverted = entity.reduce(function(acc, cur, i) {
+        } else if (entity instanceof Array) {
+            var entityConverted = entity.reduce(function (acc, cur, i) {
                 acc[i] = cur;
                 return acc;
             }, {});
-
             return res.status(statusCode).json(entityConverted);
-
         }
         return null;
     };
@@ -59,7 +57,11 @@ function removeEntity(res) {
 function handleEntityNotFound(res) {
     return function (entity) {
         if (!entity) {
-            res.status(404).end();
+            res.status(404).send({
+                message: 'entity not found',
+                found: false
+            }).end();
+
             return null;
         }
         return entity;
@@ -106,7 +108,7 @@ export function show(req, res) {
 
 // Creates a new VehicleDetail in the DB
 export function create(req, res) {
-    
+
     return VehicleDetail.create(req.body.data)
         .then(respondWithResult(res, 201))
         .catch(handleError(res));
