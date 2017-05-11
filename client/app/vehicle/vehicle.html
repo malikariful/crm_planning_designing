@@ -211,7 +211,12 @@
 
                                 <md-input-container class="md-block">
                                     <label>Vehicle details name</label>
-                                    <input ng-model="vehicleDetail.vehicle_detail_name">
+                                    <input name="vehicleDetailName" ng-model="vehicleDetail.vehicle_detail_name" required>
+
+                                    <div ng-messages="vehicleFrom.vehicleDetailName.$error">
+                                        <div ng-message="required">This is required.</div>
+                                    </div>
+
                                 </md-input-container>
 
 

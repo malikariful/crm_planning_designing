@@ -115,6 +115,11 @@ export function create(req, res) {
 
 // Upserts the given VehicleDetail in the DB at the specified ID
 export function upsert(req, res) {
+
+    console.log('#############################################################################################');
+    console.log(req.params.id);
+    console.log('#############################################################################################');
+
     if (req.body._id) {
         delete req.body._id;
     }

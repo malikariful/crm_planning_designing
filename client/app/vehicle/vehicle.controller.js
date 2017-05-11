@@ -2,7 +2,7 @@
 
 function removeTimeFromDate(input) {
     input = new Date(input).toUTCString();
-    input = input.split(' ').slice(0, 4).join(' ')
+    input = input.split(' ').slice(0, 4).join(' ');
     return `${input}`;
 };
 
@@ -49,8 +49,6 @@ export default class VehicleController {
                     .get({id: $scope.vehicle._id})
                     .$promise.then(
                     function (vehicleDetail) {
-                        console.log('vehicle details using promise');
-                        console.log(vehicleDetail);
                         $scope.vehicleDetails = vehicleDetail;
                     },
                     function (error) {
@@ -81,18 +79,22 @@ export default class VehicleController {
                 $scope.vehicle = vehicle;
                 $scope.vehicleModels = vehicleModelService.query();
 
-                vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
-                    console.log('editVehicle');
-
-                    console.log('vehicle details');
-                    console.log(vehicleDetail);
-                    $scope.vehicleDetail = vehicleDetail;
-                    vehicleDetailsId = $scope.vehicleDetail._id;
-                    $scope.vehicleDetail.vehicle_detail_allocated_service_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_allocated_service_date);
-                    $scope.vehicleDetail.vehicle_detail_sales_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_sales_date);
-                    $scope.vehicleDetail.vehicle_detail_service_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_service_date);
-                    $scope.vehicleDetail.vehicle_details_import_date = removeTimeFromDate($scope.vehicleDetail.vehicle_details_import_date);
-                });
+                vehicleDetailsService
+                    .get({id: $scope.vehicle._id})
+                    .$promise.then(
+                    function (vehicleDetail) {
+                        $scope.vehicleDetail = vehicleDetail;
+                        vehicleDetailsId = $scope.vehicleDetail._id;
+                        $scope.vehicleDetail.vehicle_detail_allocated_service_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_allocated_service_date);
+                        $scope.vehicleDetail.vehicle_detail_sales_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_sales_date);
+                        $scope.vehicleDetail.vehicle_detail_service_date = removeTimeFromDate($scope.vehicleDetail.vehicle_detail_service_date);
+                        $scope.vehicleDetail.vehicle_details_import_date = removeTimeFromDate($scope.vehicleDetail.vehicle_details_import_date);
+                    },
+                    function (error) {
+                        console.log('vehicle details error');
+                        console.log(error);
+                    }
+                );
 
                 $scope.updateVehicle = function (ev, from) {
 
@@ -122,8 +124,13 @@ export default class VehicleController {
                             id: $scope.vehicle._id
                         }, vehicleData, response => {
                             if (response.$resolved) {
+
+                                console.log('vehicleDetailsId');
+                                console.log(vehicleDetailsId);
+
+
                                 vehicleDetailsService.update({
-                                    id: vehicleDetailsId
+                                    id: vehicleDetailsId || 0
                                 }, vehicleDetailsData, response => {
                                     if (response.$resolved) {
                                         $mdToast.show(
@@ -141,6 +148,10 @@ export default class VehicleController {
                                         );
                                     }
                                 });
+
+
+
+
 
 
                             }
