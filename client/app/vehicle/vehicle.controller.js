@@ -41,14 +41,24 @@ export default class VehicleController {
     };
 
     showVehicle = function (vehicle) {
-
         this.ModalService.showModal({
             templateUrl: 'showVehicle.html',
             controller: ['$scope', 'vehicle', 'vehicleDetailsService', function ($scope, vehicle, vehicleDetailsService) {
                 $scope.vehicle = vehicle;
-                vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
-                    $scope.vehicleDetails = vehicleDetail;
-                });
+                vehicleDetailsService
+                    .get({id: $scope.vehicle._id})
+                    .$promise.then(
+                    function (vehicleDetail) {
+                        console.log('vehicle details using promise');
+                        console.log(vehicleDetail);
+                        $scope.vehicleDetails = vehicleDetail;
+                    },
+                    function (error) {
+                        console.log('vehicle details error');
+                        console.log(error);
+                    }
+                );
+
 
             }],
             inputs: {
@@ -72,6 +82,8 @@ export default class VehicleController {
                 $scope.vehicleModels = vehicleModelService.query();
 
                 vehicleDetailsService.get({id: $scope.vehicle._id}, function (vehicleDetail) {
+                    console.log('editVehicle');
+
                     console.log('vehicle details');
                     console.log(vehicleDetail);
                     $scope.vehicleDetail = vehicleDetail;
@@ -129,7 +141,6 @@ export default class VehicleController {
                                         );
                                     }
                                 });
-
 
 
                             }

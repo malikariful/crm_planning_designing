@@ -60,8 +60,7 @@ function handleEntityNotFound(res) {
             res.status(404).send({
                 message: 'entity not found',
                 found: false
-            }).end();
-
+            });
             return null;
         }
         return entity;
