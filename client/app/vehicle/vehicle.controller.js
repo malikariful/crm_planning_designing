@@ -124,11 +124,6 @@ export default class VehicleController {
                             id: $scope.vehicle._id
                         }, vehicleData, response => {
                             if (response.$resolved) {
-
-                                console.log('vehicleDetailsId');
-                                console.log(vehicleDetailsId);
-
-
                                 vehicleDetailsService.update({
                                     id: vehicleDetailsId || 0
                                 }, vehicleDetailsData, response => {

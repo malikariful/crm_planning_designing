@@ -113,24 +113,26 @@ export function create(req, res) {
         .catch(handleError(res));
 }
 
-// Upserts the given VehicleDetail in the DB at the specified ID
+//Upserts the given VehicleDetail in the DB at the specified ID
+
 export function upsert(req, res) {
 
-    console.log('#############################################################################################');
-    console.log(req.params.id);
-    console.log('#############################################################################################');
+    if (req.params.id == 0) {
+        return VehicleDetail.create(req.body)
+            .then(respondWithResult(res))
+            .catch(handleError(res));
+    }
+    else {
 
-    if (req.body._id) {
-        delete req.body._id;
+        return VehicleDetail.update(req.body, {
+            where: {
+                _id: req.params.id
+            }
+        })
+            .then(respondWithResult(res))
+            .catch(handleError(res));
     }
 
-    return VehicleDetail.update(req.body, {
-        where: {
-            _id: req.params.id
-        }
-    })
-        .then(respondWithResult(res))
-        .catch(handleError(res));
 }
 
 // Updates an existing VehicleDetail in the DB
