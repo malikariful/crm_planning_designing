@@ -14,15 +14,17 @@ export default class DesignationController {
         this.showCreateForm = !this.showCreateForm;
     }
 
-    getDesignation = function () {
+    getDesignations = function () {
         this.designations = this.designationService.query();
     }
 
     createDesignation(form) {
         if (form.$valid) {
             this.designation = new this.designationService();
+
             this.designation.data = {
-                vehicle_model_name: this.$scope.model.name
+                designation_name: this.$scope.designation.name,
+                designation_descriptions: this.$scope.designation.descriptions
             };
             this.designation.$save()
                 .then(res => {

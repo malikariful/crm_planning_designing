@@ -56,6 +56,7 @@ body {
 @import 'admin/userManagement/userManagement.css';
 @import 'dashboard/dashboard.css';
 @import 'dealer/dealer.css';
+@import 'designation/designation.css';
 @import 'employer/employer.css';
 @import 'jobCard/jobCard.css';
 @import 'main/main.css';

@@ -74,7 +74,7 @@ export function index(req, res) {
 export function show(req, res) {
   return Designation.find({
     where: {
-      designation_id: req.params.id
+      _id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
@@ -84,7 +84,7 @@ export function show(req, res) {
 
 // Creates a new Designation in the DB
 export function create(req, res) {
-  return Designation.create(req.body)
+  return Designation.create(req.body.data)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
@@ -92,12 +92,12 @@ export function create(req, res) {
 // Upserts the given Designation in the DB at the specified ID
 export function upsert(req, res) {
   if(req.body._id) {
-    delete req.body.designation_id;
+    delete req.body._id;
   }
 
   return Designation.upsert(req.body, {
     where: {
-      designation_id: req.params.id
+      _id: req.params.id
     }
   })
     .then(respondWithResult(res))
@@ -106,12 +106,12 @@ export function upsert(req, res) {
 
 // Updates an existing Designation in the DB
 export function patch(req, res) {
-  if(req.body.designation_id) {
-    delete req.body.designation_id;
+  if(req.body._id) {
+    delete req.body._id;
   }
   return Designation.find({
     where: {
-      designation_id: req.params.designation_id
+      _id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
@@ -122,9 +122,9 @@ export function patch(req, res) {
 
 // Deletes a Designation from the DB
 export function destroy(req, res) {
-  return Designation.find({
+    return Designation.find({
     where: {
-      designation_id: req.params.designation_id
+      _id: req.params.id
     }
   })
     .then(handleEntityNotFound(res))
