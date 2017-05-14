@@ -10,19 +10,14 @@ export default class EmployerController {
     constructor($scope, employerService, $mdDialog, ModalService) {
         this.itemsByPage = 10;
         this.employees = employerService.query();
-
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
         this.ModalService = ModalService;
 
     }
 
-    removeItem(vehicle) {
-        vehicle.$remove();
-        this.vehicles.splice(this.vehicles.indexOf(vehicle), 1);
-    };
 
-    deleteVehicle = function (ev, vehicle) {
+    deleteEmployer = function (ev, employer) {
         var confirm = this.$mdDialog.confirm()
             .title('Would you like to delete the vehicle?')
             .textContent('All of the information will be gone.')
@@ -31,7 +26,8 @@ export default class EmployerController {
             .cancel('No Sounds like a scam');
 
         this.$mdDialog.show(confirm).then(() => {
-            this.removeItem(vehicle);
+            employer.$remove();
+            this.employees.splice(this.employees.indexOf(employer), 1);
         }, () => {
             this.$scope.status = 'You decided to keep your debt.';
         });
@@ -66,7 +62,7 @@ export default class EmployerController {
         });
     };
 
-    editVehicle = function (vehicle) {
+    editEmployer = function (vehicle) {
         this.ModalService.showModal({
             templateUrl: 'editVehicle.html',
             controller: ['$scope', 'vehicle', 'vehicleService', 'vehicleDetailsService', 'vehicleModelService', '$mdToast', 'dealers', function ($scope, vehicle, vehicleService, vehicleDetailsService, vehicleModelService, $mdToast, dealers) {
