@@ -56,6 +56,7 @@ db.RolePermissions = db.sequelize.import('ExtraDatabaseModel/rolePermissions.mod
 db.VehicleDetail.belongsTo(db.Dealer);
 db.Vehicle.belongsTo(db.VehicleModel);
 db.Vehicle.hasOne(db.VehicleDetail);
+db.Employee.belongsTo(db.Designation);
 
 
 db.User.belongsToMany(db.Role, {

@@ -2,7 +2,7 @@
 
 export default function(sequelize, DataTypes) {
   return sequelize.define('Designation', {
-    designation_id: {
+    _id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
@@ -16,7 +16,7 @@ export default function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-    designation_lavel: {
+    designation_level: {
       type: DataTypes.INTEGER(11),
       allowNull: true
     }

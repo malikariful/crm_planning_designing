@@ -1,0 +1,49 @@
+<div layout="column" ng-cloak class="container">
+
+    <md-card>
+        <md-card-title>
+            <md-card-title-media class="margin-top-0">
+                <div class="card-media" layout>
+                    <md-button ui-sref="vehicle" class="md-raised">
+                        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Back
+                    </md-button>
+
+                </div>
+            </md-card-title-media>
+            <md-card-title-text class="padding-left-50">
+                <span class="md-headline">Model</span>
+                <span class="md-subhead description">Create New Vehicle Model</span>
+            </md-card-title-text>
+        </md-card-title>
+    </md-card>
+
+    <md-content layout-padding>
+
+        <form name="modelForm" ng-submit="model.createModel(modelForm)" novalidate>
+
+            <div layout="row">
+                <md-input-container flex="50">
+                    <label>Model Name</label>
+                    <input minlength="3" md-maxlength="30" name="modelName" ng-model="model.name"
+                           required>
+
+                    <div ng-messages="modelForm.modelName.$error" multiple>
+
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="md-maxlength">The name must be less than 30 characters long.</div>
+                        <div ng-message="minlength">The name must be more than 3 characters long.</div>
+
+                    </div>
+                </md-input-container>
+
+            </div>
+
+            <div class="pull-right">
+                <md-button ng-disabled="modelForm.$invalid" class="md-raised md-button" type="submit">Create</md-button>
+            </div>
+
+        </form>
+
+    </md-content>
+
+</div>

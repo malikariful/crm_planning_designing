@@ -44,8 +44,8 @@ var User = sqldb.User;
 //                 console.log('finished populating users');
 //             });
 //     });
-//
 
+//
 // VehicleModel.sync()
 //     .then(() => {
 //         return VehicleModel.destroy({where: {}});
@@ -63,7 +63,7 @@ var User = sqldb.User;
 //             "vehicle_model_name": "iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget"
 //         }]);
 //     });
-//
+
 //
 // Vehicle.sync()
 //     .then(() => {

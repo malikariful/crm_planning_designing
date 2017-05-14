@@ -2,7 +2,7 @@
 const angular = require('angular');
 
 /*@ngInject*/
-export function vehicleModelService($resource) {
+export function modelService($resource) {
     'ngInject';
 
     return $resource('/api/vehicleModels/:id/:controller', {
@@ -14,6 +14,6 @@ export function vehicleModelService($resource) {
     });
 }
 
-export default angular.module('crm.vehicleModelService', [])
-    .service('vehicleModelService', vehicleModelService)
+export default angular.module('crm.modelService', [])
+    .service('vehicleModelService', modelService)
     .name;
