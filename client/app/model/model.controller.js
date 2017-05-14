@@ -6,6 +6,16 @@ export default class ModelController {
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
         this.vehicleModelService = vehicleModelService;
+        this.models = vehicleModelService.query();
+        this.showCreateForm = false;
+    }
+
+    toggleCreateFormShow = function () {
+        this.showCreateForm = !this.showCreateForm;
+    }
+
+    getModels = function () {
+        this.models = this.vehicleModelService.query();
     }
 
     createModel(form) {
@@ -25,6 +35,22 @@ export default class ModelController {
                 })
         }
     }
+
+    deleteModel = function (ev, model) {
+        var confirm = this.$mdDialog.confirm()
+            .title('Would you like to model the model?')
+            .textContent('All of the information will be gone.')
+            .targetEvent(ev)
+            .ok('Yes Please do it!')
+            .cancel('No Sounds like a scam');
+
+        this.$mdDialog.show(confirm).then(() => {
+            model.$remove();
+            this.models.splice(this.models.indexOf(model), 1);
+        }, () => {
+            this.$scope.status = 'You decided to keep your debt.';
+        });
+    };
 
     showAlert(res) {
         alert = this.$mdDialog.alert({

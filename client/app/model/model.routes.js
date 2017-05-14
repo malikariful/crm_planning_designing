@@ -10,4 +10,5 @@ export default function routes($stateProvider) {
     controllerAs: 'model',
     authenticate: 'admin'
   });
+    
 };

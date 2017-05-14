@@ -1,10 +1,10 @@
-<div layout="column" ng-cloak class="container">
+<div ng-show="model.showCreateForm" layout="column" ng-cloak class="container">
 
     <md-card>
         <md-card-title>
             <md-card-title-media class="margin-top-0">
                 <div class="card-media" layout>
-                    <md-button ui-sref="vehicle" class="md-raised">
+                    <md-button ng-click="model.toggleCreateFormShow(); model.getModels()" class="md-raised">
                         <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Back
                     </md-button>
 
@@ -45,5 +45,49 @@
         </form>
 
     </md-content>
+
+</div>
+
+<div ng-hide="model.showCreateForm" ng-init="model.onInit();" class="paddingTop-10 container">
+
+    <button type="button" class="btn btn-sm btn-success" ng-click="model.toggleCreateFormShow()">
+        <i class="glyphicon glyphicon-plus">
+        </i> Add New Model
+    </button>
+
+    <button type="button" class="btn btn-sm btn-success" ui-sref="vehicle">
+        <i class="glyphicon glyphicon-list">
+        </i> Vehicle List
+    </button>
+
+    <table st-table="displayedCollection" st-safe-src="model.models" class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="5"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
+        </tr>
+        <tr>
+            <th st-sort="name">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection">
+            <td>{{row.vehicle_model_name}}</td>
+            <td>
+                <button type="button" ng-click="model.deleteModel($event, row)" class="btn btn-sm btn-danger">
+                    <i class="glyphicon glyphicon-remove-circle">
+                    </i>
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3" class="text-center">
+                <div st-pagination="" st-items-by-page="dealer.itemsByPage" st-displayed-pages="10"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
 
 </div>
