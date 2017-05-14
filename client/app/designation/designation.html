@@ -1,0 +1,93 @@
+<div ng-show="designation.showCreateForm" layout="column" ng-cloak class="container">
+
+    <md-card>
+        <md-card-title>
+            <md-card-title-media class="margin-top-0">
+                <div class="card-media" layout>
+                    <md-button ng-click="designation.toggleCreateFormShow(); designation.getDesignations()" class="md-raised">
+                        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Back
+                    </md-button>
+
+                </div>
+            </md-card-title-media>
+            <md-card-title-text class="padding-left-50">
+                <span class="md-headline">Designation</span>
+                <span class="md-subhead description">Add Designation</span>
+            </md-card-title-text>
+        </md-card-title>
+    </md-card>
+
+    <md-content layout-padding>
+
+        <form name="designationForm" ng-submit="designation.createDesignation(designationForm)" novalidate>
+
+            <div layout="row">
+                <md-input-container flex="50">
+                    <label>designation Name</label>
+                    <input minlength="3" md-maxlength="30" name="designationName" ng-model="designation.name"
+                           required>
+
+                    <div ng-messages="designationForm.designationName.$error" multiple>
+
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="md-maxlength">The name must be less than 30 characters long.</div>
+                        <div ng-message="minlength">The name must be more than 3 characters long.</div>
+
+                    </div>
+                </md-input-container>
+
+            </div>
+
+            <div class="pull-right">
+                <md-button ng-disabled="designationForm.$invalid" class="md-raised md-button" type="submit">Create</md-button>
+            </div>
+
+        </form>
+
+    </md-content>
+
+</div>
+
+<div ng-hide="designation.showCreateForm" ng-init="designation.onInit();" class="paddingTop-10 container">
+
+    <button type="button" class="btn btn-sm btn-success" ng-click="designation.toggleCreateFormShow()">
+        <i class="glyphicon glyphicon-plus">
+        </i> Add New designation
+    </button>
+
+    <button type="button" class="btn btn-sm btn-success" ui-sref="employer">
+        <i class="glyphicon glyphicon-list">
+        </i> Employer List
+    </button>
+
+    <table st-table="displayedCollection" st-safe-src="designation.designations" class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="5"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
+        </tr>
+        <tr>
+            <th st-sort="name">Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection">
+            <td>{{row.vehicle_designation_name}}</td>
+            <td>
+                <button type="button" ng-click="designation.deleteDesignation($event, row)" class="btn btn-sm btn-danger">
+                    <i class="glyphicon glyphicon-remove-circle">
+                    </i>
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3" class="text-center">
+                <div st-pagination="" st-items-by-page="dealer.itemsByPage" st-displayed-pages="10"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+</div>

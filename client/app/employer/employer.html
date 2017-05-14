@@ -5,24 +5,23 @@
         </i> Add New Employer
     </button>
 
-    <table st-table="displayedCollection" st-safe-src="employer.rowCollection" class="table table-striped">
+    <button type="button" ui-sref="designation" class="btn btn-sm btn-success">
+        <i class="glyphicon glyphicon-list">
+        </i> Employer Designation List
+    </button>
+
+    <table st-table="displayedCollection" st-safe-src="employer.employees" class="table table-striped">
         <thead>
         <tr>
             <th st-sort="firstName">first name</th>
-            <th st-sort="lastName">last name</th>
-            <th st-sort="birthDate">birth date</th>
-            <th st-sort="balance">balance</th>
         </tr>
         <tr>
-            <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+            <th colspan="2"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="row in displayedCollection">
-            <td>{{row.firstName}}</td>
-            <td>{{row.lastName}}</td>
-            <td>{{row.birthDate}}</td>
-            <td>{{row.balance}}</td>
+            <td>{{row.employee_name}}</td>
             <td>
                 <button type="button" ng-click="employer.removeItem(row)" class="btn btn-sm btn-danger">
                     <i class="glyphicon glyphicon-remove-circle">
