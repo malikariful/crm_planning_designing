@@ -93,7 +93,7 @@ export function show(req, res) {
 
 // Creates a new Employee in the DB
 export function create(req, res) {
-  return Employee.create(req.body)
+  return Employee.create(req.body.data)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }

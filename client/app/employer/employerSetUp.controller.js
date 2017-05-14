@@ -2,26 +2,53 @@
 
 export default class EmployerSetUpController {
     /*@ngInject*/
-    constructor($scope) {
+    constructor($scope, $state, employerService, designationService, $mdDialog) {
+        this.$state = $state;
         this.$scope = $scope;
-        $scope.user = {
-            title: 'Developer',
-            email: 'ipsum@lorem.com',
-            firstName: '',
-            lastName: '',
-            company: 'Google',
-            address: '1600 Amphitheatre Pkwy',
-            city: 'Mountain View',
-            state: 'CA',
-            biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
-            postalCode: '94043'
-        };
+        this.$mdDialog = $mdDialog;
+        this.employerService = employerService;
+        this.employees = employerService.query();
+        this.designations = designationService.query();
+    }
 
-        $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-        'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-        'WY').split(' ').map(function (state) {
-            return {abbrev: state};
+    createEmployer(form) {
+        if (form.$valid) {
+            this.newEmployer = new this.employerService();
+
+            this.newEmployer.data = {
+                employee_name: this.$scope.employer.name,
+                DesignationId: this.$scope.employer.designation
+            };
+
+            this.newEmployer.$save()
+                .then(res => {
+                    if (res.$resolved) {
+                        console.log("res saving obj");
+                        console.log(res);
+                        this.showAlert(res);
+                    }
+                })
+                .catch(function (req) {
+                    console.log("error saving obj");
+                })
+                .finally(function () {
+                    console.log("always called")
+                });
+        }
+    }
+
+    showAlert(res) {
+        alert = this.$mdDialog.alert({
+            title: 'Employer has created successfully',
+            textContent: '',
+            ok: 'Close'
         });
+
+        this.$mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
     }
 
 }
