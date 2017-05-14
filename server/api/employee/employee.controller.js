@@ -12,6 +12,7 @@
 
 import jsonpatch from 'fast-json-patch';
 import {Employee} from '../../sqldb';
+import {Designation} from '../../sqldb';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -65,7 +66,15 @@ function handleError(res, statusCode) {
 
 // Gets a list of Employees
 export function index(req, res) {
-  return Employee.findAll()
+  return Employee.findAll(
+      {
+          include: [
+              {
+                  model: Designation
+              }
+          ]
+      }
+  )
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
