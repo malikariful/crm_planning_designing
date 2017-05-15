@@ -39,3 +39,55 @@
         </tbody>
     </table>
 </div>
+
+<script type="text/ng-template" id="editEmployer.html">
+    <div class="modal fade" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Yes or No?</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="employerFrom" novalidate show-validation>
+
+
+                        <md-input-container class="md-block">
+                            <label>Description</label>
+                            <input md-maxlength="30" required md-no-asterisk name="employeeName" ng-model="employer.employee_name">
+                            <div ng-messages="employerFrom.employeeName.$error">
+                                <div ng-message="required">This is required.</div>
+                                <div ng-message="md-maxlength">The employee name must be less than 30 characters long.</div>
+                            </div>
+                        </md-input-container>
+
+
+
+                        <div class="row" class="margin-top-15">
+                            <span>Change Designation</span>
+                            <select class="form-control" ng-options="designation._id as designation.designation_name for designation in designations" ng-model="employer.DesignationId">
+                            </select>
+                        </div>
+
+
+                        <div class="margin-top-15">
+                            <md-button ng-disabled="employerFrom.$invalid"
+                                       ng-click="updateEmployer($event, employerFrom)" class="md-raised md-button"
+                                       type="submit">Update
+                            </md-button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</script>
