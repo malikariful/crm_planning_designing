@@ -1,36 +1,26 @@
 'use strict';
 
 export default function(sequelize, DataTypes) {
-  return sequelize.define('Job_cart', {
-    job_cart_id: {
+  return sequelize.define('Job', {
+    _id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
-    }
-    ,
-    job_cart_vehicle_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: true,
-      references: {
-        model: 'Vehicle_master',
-        key: '_id'
-      }
-    }
-    ,
-    job_cart_reason: {
+    },
+    job_reason: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    job_cart_terms: {
+    job_terms: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    job_cart_date: {
+    job_date: {
       type: DataTypes.DATE,
       allowNull: true
     }
   }, {
-    tableName: 'Job_cart'
+    tableName: 'Job'
   });
 }
