@@ -76,6 +76,8 @@ export default class EmployerController {
         }).then(function (modal) {
             modal.element.modal();
             modal.close.then(function (employerService) {
+                console.log('inside edit then');
+                console.log(this);
             });
         });
     };
