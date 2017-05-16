@@ -24,7 +24,7 @@ var RolePermissions = sqldb.RolePermissions;
 var Thing = sqldb.Thing;
 var User = sqldb.User;
 
-//
+
 // User.sync()
 //     .then(() => User.destroy({where: {}}))
 //     .then(() => {
@@ -45,26 +45,26 @@ var User = sqldb.User;
 //             });
 //     });
 
-//
+
 // VehicleModel.sync()
 //     .then(() => {
 //         return VehicleModel.destroy({where: {}});
 //     })
 //     .then(() => {
 //         VehicleModel.bulkCreate([{
-//             "vehicle_model_name": "sed accumsan felis ut at dolor quis odio consequat varius integer ac"
+//             "vehicle_model_name": "sed ac"
 //         }, {
-//             "vehicle_model_name": "at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum ac lobortis vel"
+//             "vehicle_model_name": "at vel"
 //         }, {
-//             "vehicle_model_name": "odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla"
+//             "vehicle_model_name": "odio e"
 //         }, {
-//             "vehicle_model_name": "semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci"
+//             "vehicle_model_name": "sempe"
 //         }, {
-//             "vehicle_model_name": "iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget"
+//             "vehicle_model_name": "iaculis"
 //         }]);
 //     });
 
-//
+
 // Vehicle.sync()
 //     .then(() => {
 //         return Vehicle.destroy({where: {}});
@@ -100,7 +100,7 @@ var User = sqldb.User;
 //
 //         }]);
 //     });
-
+//
 // VehicleDetail.sync()
 //     .then(() => {
 //         return VehicleDetail.destroy({where: {}});
@@ -276,20 +276,20 @@ var User = sqldb.User;
 //     })
 //     .then(() => {
 //         Employee.bulkCreate([{
-//             "employee_master_name": "quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis",
-//             "employee_master_designation_id": 1
+//             "employee_name": "quam fringilla rhoncus ",
+//             "DesignationId": 1
 //         }, {
-//             "employee_master_name": "volutpat erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus phasellus in felis donec semper",
-//             "employee_master_designation_id": 2
+//             "employee_name": "volutpat erat quisque ",
+//             "DesignationId": 2
 //         }, {
-//             "employee_master_name": "molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui",
-//             "employee_master_designation_id": 3
+//             "employee_name": "molestie sed justo ",
+//             "DesignationId": 3
 //         }, {
-//             "employee_master_name": "magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus",
-//             "employee_master_designation_id": 4
+//             "employee_name": "magna vulputate",
+//             "DesignationId": 4
 //         }, {
-//             "employee_master_name": "arcu sed augue aliquam erat volutpat in congue etiam justo etiam pretium iaculis justo in hac",
-//             "employee_master_designation_id": 5
+//             "employee_name": "arcu sed augue",
+//             "DesignationId": 5
 //         }]);
 //     });
 
@@ -326,30 +326,43 @@ var User = sqldb.User;
 //     })
 //     .then(() => {
 //         Job.bulkCreate([{
-//             "job_cart_vehicle_id": 1,
-//             "job_cart_reason": "odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras",
-//             "job_cart_terms": "justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia",
-//             "job_cart_date": "11/15/2016"
+//             "_id": 1,
+//             "job_name": "odio condimentum id luctus nec molestie sed justo pellentesque viverra pede ac diam cras",
+//             "job_reason": "justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia",
+//             "job_terms": "justo sollicitudin ",
+//             "job_date": "11/15/2016",
+//             "VehicleMasterId": 1
 //         }, {
-//             "job_cart_vehicle_id": 2,
-//             "job_cart_reason": "consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla",
-//             "job_cart_terms": "consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus",
-//             "job_cart_date": "4/28/2016"
+//             "_id": 2,
+//             "job_name": "consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat nulla",
+//             "job_reason": "consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus",
+//             "job_terms": "consequat",
+//             "job_date": "4/28/2016",
+//             "VehicleMasterId": 2
 //         }, {
-//             "job_cart_vehicle_id": 3,
-//             "job_cart_reason": "non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed",
-//             "job_cart_terms": "penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus",
-//             "job_cart_date": "12/16/2016"
+//             "_id": 3,
+//             "job_name": "non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed",
+//             "job_reason": "penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus",
+//             "job_terms": "penatibus enatibus",
+//             "job_date": "12/16/2016",
+//             "VehicleMasterId": 3
+
 //         }, {
-//             "job_cart_vehicle_id": 4,
-//             "job_cart_reason": "morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat",
-//             "job_cart_terms": "quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus",
-//             "job_cart_date": "6/1/2016"
+//             "_id": 4,
+//             "job_name": "morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat",
+//             "job_reason": "quam pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus",
+//             "job_terms": "quam pede",
+//             "job_date": "6/1/2016",
+//             "VehicleMasterId": 4
+
 //         }, {
-//             "job_cart_vehicle_id": 5,
-//             "job_cart_reason": "eu sapien cursus vestibulum proin eu mi nulla ac enim in",
-//             "job_cart_terms": "ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu",
-//             "job_cart_date": "8/18/2016"
+//             "_id": 5,
+//             "job_name": "eu sapien cursus vestibulum proin eu mi nulla ac enim in",
+//             "job_reason": "ornare imperdiet sapien urna pretium nisl ut volutpat sapien arcu",
+//             "job_terms": "ornare ",
+//             "job_date": "8/18/2016",
+//             "VehicleMasterId": 5
+
 //         }]);
 //     });
 
@@ -374,7 +387,7 @@ var User = sqldb.User;
 //     });
 
 
-//
+
 // Problem.sync()
 //     .then(() => {
 //         return Problem.destroy({where: {}});

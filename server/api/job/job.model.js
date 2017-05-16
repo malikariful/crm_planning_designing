@@ -8,6 +8,10 @@ export default function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
+    job_name: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     job_reason: {
       type: DataTypes.STRING,
       allowNull: true
