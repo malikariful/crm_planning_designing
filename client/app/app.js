@@ -37,6 +37,7 @@ import vehiclesService from './vehicle/vehicleService/vehicleService.service';
 import modelService from './model/modelService';
 import vehicleDetailsService from './vehicle/vehicleService/vehicleDetailsService';
 import employerService from './employer/employerService';
+import jobCardService from './jobCard/jobCard.service';
 import dealer from './dealer';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
@@ -54,7 +55,7 @@ angular.module('crmApp', [
     // ngValidationMatch,
     _Auth, account, admin, userManagement, dashboard, navbar, footer, main, constants, util, dateConversionDirective, dateStringFilterModule, jobCard,
     vehicle, model, employer, designation,
-     dealerService, dealer, modelService, vehiclesService, vehicleDetailsService, employerService, designationService
+     dealerService, dealer, modelService, vehiclesService, vehicleDetailsService, employerService, designationService, jobCardService
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {

@@ -1,0 +1,52 @@
+<div ng-init="jobCardView.onInit();" class="paddingTop-10 container">
+
+    <button type="button" ui-sref="jobCardSetup" class="btn btn-sm btn-success">
+        <i class="glyphicon glyphicon-plus">
+        </i> Add New Job
+    </button>
+
+    <table st-table="displayedCollection" st-safe-src="jobCard.jobs" class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="5"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
+        </tr>
+        <tr>
+            <th st-sort="name">Name</th>
+            <th st-sort="name">Reason</th>
+            <th st-sort="address">Terms</th>
+            <th st-sort="action">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection">
+            <td>{{row.job_name}}</td>
+            <td>{{row.job_reason}}</td>
+            <td>{{row.job_terms}}</td>
+            <td>
+                <button type="button" ng-click="jobCard.showDealer(row)" class="btn btn-sm btn-info">
+                    <i class="glyphicon glyphicon-eye-open">
+                    </i>
+                </button>
+
+                <button type="button" ng-click="jobCard.editDealer(row)" class="btn btn-sm btn-primary">
+                    <i class="glyphicon glyphicon-pencil">
+                    </i>
+                </button>
+
+                <button type="button" ng-click="jobCard.deleteDealer($event, row)" class="btn btn-sm btn-danger">
+                    <i class="glyphicon glyphicon-remove-circle">
+                    </i>
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="jobCard.itemsByPage" st-displayed-pages="10"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>

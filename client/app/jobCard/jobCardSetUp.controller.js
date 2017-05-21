@@ -3,7 +3,7 @@
 export default class JobCardSetUpController {
 
   /*@ngInject*/
-  constructor( $state, $scope) {
+  constructor( $state, $scope, jobCardService) {
     this.$state = $state;
     this.myDate = new Date();
     this.isOpen = false;
