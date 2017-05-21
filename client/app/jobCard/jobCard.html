@@ -23,17 +23,17 @@
             <td>{{row.job_reason}}</td>
             <td>{{row.job_terms}}</td>
             <td>
-                <button type="button" ng-click="jobCard.showDealer(row)" class="btn btn-sm btn-info">
+                <button type="button" ng-click="jobCard.showJob(row)" class="btn btn-sm btn-info">
                     <i class="glyphicon glyphicon-eye-open">
                     </i>
                 </button>
 
-                <button type="button" ng-click="jobCard.editDealer(row)" class="btn btn-sm btn-primary">
+                <button type="button" ng-click="jobCard.editJob(row)" class="btn btn-sm btn-primary">
                     <i class="glyphicon glyphicon-pencil">
                     </i>
                 </button>
 
-                <button type="button" ng-click="jobCard.deleteDealer($event, row)" class="btn btn-sm btn-danger">
+                <button type="button" ng-click="jobCard.deleteJob($event, row)" class="btn btn-sm btn-danger">
                     <i class="glyphicon glyphicon-remove-circle">
                     </i>
                 </button>
@@ -50,3 +50,114 @@
         </tfoot>
     </table>
 </div>
+
+
+<script type="text/ng-template" id="showJob.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div layout="column" ng-cloak class="md-inline-form">
+
+                        <md-content layout-gt-sm="row" layout-padding>
+                            <div>
+                                <md-input-container class="md-block">
+                                    <label>Model</label>
+                                    <input ng-readonly="true" ng-model="vehicle.Vehicle_model.vehicle_model_name">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Chassis</label>
+                                    <input ng-readonly="true" ng-model="vehicle.vehicle_master_chassis_no">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Engine</label>
+                                    <input ng-readonly="true" ng-model="vehicle.vehicle_master_engine_no">
+                                </md-input-container>
+
+                                <md-input-container >
+                                    <label>Last Grade</label>
+                                    <input ng-readonly="true"
+                                           ng-model="vehicleDetails.vehicle_detail_last_grade">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Last Mileage</label>
+                                    <input ng-readonly="true"
+                                           ng-model="vehicleDetails.vehicle_detail_last_milage">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Free service</label>
+                                    <input ng-readonly="true"
+                                           ng-model="vehicleDetails.vehicle_details_total_free_service">
+                                </md-input-container>
+
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="" flex-gt-xs>
+                                        <label>Service Date</label><br>
+                                        <span>{{vehicleDetails.vehicle_detail_allocated_service_date | dateStringFilter}}</span>
+
+                                    </md-input-container>
+
+                                    <md-input-container class="" flex-gt-xs>
+                                        <label>Vehicle sales date</label><br>
+                                        <p>{{vehicleDetails.vehicle_detail_sales_date | dateStringFilter}}</p>
+                                    </md-input-container>
+
+                                    <md-input-container class="" flex-gt-xs>
+                                        <label>Vehicle service date</label><br>
+                                        <p>{{vehicleDetails.vehicle_detail_service_date | dateStringFilter}}</p>
+
+                                    </md-input-container>
+
+                                    <md-input-container class="" flex-gt-xs>
+                                        <label>Vehicle import date</label><br>
+                                        <p>{{vehicleDetails.vehicle_details_import_date | dateStringFilter}}</p>
+
+                                    </md-input-container>
+                                </div>
+
+                            </div>
+                        </md-content>
+
+
+                        <md-content layout-padding>
+                            <md-input-container class="md-block">
+                                <label>Descriptions</label>
+                                <input ng-readonly="true" ng-model="vehicleDetails.vehicle_detail_description">
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <label>Vehicle details name</label>
+                                <input ng-readonly="true" ng-model="vehicleDetails.vehicle_detail_name">
+                            </md-input-container>
+
+                            <md-input-container class="md-block">
+                                <label>Dealer name</label>
+                                <input ng-readonly="true" ng-model="vehicleDetails.Dealer.dealer_name">
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>Dealer phone</label>
+                                <input ng-readonly="true" ng-model="vehicleDetails.Dealer.dealer_phone">
+                            </md-input-container>
+
+                            <md-input-container>
+                                <label>Dealer Type</label>
+                                <input ng-readonly="true" ng-model="vehicleDetails.Dealer.dealer_type">
+                            </md-input-container>
+
+                        </md-content>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

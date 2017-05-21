@@ -154,7 +154,7 @@ export function destroy(req, res) {
 
 
 
-// Gets a list of Vehicles
+// // Gets a list of Vehicles
 // export function index(req, res) {
 //     return Vehicle.findAll({
 //         include: [
@@ -173,4 +173,4 @@ export function destroy(req, res) {
 //         .then(respondWithResult(res))
 //         .catch(handleError(res));
 // }
-//
+
