@@ -15,6 +15,7 @@ import {Job} from '../../sqldb';
 import {Vehicle} from '../../sqldb';
 import {Employee} from '../../sqldb';
 import {Problem} from '../../sqldb';
+import {Designation} from '../../sqldb';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -81,18 +82,25 @@ export function index(req, res) {
 
 // Gets a single Job from the DB
 export function show(req, res) {
-    console.log('=======================================================================================================================================');
-    console.log(req.params.id);
-    console.log('=======================================================================================================================================');
-
     return Job.find({
         include: [{
             model: Problem,
             through: {
-                attributes: ['problem_name'],
                 where: {JobId: req.params.id}
             }
-        }]
+        }, {
+            model: Employee,
+            include: [{model: Designation}],
+            through: {
+                attributes: ['employee_name'],
+                where: {JobId: req.params.id},
+            }
+        }, {
+            model: Vehicle
+        }],
+        where: {
+            _id: req.params.id
+        }
     })
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
@@ -150,10 +158,3 @@ export function destroy(req, res) {
         .catch(handleError(res));
 }
 
-// , {
-//     model: Problem,
-//         through: {
-//         attributes: ['problem_name'],
-//             where: {JobId: req.params.id}
-//     }
-// }
