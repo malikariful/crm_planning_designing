@@ -223,7 +223,7 @@ export function jobEmployee(req, res) {
         type: sqldb.sequelize.QueryTypes.SELECT
     }).then(function (queryResult) {
 
-        var employeeIds = queryResult.map(function (currentValue, index) {
+        var employeeIds = queryResult.map(function (currentValue) {
 
             return currentValue.EmployeeId;
         });
@@ -251,8 +251,19 @@ export function jobProblem(req, res) {
         {
             replacements: {jobId: parseInt(jobId)},
             type: sqldb.sequelize.QueryTypes.SELECT
-        }).then(function (jobProblemMappingTableData) {
-        console.log(jobProblemMappingTableData);
+        }).then(function (queryResult) {
+        var problemIds = queryResult.map(function (currentValue) {
+
+            return currentValue.ProblemId;
+        });
+
+        return Problem.findAll({
+            where: {
+                _id: problemIds
+            }
+        })
+            .then(respondWithResult(res))
+            .catch(handleError(res));
     });
 }
 
