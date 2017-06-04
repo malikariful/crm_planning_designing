@@ -221,8 +221,25 @@ export function jobEmployee(req, res) {
     {
         replacements: {jobId: parseInt(jobId)},
         type: sqldb.sequelize.QueryTypes.SELECT
-    }).then(function (jobEmployeeMappingTableData) {
-        console.log(jobEmployeeMappingTableData);
+    }).then(function (queryResult) {
+
+        var employeeIds = queryResult.map(function (currentValue, index) {
+
+            return currentValue.EmployeeId;
+        });
+
+        return Employee.findAll({
+            include: [
+                {
+                    model: Designation
+                }
+            ],
+            where: {
+                _id: employeeIds
+            }
+        })
+            .then(respondWithResult(res))
+            .catch(handleError(res));
     });
 
 }
@@ -238,3 +255,5 @@ export function jobProblem(req, res) {
         console.log(jobProblemMappingTableData);
     });
 }
+
+// [ { EmployeeId: 6 }, { EmployeeId: 9 } ]
