@@ -28,23 +28,6 @@ function respondWithResult(res, statusCode) {
     };
 }
 
-function insertToJobEmployee(res, statusCode, employeeId) {
-    return function (entity) {
-        if (entity) {
-            var jobId = entity._id;
-            console.log(jobId);
-            console.log(employeeId);
-            sqldb.sequelize.query('INSERT INTO jobEmployeeMappingTable(JobId, EmployeeId) VALUES (jobId,employeeId)').then(result => {
-                console.log('result');
-                console.log(result);
-                // return res;
-            });
-
-        }
-        return null;
-    };
-}
-
 function patchUpdates(patches) {
     return function (entity) {
         try {
@@ -231,3 +214,27 @@ export function destroy(req, res) {
         .catch(handleError(res));
 }
 
+export function jobEmployee(req, res) {
+    let jobId = req.params.id;
+
+    sqldb.sequelize.query('SELECT EmployeeId FROM `jobEmployeeMappingTable` WHERE JobId = :jobId',
+    {
+        replacements: {jobId: parseInt(jobId)},
+        type: sqldb.sequelize.QueryTypes.SELECT
+    }).then(function (jobEmployeeMappingTableData) {
+        console.log(jobEmployeeMappingTableData);
+    });
+
+}
+
+export function jobProblem(req, res) {
+    let jobId = req.params.id;
+
+    sqldb.sequelize.query('SELECT * FROM `jobProblemMappingTable` WHERE JobId = :jobId',
+        {
+            replacements: {jobId: parseInt(jobId)},
+            type: sqldb.sequelize.QueryTypes.SELECT
+        }).then(function (jobProblemMappingTableData) {
+        console.log(jobProblemMappingTableData);
+    });
+}

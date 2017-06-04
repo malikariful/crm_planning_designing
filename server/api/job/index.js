@@ -6,6 +6,8 @@ var controller = require('./job.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/:id/employee', controller.jobEmployee);
+router.get('/:id/problem', controller.jobProblem);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.upsert);
