@@ -61,101 +61,67 @@
 
                         <md-content layout-gt-sm="row" layout-padding>
                             <div>
+
+                                <md-input-container>
+                                    <label>Assigned Vehicle</label>
+                                    <input ng-readonly="true" ng-model=" job.Vehicle_master.Vehicle_model.vehicle_model_name">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Vehicle Engine No</label>
+                                    <input ng-readonly="true" ng-model=" job.Vehicle_master.vehicle_master_engine_no">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Vehicle Chassis No</label>
+                                    <input ng-readonly="true" ng-model=" job.Vehicle_master.vehicle_master_chassis_no">
+                                </md-input-container>
+
                                 <md-input-container class="md-block">
-                                    <label>Model</label>
-                                    <input ng-readonly="true" ng-model="vehicle.Vehicle_model.vehicle_model_name">
+                                    <label>Job name</label>
+                                    <input ng-readonly="true" ng-model=" job.job_name">
                                 </md-input-container>
 
-                                <md-input-container>
-                                    <label>Chassis</label>
-                                    <input ng-readonly="true" ng-model="vehicle.vehicle_master_chassis_no">
+                                <md-input-container class="md-block">
+                                    <label>Reason</label>
+                                    <input ng-readonly="true" ng-model="job.job_reason">
                                 </md-input-container>
-
-                                <md-input-container>
-                                    <label>Engine</label>
-                                    <input ng-readonly="true" ng-model="vehicle.vehicle_master_engine_no">
-                                </md-input-container>
-
-                                <md-input-container >
-                                    <label>Last Grade</label>
-                                    <input ng-readonly="true"
-                                           ng-model="vehicleDetails.vehicle_detail_last_grade">
-                                </md-input-container>
-
-                                <md-input-container>
-                                    <label>Last Mileage</label>
-                                    <input ng-readonly="true"
-                                           ng-model="vehicleDetails.vehicle_detail_last_milage">
-                                </md-input-container>
-
-                                <md-input-container>
-                                    <label>Free service</label>
-                                    <input ng-readonly="true"
-                                           ng-model="vehicleDetails.vehicle_details_total_free_service">
-                                </md-input-container>
-
-                                <div layout-gt-xs="row">
-                                    <md-input-container class="" flex-gt-xs>
-                                        <label>Service Date</label><br>
-                                        <span>{{vehicleDetails.vehicle_detail_allocated_service_date | dateStringFilter}}</span>
-
-                                    </md-input-container>
-
-                                    <md-input-container class="" flex-gt-xs>
-                                        <label>Vehicle sales date</label><br>
-                                        <p>{{vehicleDetails.vehicle_detail_sales_date | dateStringFilter}}</p>
-                                    </md-input-container>
-
-                                    <md-input-container class="" flex-gt-xs>
-                                        <label>Vehicle service date</label><br>
-                                        <p>{{vehicleDetails.vehicle_detail_service_date | dateStringFilter}}</p>
-
-                                    </md-input-container>
-
-                                    <md-input-container class="" flex-gt-xs>
-                                        <label>Vehicle import date</label><br>
-                                        <p>{{vehicleDetails.vehicle_details_import_date | dateStringFilter}}</p>
-
-                                    </md-input-container>
-                                </div>
 
                             </div>
                         </md-content>
 
+                        <md-content>
+                            <md-list flex>
+                                <h4 class="md-no-sticky">Problems of the vehicle</h4>
+                                <md-list-item class="md-3-line" ng-repeat="problem in job.problems" ng-click="null">
+                                    <div class="md-list-item-text" layout="column">
+                                        <h3>Name: {{ problem.problem_name }}</h3>
+                                        <h4>Fee: {{problem.problem_fee}}</h4>
+                                        <p>Descriptions: {{problem.problem_description}}</p>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
+                        </md-content>
 
-                        <md-content layout-padding>
-                            <md-input-container class="md-block">
-                                <label>Descriptions</label>
-                                <input ng-readonly="true" ng-model="vehicleDetails.vehicle_detail_description">
-                            </md-input-container>
-
-                            <md-input-container class="md-block">
-                                <label>Vehicle details name</label>
-                                <input ng-readonly="true" ng-model="vehicleDetails.vehicle_detail_name">
-                            </md-input-container>
-
-                            <md-input-container class="md-block">
-                                <label>Dealer name</label>
-                                <input ng-readonly="true" ng-model="vehicleDetails.Dealer.dealer_name">
-                            </md-input-container>
-
-                            <md-input-container>
-                                <label>Dealer phone</label>
-                                <input ng-readonly="true" ng-model="vehicleDetails.Dealer.dealer_phone">
-                            </md-input-container>
-
-                            <md-input-container>
-                                <label>Dealer Type</label>
-                                <input ng-readonly="true" ng-model="vehicleDetails.Dealer.dealer_type">
-                            </md-input-container>
-
+                        <md-content>
+                            <md-list flex>
+                                <h4 class="md-no-sticky">This job has assigned to </h4>
+                                <md-list-item class="md-3-line" ng-repeat="employee in job.employees" ng-click="null">
+                                    <div class="md-list-item-text" layout="column">
+                                        <h3>Name: {{ employee.employee_name }}</h3>
+                                        <h3>Level: {{employee.Designation.designation_level}}</h3>
+                                        <p>Designation: {{employee.Designation.designation_name}}</p>
+                                    </div>
+                                </md-list-item>
+                            </md-list>
                         </md-content>
 
 
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">close</button>
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">close
+                    </button>
                 </div>
             </div>
         </div>

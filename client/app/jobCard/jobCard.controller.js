@@ -3,7 +3,8 @@
 export default class JobCardController {
     /*@ngInject*/
 
-    constructor($scope, jobCardService, ModalService) {
+    constructor($scope, jobCardService, ModalService, $mdDialog) {
+        this.$mdDialog = $mdDialog;
         this.ModalService = ModalService;
         this.jobs = jobCardService.query();
         // console.log('jobs');
@@ -32,12 +33,12 @@ export default class JobCardController {
 
                 $http.get('http://localhost:8000/api/jobs/' +job._id+ '/employee')
                     .then(function (response) {
-                        $scope.job.employee = response.data;
+                        $scope.job.employees = response.data;
                     });
 
                 $http.get('http://localhost:8000/api/jobs/' +job._id+ '/problem')
                     .then(function (response) {
-                        $scope.job.problem = response.data;
+                        $scope.job.problems = response.data;
                         console.log($scope.job);
                     });
 
@@ -51,8 +52,24 @@ export default class JobCardController {
             modal.close.then(function (job) {
             });
         });
-
     }
+
+    deleteJob = function (ev, job) {
+        var confirm = this.$mdDialog.confirm()
+            .title('Would you like to delete the job?')
+            .textContent('All of the information will be gone.')
+            .targetEvent(ev)
+            .ok('Yes Please do it!')
+            .cancel('No Sounds like a scam');
+
+        this.$mdDialog.show(confirm).then(() => {
+            job.$remove();
+            this.jobs.splice(this.jobs.indexOf(job), 1);
+
+        }, () => {
+            this.$scope.status = 'You decided to keep your debt.';
+        });
+    };
 
 
 }

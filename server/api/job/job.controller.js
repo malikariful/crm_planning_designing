@@ -14,6 +14,7 @@ import jsonpatch from 'fast-json-patch';
 import sqldb from '../../sqldb';
 import {Job} from '../../sqldb';
 import {Vehicle} from '../../sqldb';
+import {VehicleModel} from '../../sqldb';
 import {Employee} from '../../sqldb';
 import {Problem} from '../../sqldb';
 import {Designation} from '../../sqldb';
@@ -75,7 +76,10 @@ export function index(req, res) {
     return Job.findAll({
         include: [
             {
-                model: Vehicle
+                model: Vehicle,
+                include: [{
+                    model: VehicleModel
+                }]
             }
         ]
     })
