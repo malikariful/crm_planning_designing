@@ -13,10 +13,10 @@ export default class JobCardController {
     showJob(job){
         this.ModalService.showModal({
             templateUrl: 'showJob.html',
-            controller: ['$scope', 'job', 'jobCardService', function ($scope, job, jobCardService) {
+            controller: ['$scope', 'job', 'jobCardService','$http', function ($scope, job, jobCardService, $http) {
 
                 $scope.job = job;
-                console.log($scope.job);
+                console.log($scope.job._id);
 
                 // jobCardService
                 //     .get({id: $scope.vehicle._id})
@@ -29,6 +29,18 @@ export default class JobCardController {
                 //         console.log(error);
                 //     }
                 // );
+
+                $http.get('http://localhost:8000/api/jobs/' +job._id+ '/employee')
+                    .then(function (response) {
+                        $scope.job.employee = response.data;
+                    });
+
+                $http.get('http://localhost:8000/api/jobs/' +job._id+ '/problem')
+                    .then(function (response) {
+                        $scope.job.problem = response.data;
+                        console.log($scope.job);
+                    });
+
 
             }],
             inputs: {
