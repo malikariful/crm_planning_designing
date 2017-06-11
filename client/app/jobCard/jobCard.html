@@ -49,6 +49,8 @@
         </tr>
         </tfoot>
     </table>
+
+
 </div>
 
 
@@ -121,6 +123,46 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="editJob.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    <ui-select multiple
+                               ng-model="selectedVehicle"
+                               theme="bootstrap"
+                               sortable="true"
+                               close-on-select="false"
+                               style="width: 500px;">
+
+                        <ui-select-match placeholder="Select vehicle">{{$item.Vehicle_model.vehicle_model_name}}</ui-select-match>
+
+                        <ui-select-choices repeat="vehicle in vehicles | propsFilter: {vehicle_master_chassis_no: $select.search, vehicle_master_engine_no: $select.search}">
+                            <div ng-bind-html="vehicle.Vehicle_model.vehicle_model_name | highlight: $select.search"></div>
+
+                            <small>
+                                chassis_no: {{vehicle.vehicle_master_chassis_no}}
+                                engine_no: {{vehicle.vehicle_master_engine_no}}
+                            </small>
+                        </ui-select-choices>
+                    </ui-select>
+
+
+
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Close
                     </button>
                 </div>
             </div>

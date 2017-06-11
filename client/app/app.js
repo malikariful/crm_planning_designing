@@ -11,7 +11,9 @@ import angularArea from 'angular-aria';
 import angularMessage from 'angular-messages';
 import angularMaterial from 'angular-material';
 import smartTable from 'angular-smart-table';
+import uiSelect from '../../node_modules/ui-select/index'
 import datePicker from '../../node_modules/angularjs-datepicker/index'
+
 
 
 
@@ -38,6 +40,7 @@ import modelService from './model/modelService';
 import vehicleDetailsService from './vehicle/vehicleService/vehicleDetailsService';
 import employerService from './employer/employerService';
 import jobCardService from './jobCard/jobCard.service';
+import jobCardPropsFilter from './jobCard/propsFilter/propsFilter.filter';
 import dealer from './dealer';
 import navbar from '../components/navbar/navbar.component';
 import footer from '../components/footer/footer.component';
@@ -47,15 +50,16 @@ import util from '../components/util/util.module';
 
 import './app.css';
 
+
 angular.module('crmApp', [
     // ngAnimate,
-    ngCookies, ngResource, ngSanitize, uiRouter, angularAnimate, angularArea, angularMessage, angularMaterial,  smartTable, datePicker,
+    ngCookies, ngResource, ngSanitize, uiRouter, angularAnimate, angularArea, angularMessage, angularMaterial,  smartTable, uiSelect, datePicker,
     // ngMessages,
 
     // ngValidationMatch,
     _Auth, account, admin, userManagement, dashboard, navbar, footer, main, constants, util, dateConversionDirective, dateStringFilterModule, jobCard,
     vehicle, model, employer, designation,
-     dealerService, dealer, modelService, vehiclesService, vehicleDetailsService, employerService, designationService, jobCardService
+     dealerService, dealer, modelService, vehiclesService, vehicleDetailsService, employerService, designationService, jobCardService, jobCardPropsFilter
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
