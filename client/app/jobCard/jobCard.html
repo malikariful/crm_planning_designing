@@ -5,6 +5,11 @@
         </i> Add New Job
     </button>
 
+    <button type="button" ui-sref="problem" class="btn btn-sm btn-success">
+        <i class="glyphicon glyphicon-list">
+        </i> Problem List
+    </button>
+
     <table st-table="displayedCollection" st-safe-src="jobCard.jobs" class="table table-striped">
         <thead>
         <tr>
@@ -135,27 +140,157 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">
+                    <p>Edit Job Information</p>
 
-                    <ui-select multiple
-                               ng-model="selectedVehicle"
-                               theme="bootstrap"
-                               sortable="true"
-                               close-on-select="false"
-                               style="width: 500px;">
+                    <form name="jobFrom" novalidate show-validation>
 
-                        <ui-select-match placeholder="Select vehicle">{{$item.Vehicle_model.vehicle_model_name}}</ui-select-match>
+                        <div layout="column" ng-cloak class="margin-top-20">
+                            <md-content layout-padding>
 
-                        <ui-select-choices repeat="vehicle in vehicles | propsFilter: {vehicle_master_chassis_no: $select.search, vehicle_master_engine_no: $select.search}">
-                            <div ng-bind-html="vehicle.Vehicle_model.vehicle_model_name | highlight: $select.search"></div>
+                                <md-input-container class="md-block">
+                                    <label>Name</label>
+                                    <input minlength="3" md-maxlength="30" name="jobName" required
+                                           ng-model="jobs.job_name">
 
-                            <small>
-                                chassis_no: {{vehicle.vehicle_master_chassis_no}}
-                                engine_no: {{vehicle.vehicle_master_engine_no}}
-                            </small>
-                        </ui-select-choices>
-                    </ui-select>
+                                    <div ng-messages="jobFrom.jobName.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">You must write a job
+                                            name.
+                                        </div>
+                                        <div ng-message="md-maxlength">The name must be less than 30 characters
+                                            long.
+                                        </div>
+                                        <div ng-message="minlength">The name must be more than 3 characters long.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container class="md-block">
+                                    <label>Reason</label>
+                                    <input minlength="3" md-maxlength="30" name="jobReason" required
+                                           ng-model="jobs.job_reason">
+
+                                    <div ng-messages="jobFrom.jobReason.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">You must write a reason
+                                            name.
+                                        </div>
+                                        <div ng-message="md-maxlength">The name must be less than 30 characters
+                                            long.
+                                        </div>
+                                        <div ng-message="minlength">The name must be more than 3 characters long.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container class="md-block margin-none">
+                                    <label>Terms</label>
+                                    <input minlength="3" md-maxlength="30" name="jobTerms" required
+                                           ng-model="jobs.job_terms">
+
+                                    <div ng-messages="jobFrom.jobTerms.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">You must write a terms
+                                            name.
+                                        </div>
+                                        <div ng-message="md-maxlength">The terms must be less than 30 characters
+                                            long.
+                                        </div>
+                                        <div ng-message="minlength">The terms must be more than 3 characters long.
+                                        </div>
+                                    </div>
+                                </md-input-container>
 
 
+
+
+
+                                <span class="margin-top-10 font-small">Change Motocycle Model</span>
+
+                                <ui-select required
+                                           multiple
+                                           ng-model="selectedVehicle"
+                                           theme="bootstrap"
+                                           sortable="true"
+                                           close-on-select="false"
+                                           style="width: 600px; margin-top: 15px">
+
+                                    <ui-select-match placeholder="Select vehicle">{{$item.Vehicle_model.vehicle_model_name}}
+                                    </ui-select-match>
+
+                                    <ui-select-choices repeat="vehicle in vehicles | propsFilter: {vehicle_master_chassis_no: $select.search, vehicle_master_engine_no: $select.search}">
+                                        <div ng-bind-html="vehicle.Vehicle_model.vehicle_model_name | highlight: $select.search"></div>
+
+                                        <small>
+                                            chassis_no: {{vehicle.vehicle_master_chassis_no}}
+                                            engine_no: {{vehicle.vehicle_master_engine_no}}
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+
+
+
+                                <span class="font-small">Change Assigned Problem</span>
+
+                                <ui-select required
+                                           multiple
+                                           ng-model="selectedProblem"
+                                           theme="bootstrap"
+                                           sortable="true"
+                                           close-on-select="false"
+                                           style="width: 600px; margin-top: 15px">
+
+                                    <ui-select-match placeholder="Select Problems">{{$item.problem_name}}
+                                    </ui-select-match>
+
+                                    <ui-select-choices repeat="problem in problems | propsFilter: {problem_name: $select.search}">
+                                        <div ng-bind-html="problem.problem_name | highlight: $select.search"></div>
+
+                                        <small>
+                                            chassis_no: {{problem.problem_description}}
+                                            engine_no: {{problem.problem_fee}}
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+
+
+                                <span class="margin-top-10 font-small">Change Assigned Employee</span>
+
+                                <ui-select required
+                                           multiple
+                                           ng-model="selectedEmployee"
+                                           theme="bootstrap"
+                                           sortable="true"
+                                           close-on-select="false"
+                                           style="width: 600px; margin-top: 15px">
+
+                                    <ui-select-match placeholder="Select Employee">{{$item.employee_name}}
+                                    </ui-select-match>
+
+                                    <ui-select-choices repeat="employee in employees | propsFilter: {employee_name: $select.search}">
+                                        <div ng-bind-html="employee.employee_name | highlight: $select.search"></div>
+
+                                        <small>
+                                            chassis_no: {{employee.Designation.designation_name}}
+                                            engine_no: {{employee.Designation.designation_level}}
+                                        </small>
+                                    </ui-select-choices>
+                                </ui-select>
+
+
+
+                            </md-content>
+
+
+
+
+                        </div>
+
+                        <div>
+                            <md-button ng-disabled="jobFrom.$invalid"
+                                       ng-click="updateJobFrom($event, jobFrom)" class="md-raised md-button"
+                                       type="submit">Update
+                            </md-button>
+                        </div>
+
+                    </form>
 
 
                 </div>

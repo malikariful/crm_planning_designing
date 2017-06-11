@@ -364,3 +364,12 @@ body > .ui-select-bootstrap.open {
 .ui-select-refreshing.ng-animate {
     -webkit-animation: none 0s;
 }
+.margin-top-10 {
+    margin-top: 10px !important;
+}
+.font-small {
+    font-size: small;
+}
+.margin-none {
+    margin: 0px !important;
+}

@@ -3,11 +3,13 @@
 export default class JobCardController {
     /*@ngInject*/
 
-    constructor($scope, jobCardService, ModalService, vehicleService, $mdDialog) {
+    constructor($scope, jobCardService, ModalService, vehicleService, employerService, problemService, $mdDialog) {
         this.$mdDialog = $mdDialog;
         this.ModalService = ModalService;
         this.jobs = jobCardService.query();
+        this.problems = problemService.query();
         this.vehicles = vehicleService.query();
+        this.employees = employerService.query();
 
         // console.log('jobs');
         // console.log(this.jobs);
@@ -19,19 +21,6 @@ export default class JobCardController {
             controller: ['$scope', 'job', 'jobCardService', '$http', function ($scope, job, jobCardService, $http) {
 
                 $scope.job = job;
-                console.log($scope.job._id);
-
-                // jobCardService
-                //     .get({id: $scope.vehicle._id})
-                //     .$promise.then(
-                //     function (vehicleDetail) {
-                //         $scope.vehicleDetails = vehicleDetail;
-                //     },
-                //     function (error) {
-                //         console.log('vehicle details error');
-                //         console.log(error);
-                //     }
-                // );
 
                 $http.get('http://localhost:8000/api/jobs/' + job._id + '/employee')
                     .then(function (response) {
@@ -76,7 +65,7 @@ export default class JobCardController {
     editJob = function (job) {
         this.ModalService.showModal({
             templateUrl: 'editJob.html',
-            controller: ['$scope', 'job', 'jobCardService', '$mdToast', 'vehicles', function ($scope, job, jobCardService, $mdToast, vehicles) {
+            controller: ['$scope', 'job', 'jobCardService', '$mdToast', 'vehicles', 'employees', '$http', 'problems', function ($scope, job, jobCardService, $mdToast, vehicles, employees, $http, problems) {
 
                 // console.log('job');
                 // console.log('vehicles');
@@ -110,16 +99,36 @@ export default class JobCardController {
                 // };
                 
                 $scope.vehicles = vehicles;
+                $scope.employees = employees;
+                $scope.problems = problems;
                 $scope.jobs = job;
+
+                $http.get('http://localhost:8000/api/jobs/' + job._id + '/employee')
+                    .then(function (response) {
+                        $scope.jobs.employees = response.data;
+                        $scope.selectedEmployee = $scope.jobs.employees;
+                    });
+
+                $http.get('http://localhost:8000/api/jobs/' + job._id + '/problem')
+                    .then(function (response) {
+                        $scope.jobs.problems = response.data;
+                        $scope.selectedProblem = $scope.jobs.problems;
+                    });
 
 
                 $scope.selectedVehicle = [$scope.jobs.Vehicle_master];
+
+                // console.log($scope.selectedEmployee);
+                // console.log($scope.employees);
+
 
 
             }],
             inputs: {
                 job: job,
-                vehicles: this.vehicles
+                vehicles: this.vehicles,
+                employees: this.employees,
+                problems: this.problems
             }
         }).then(function (modal) {
             modal.element.modal();
