@@ -67,37 +67,11 @@ export default class JobCardController {
             templateUrl: 'editJob.html',
             controller: ['$scope', 'job', 'jobCardService', '$mdToast', 'vehicles', 'employees', '$http', 'problems', function ($scope, job, jobCardService, $mdToast, vehicles, employees, $http, problems) {
 
-                // console.log('job');
-                // console.log('vehicles');
-                // console.log(vehicles);
-                // $scope.updateDealerFrom = function (ev, from) {
-                //     if (from.$valid && from.$dirty) {
-                //
-                //         var dealerData = {
-                //             dealer_name: $scope.dealer.dealer_name,
-                //             dealer_email: $scope.dealer.dealer_email,
-                //             dealer_phone: $scope.dealer.dealer_phone,
-                //             dealer_type: 'permanent',
-                //             dealer_address: $scope.dealer.dealer_address
-                //         };
-                //
-                //         dealerService.update({
-                //             id: $scope.dealer._id
-                //         }, dealerData, response => {
-                //             if (response.$resolved) {
-                //                 $mdToast.show(
-                //                     $mdToast.simple()
-                //                         .textContent('Dealer has updated successfully!')
-                //                         .position('bottom right')
-                //                         .hideDelay(3000)
-                //                 );
-                //             }
-                //         });
-                //
-                //     }
-                //
-                // };
-                
+                $scope.selectedVehicle = {};
+                $scope.selectedProblem = {};
+                $scope.selectedEmployee = {};
+
+
                 $scope.vehicles = vehicles;
                 $scope.employees = employees;
                 $scope.problems = problems;
@@ -106,21 +80,56 @@ export default class JobCardController {
                 $http.get('http://localhost:8000/api/jobs/' + job._id + '/employee')
                     .then(function (response) {
                         $scope.jobs.employees = response.data;
-                        $scope.selectedEmployee = $scope.jobs.employees;
+                        $scope.selectedEmployee.list = $scope.jobs.employees;
                     });
 
                 $http.get('http://localhost:8000/api/jobs/' + job._id + '/problem')
                     .then(function (response) {
                         $scope.jobs.problems = response.data;
-                        $scope.selectedProblem = $scope.jobs.problems;
+                        $scope.selectedProblem.list = $scope.jobs.problems;
                     });
 
+                $scope.selectedVehicle.list = $scope.jobs.Vehicle_master;
 
-                $scope.selectedVehicle = [$scope.jobs.Vehicle_master];
+                $scope.updateJobFrom = function (ev, from) {
+                    if (from.$valid && from.$dirty) {
 
-                // console.log($scope.selectedEmployee);
-                // console.log($scope.employees);
+                        console.log("update form");
+                        // console.log($scope.jobs);
+                        // console.log($scope.selectedVehicle);
+                        // console.log($scope.selectedProblem);
+                        // console.log($scope.selectedEmployee);
+                        $scope.jobs.Vehicle_master = $scope.selectedVehicle.list;
+                        $scope.jobs.problems = $scope.selectedProblem.list;
+                        $scope.jobs.employees = $scope.selectedEmployee.list;
 
+                        console.log($scope.jobs);
+
+
+                        // var dealerData = {
+                        //     dealer_name: $scope.dealer.dealer_name,
+                        //     dealer_email: $scope.dealer.dealer_email,
+                        //     dealer_phone: $scope.dealer.dealer_phone,
+                        //     dealer_type: 'permanent',
+                        //     dealer_address: $scope.dealer.dealer_address
+                        // };
+                        //
+                        // dealerService.update({
+                        //     id: $scope.dealer._id
+                        // }, dealerData, response => {
+                        //     if (response.$resolved) {
+                        //         $mdToast.show(
+                        //             $mdToast.simple()
+                        //                 .textContent('Dealer has updated successfully!')
+                        //                 .position('bottom right')
+                        //                 .hideDelay(3000)
+                        //         );
+                        //     }
+                        // });
+
+                    }
+
+                };
 
 
             }],

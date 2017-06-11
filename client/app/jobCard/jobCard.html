@@ -199,39 +199,39 @@
                                 </md-input-container>
 
 
+                                <span class="margin-top-10 font-small">Change Motorcycle Model</span>
 
 
 
-                                <span class="margin-top-10 font-small">Change Motocycle Model</span>
+                                <ui-select
+                                        required
+                                        ng-model="selectedVehicle.list"
+                                        theme="bootstrap"
+                                        style="min-width: 600px; margin-top: 15px"
+                                        title="Choose a model">
 
-                                <ui-select required
-                                           multiple
-                                           ng-model="selectedVehicle"
-                                           theme="bootstrap"
-                                           sortable="true"
-                                           close-on-select="false"
-                                           style="width: 600px; margin-top: 15px">
-
-                                    <ui-select-match placeholder="Select vehicle">{{$item.Vehicle_model.vehicle_model_name}}
+                                    <ui-select-match placeholder="Select a motorcycle in the list or search his name">
+                                        {{$select.selected.Vehicle_model.vehicle_model_name}}
                                     </ui-select-match>
+
+
 
                                     <ui-select-choices repeat="vehicle in vehicles | propsFilter: {vehicle_master_chassis_no: $select.search, vehicle_master_engine_no: $select.search}">
                                         <div ng-bind-html="vehicle.Vehicle_model.vehicle_model_name | highlight: $select.search"></div>
-
                                         <small>
                                             chassis_no: {{vehicle.vehicle_master_chassis_no}}
-                                            engine_no: {{vehicle.vehicle_master_engine_no}}
+                                            engine_no: <span ng-bind-html="''+vehicle.vehicle_master_engine_no | highlight: $select.search"></span>
                                         </small>
                                     </ui-select-choices>
                                 </ui-select>
 
 
 
-                                <span class="font-small">Change Assigned Problem</span>
+                                <span class="margin-top-10 font-small">Change Assigned Problem</span>
 
                                 <ui-select required
                                            multiple
-                                           ng-model="selectedProblem"
+                                           ng-model="selectedProblem.list"
                                            theme="bootstrap"
                                            sortable="true"
                                            close-on-select="false"
@@ -255,7 +255,7 @@
 
                                 <ui-select required
                                            multiple
-                                           ng-model="selectedEmployee"
+                                           ng-model="selectedEmployee.list"
                                            theme="bootstrap"
                                            sortable="true"
                                            close-on-select="false"
@@ -275,10 +275,7 @@
                                 </ui-select>
 
 
-
                             </md-content>
-
-
 
 
                         </div>
