@@ -31,6 +31,7 @@ db.sequelize.authenticate()
   });
 
 // Insert models below
+db.Sale = db.sequelize.import('../api/sale/sale.model');
 // db.JobEmployee = db.sequelize.import('../api/jobEmployee/jobEmployee.model');
 db.VehicleDetail = db.sequelize.import('../api/vehicleDetail/vehicleDetail.model');
 db.Vehicle = db.sequelize.import('../api/vehicle/vehicle.model');

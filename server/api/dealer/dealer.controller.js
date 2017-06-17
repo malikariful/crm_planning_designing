@@ -19,18 +19,12 @@ function respondWithResult(res, statusCode) {
         if (entity && entity != entity instanceof Array) {
             return res.status(statusCode).json(entity);
         } else if(entity instanceof Array){
-            console.log("------------------------------------------entity instanceof Array----------------------------------------------");
-            console.log(entity);
-
             var entityConverted = entity.reduce(function(acc, cur, i) {
                 acc[i] = cur;
                 return acc;
             }, {});
             
             return res.status(statusCode).json(entityConverted);
-
-            console.log("------------------------------------------entity instanceof Array----------------------------------------------");
-
         }
         return null;
     };

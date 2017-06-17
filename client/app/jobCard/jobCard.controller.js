@@ -93,17 +93,29 @@ export default class JobCardController {
 
                 $scope.updateJobFrom = function (ev, from) {
                     if (from.$valid && from.$dirty) {
-
-                        console.log("update form");
                         // console.log($scope.jobs);
                         // console.log($scope.selectedVehicle);
                         // console.log($scope.selectedProblem);
                         // console.log($scope.selectedEmployee);
+                        $scope.jobs.VehicleMasterId = $scope.selectedVehicle.list._id;
                         $scope.jobs.Vehicle_master = $scope.selectedVehicle.list;
                         $scope.jobs.problems = $scope.selectedProblem.list;
                         $scope.jobs.employees = $scope.selectedEmployee.list;
 
-                        console.log($scope.jobs);
+                        console.log($scope.jobs._id);
+
+                        jobCardService.update({
+                            id: $scope.jobs._id
+                        }, $scope.jobs, response => {
+                            if (response.$resolved) {
+                                $mdToast.show(
+                                    $mdToast.simple()
+                                        .textContent('Job has updated successfully!')
+                                        .position('bottom right')
+                                        .hideDelay(3000)
+                                );
+                            }
+                        });
 
 
                         // var dealerData = {

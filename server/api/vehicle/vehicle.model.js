@@ -15,6 +15,10 @@ export default function (sequelize, DataTypes) {
         vehicle_master_engine_no: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        number_of_servicing: {
+            type: DataTypes.INTEGER(12),
+            allowNull: false
         }
     }, {
         tableName: 'Vehicle_master'

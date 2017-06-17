@@ -12,6 +12,10 @@ export default function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
+    free_service_number: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
     customer_area_id: {
       type: DataTypes.INTEGER(11),
       allowNull: true,

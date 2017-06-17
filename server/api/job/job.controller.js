@@ -20,10 +20,17 @@ import {Problem} from '../../sqldb';
 import {Designation} from '../../sqldb';
 
 function respondWithResult(res, statusCode) {
-    statusCode = statusCode || 200; //response handler #2
+    statusCode = statusCode || 200;
     return function (entity) {
-        if (entity) {
-            return res.status(statusCode).json(entity); //request #3
+        if (entity && entity != entity instanceof Array) {
+            return res.status(statusCode).json(entity);
+        } else if(entity instanceof Array){
+            var entityConverted = entity.reduce(function(acc, cur, i) {
+                acc[i] = cur;
+                return acc;
+            }, {});
+
+            return res.status(statusCode).json(entityConverted);
         }
         return null;
     };
@@ -176,12 +183,32 @@ export function create(req, res) {
 }
 
 // Upserts the given Job in the DB at the specified ID
+
 export function upsert(req, res) {
+    var vehicleMaster, employees, problems;
+
     if (req.body._id) {
+        vehicleMaster = req.body.Vehicle_master;
+        employees = req.body.employees;
+        problems = req.body.problems;
         delete req.body._id;
+        delete req.body.Vehicle_master;
+        delete req.body.employees;
+        delete req.body.problems;
     }
 
-    return Job.upsert(req.body, {
+    console.log('************************************');
+    console.log(req.body);
+    console.log('************************************');
+
+    // console.log('####################################');
+    // console.log(vehicleMaster);
+    // console.log(employees);
+    // console.log(problems);
+    // console.log('####################################');
+
+
+    return Job.update(req.body, {
         where: {
             _id: req.params.id
         }
