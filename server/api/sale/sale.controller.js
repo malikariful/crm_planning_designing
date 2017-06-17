@@ -12,15 +12,23 @@
 
 import jsonpatch from 'fast-json-patch';
 import {Sale} from '../../sqldb';
+import {Customer} from '../../sqldb';
 
 function respondWithResult(res, statusCode) {
-  statusCode = statusCode || 200;
-  return function(entity) {
-    if(entity) {
-      return res.status(statusCode).json(entity);
-    }
-    return null;
-  };
+    statusCode = statusCode || 200;
+    return function (entity) {
+        if (entity && entity != entity instanceof Array) {
+            return res.status(statusCode).json(entity);
+        } else if(entity instanceof Array){
+            var entityConverted = entity.reduce(function(acc, cur, i) {
+                acc[i] = cur;
+                return acc;
+            }, {});
+
+            return res.status(statusCode).json(entityConverted);
+        }
+        return null;
+    };
 }
 
 function patchUpdates(patches) {
@@ -90,18 +98,19 @@ export function create(req, res) {
 }
 
 // Upserts the given Sale in the DB at the specified ID
-export function upsert(req, res) {
-  if(req.body._id) {
-    delete req.body._id;
-  }
 
-  return Sale.upsert(req.body, {
-    where: {
-      _id: req.params.id
+export function upsert(req, res) {
+    if (req.body._id) {
+        delete req.body._id;
     }
-  })
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+
+    return Sale.update(req.body, {
+        where: {
+            _id: req.params.id
+        }
+    })
+        .then(respondWithResult(res))
+        .catch(handleError(res));
 }
 
 // Updates an existing Sale in the DB
