@@ -13,6 +13,9 @@
 import jsonpatch from 'fast-json-patch';
 import {Sale} from '../../sqldb';
 import {Customer} from '../../sqldb';
+import {Employee} from '../../sqldb';
+import {Designation} from '../../sqldb';
+import {Area} from '../../sqldb';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -73,9 +76,9 @@ function handleError(res, statusCode) {
 
 // Gets a list of Sales
 export function index(req, res) {
-  return Sale.findAll()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+    return Sale.findAll()
+        .then(respondWithResult(res))
+        .catch(handleError(res));
 }
 
 // Gets a single Sale from the DB

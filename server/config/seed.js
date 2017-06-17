@@ -202,14 +202,21 @@ var User = sqldb.User;
 //             "area_address": "0 Manitowish Center"
 //         }]);
 //     });
+
+
 // Customer.sync()
 //     .then(() => {
 //         return Customer.destroy({where: {}});
 //     })
 //     .then(() => {
 //         Customer.bulkCreate([{
-//             "customer_name": "tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit",
-//             "customer_area_id": 2
+//             "customer_name": "tellus nulla",
+//             "customer_area_id": 1,
+//             "free_service_number": 5
+//         },{
+//             "customer_name": "non velit",
+//             "customer_area_id": 2,
+//             "free_service_number": 5
 //         }]);
 //     });
 
@@ -268,8 +275,8 @@ var User = sqldb.User;
 //     });
 //
 
-//
-//
+
+
 // Employee.sync()
 //     .then(() => {
 //         return Employee.destroy({where: {}});
