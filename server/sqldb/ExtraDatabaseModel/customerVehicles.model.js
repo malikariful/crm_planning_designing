@@ -11,15 +11,15 @@ module.exports = function(sequelize, DataTypes) {
             primaryKey: true,
             autoIncrement: true
         },
-        customer_vehicle_customer_id: {
+        customer_id: {
             type: DataTypes.INTEGER(11),
             allowNull: true,
             references: {
                 model: 'Customer',
-                key: 'customer_id'
+                key: '_id'
             }
         },
-        customer_vehicle_vehicle_id: {
+        vehicle_id: {
             type: DataTypes.INTEGER(11),
             allowNull: true,
             references: {

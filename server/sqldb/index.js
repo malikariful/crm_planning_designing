@@ -30,12 +30,11 @@ db.sequelize.authenticate()
     console.log('Unable to connect to the database:*************', err);
   });
 
+
 // Insert models below
 db.Sale = db.sequelize.import('../api/sale/sale.model');
-// db.JobEmployee = db.sequelize.import('../api/jobEmployee/jobEmployee.model');
 db.VehicleDetail = db.sequelize.import('../api/vehicleDetail/vehicleDetail.model');
 db.Vehicle = db.sequelize.import('../api/vehicle/vehicle.model');
-
 db.Role = db.sequelize.import('../api/role/role.model');
 db.Problem = db.sequelize.import('../api/problem/problem.model');
 db.Permission = db.sequelize.import('../api/permission/permission.model');
@@ -51,9 +50,11 @@ db.Thing = db.sequelize.import('../api/thing/thing.model');
 db.User = db.sequelize.import('../api/user/user.model');
 
 db.CustomerVehicle = db.sequelize.import('ExtraDatabaseModel/customerVehicles.model');
-// db.JobCartProblems = db.sequelize.import('ExtraDatabaseModel/jobCartProblems.model');
 db.RolePermissions = db.sequelize.import('ExtraDatabaseModel/rolePermissions.model');
 // db.UserRole = db.sequelize.import('../ExtraDatabaseModel/userRoles.model'); not working
+
+
+// Database relations below
 
 db.VehicleDetail.belongsTo(db.Dealer);
 db.Vehicle.belongsTo(db.VehicleModel);
@@ -61,20 +62,19 @@ db.Vehicle.hasOne(db.VehicleDetail);
 db.Employee.belongsTo(db.Designation);
 
 db.Job.belongsTo(db.Vehicle);
-
 db.Job.belongsToMany(db.Employee, {through: 'jobEmployeeMappingTable'});
 db.Employee.belongsToMany(db.Job, {through: 'jobEmployeeMappingTable'});
-
 db.Job.belongsToMany(db.Problem, {through: 'jobProblemMappingTable'});
 db.Problem.belongsToMany(db.Job, {through: 'jobProblemMappingTable'});
 
+db.Employee.hasMany(db.Sale);
+db.Customer.hasMany(db.Sale);
 
-db.User.belongsToMany(db.Role, {
-  through: 'UserRole'
-}); // Not added into seed
-db.Role.belongsToMany(db.User, {
-  through: 'UserRole'
-});
+db.Sale.belongsToMany(db.Vehicle, {through: 'saleDetails'});
+db.Vehicle.belongsToMany(db.Sale, {through: 'saleDetails'});
+
+db.User.belongsToMany(db.Role, {through: 'UserRole'});
+db.Role.belongsToMany(db.User, {through: 'UserRole'});
 
 
 module.exports = db;
