@@ -203,7 +203,7 @@ var User = sqldb.User;
 //         }]);
 //     });
 
-
+//
 // Customer.sync()
 //     .then(() => {
 //         return Customer.destroy({where: {}});
@@ -212,10 +212,14 @@ var User = sqldb.User;
 //         Customer.bulkCreate([{
 //             "customer_name": "tellus nulla",
 //             "customer_area_id": 1,
+//             "customer_phone": 1812898998,
+//             "customer_address": "Mohammadpur",
 //             "free_service_number": 5
 //         },{
 //             "customer_name": "non velit",
 //             "customer_area_id": 2,
+//             "customer_phone": 1812898978,
+//             "customer_address": "Dhanmondi",
 //             "free_service_number": 5
 //         }]);
 //     });
@@ -273,7 +277,7 @@ var User = sqldb.User;
 //             "designation_lavel": 5
 //         }]);
 //     });
-//
+
 
 
 

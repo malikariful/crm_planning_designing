@@ -68,7 +68,11 @@ db.Job.belongsToMany(db.Problem, {through: 'jobProblemMappingTable'});
 db.Problem.belongsToMany(db.Job, {through: 'jobProblemMappingTable'});
 
 db.Employee.hasMany(db.Sale);
+db.Sale.belongsTo(db.Employee);
+
 db.Customer.hasMany(db.Sale);
+db.Sale.belongsTo(db.Customer);
+
 
 db.Sale.belongsToMany(db.Vehicle, {through: 'saleDetails'});
 db.Vehicle.belongsToMany(db.Sale, {through: 'saleDetails'});
