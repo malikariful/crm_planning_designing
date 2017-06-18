@@ -30,6 +30,57 @@ db.sequelize.authenticate()
     console.log('Unable to connect to the database:*************', err);
   });
 
+const salesDetails = db.sequelize.define('salesDetails', {
+    price: {
+        type: db.Sequelize.INTEGER(15),
+        allowNull: false
+    },
+    sales_date: {
+        type: db.Sequelize.DATE,
+        allowNull: false
+    },
+    free_service_number: {
+        type: db.Sequelize.INTEGER(5),
+        allowNull: true
+    },
+    is_company: {
+        type: db.Sequelize.BOOLEAN,
+        allowNull: true
+    },
+    internal_note: {
+        type: db.Sequelize.STRING,
+        allowNull: false
+    },
+    discount: {
+        type: db.Sequelize.INTEGER(12),
+        allowNull: true
+    },
+    degree_of_trust: {
+        type: db.Sequelize.STRING,
+        allowNull: true
+    },
+    internal_reference: {
+        type: db.Sequelize.STRING,
+        allowNull: true
+    },
+    payment_method: {
+        type: db.Sequelize.STRING,
+        allowNull: false
+    },
+    account_receivable: {
+        type: db.Sequelize.INTEGER(15),
+        allowNull: false
+    },
+    account_payable: {
+        type: db.Sequelize.INTEGER(15),
+        allowNull: false
+    },
+    tax: {
+        type: db.Sequelize.INTEGER(15),
+        allowNull: false
+    }
+});
+
 
 // Insert models below
 db.Sale = db.sequelize.import('../api/sale/sale.model');
@@ -74,8 +125,8 @@ db.Customer.hasMany(db.Sale);
 db.Sale.belongsTo(db.Customer);
 
 
-db.Sale.belongsToMany(db.Vehicle, {through: 'saleDetails'});
-db.Vehicle.belongsToMany(db.Sale, {through: 'saleDetails'});
+db.Sale.belongsToMany(db.Vehicle, {through: 'salesDetails'});
+db.Vehicle.belongsToMany(db.Sale, {through: 'salesDetails'});
 
 db.User.belongsToMany(db.Role, {through: 'UserRole'});
 db.Role.belongsToMany(db.User, {through: 'UserRole'});
