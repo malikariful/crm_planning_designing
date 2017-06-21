@@ -117,7 +117,6 @@ export function show(req, res) {
 export function create(req, res) {
     var vehicleId;
     var customerId;
-    // console.log(req.body.Vehicle);
     return sqldb.sequelize.transaction(function (t) {
 
         // chain all your queries here. make sure you return them.
@@ -195,19 +194,3 @@ export function destroy(req, res) {
         .then(removeEntity(res))
         .catch(handleError(res));
 }
-//
-// return SalesDetails.create({
-//     "price": req.body.SalesDetails.price,
-//     "free_service_number": req.body.SalesDetails.free_service_number,
-//     "is_company": req.body.SalesDetails.is_company,
-//     "internal_note": req.body.SalesDetails.internal_note,
-//     "discount": req.body.SalesDetails.discount,
-//     "degree_of_trust": req.body.SalesDetails.degree_of_trust,
-//     "internal_reference": req.body.SalesDetails.internal_reference,
-//     "payment_method": req.body.SalesDetails.payment_method,
-//     "account_receivable": req.body.SalesDetails.account_receivable,
-//     "account_payable": req.body.SalesDetails.account_payable,
-//     "tax": req.body.SalesDetails.tax,
-//     "saleId": saleId,
-//     "VehicleMasterId": vehicleId
-// });

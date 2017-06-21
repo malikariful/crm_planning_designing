@@ -128,8 +128,12 @@ db.Customer.hasMany(db.Sale);
 db.Sale.belongsTo(db.Customer);
 
 
-db.Sale.belongsToMany(db.Vehicle, {through: 'salesDetails'});
+
+
+
+db.Sale.belongsToMany(db.Vehicle, {through: 'salesDetails'}, { onDelete: 'cascade', hooks: true });
 db.Vehicle.belongsToMany(db.Sale, {through: 'salesDetails'});
+
 salesDetails.belongsTo(db.Sale);
 salesDetails.belongsTo(db.Vehicle);
 
