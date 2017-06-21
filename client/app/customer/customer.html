@@ -1,0 +1,146 @@
+<div ng-init="customer.onInit();" class="paddingTop-10 container">
+
+
+    <table st-table="displayedCollection" st-safe-src="customer.customers" class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="6"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
+        </tr>
+        <tr>
+            <th st-sort="customer_name">Name</th>
+            <th st-sort="customer_tin">Tin number</th>
+            <th st-sort="customer_phone">Phone</th>
+            <th st-sort="customer_address">Address</th>
+            <th st-sort="free_service_number">Free service</th>
+            <th st-sort="action">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection">
+            <td>{{row.customer_name}}</td>
+            <td>{{row.customer_tin}}</td>
+            <td>{{row.customer_phone}}</td>
+            <td>{{row.customer_address}}</td>
+            <td>{{row.free_service_number}}</td>
+            <td>
+
+                <button type="button" ng-click="customer.editCustomer(row)" class="btn btn-sm btn-primary">
+                    <i class="glyphicon glyphicon-pencil">
+                    </i>
+                </button>
+
+                <button type="button" ng-click="customer.deleteCustomer($event, row)" class="btn btn-sm btn-danger">
+                    <i class="glyphicon glyphicon-remove-circle">
+                    </i>
+                </button>
+
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="dealer.itemsByPage" st-displayed-pages="10"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+<script type="text/ng-template" id="editCustomer.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Edit Dealer Information</p>
+                    <form name="DealerFrom" novalidate show-validation>
+                        <div layout="column" ng-cloak class="md-inline-form">
+                            <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+
+                                <md-input-container>
+                                    <label>Dealer name</label>
+                                    <input minlength="3" md-maxlength="30" name="dealerName" required
+                                           ng-model="dealer.dealer_name">
+
+                                    <div ng-messages="updateDealerFrom.dealerName.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">You must write a dealer
+                                            name.
+                                        </div>
+                                        <div ng-message="md-maxlength">The name must be less than 30 characters
+                                            long.
+                                        </div>
+                                        <div ng-message="minlength">The name must be more than 3 characters long.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Dealer email</label>
+                                    <input name="dealerEmail" required ng-model="dealer.dealer_email" type="email">
+                                    <div ng-messages="updateDealerFrom.dealerEmail.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">You must write a email.</div>
+                                    </div>
+                                </md-input-container>
+                            </md-content>
+
+                            <md-content layout-padding>
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>Dealer phone</label>
+                                        <input name="dealerPhone" required ng-model="dealer.dealer_phone">
+                                        <div ng-messages="updateDealerFrom.dealerPhone.$error" role="alert"
+                                             multiple>
+                                            <div ng-message="required" class="my-message">You must write a phone
+                                                number.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <!--<md-input-container class="md-block" flex-gt-xs>-->
+                                    <!--<label>Dealer type</label>-->
+                                    <!--<input ng-model="dealer.dealer_type">-->
+                                    <!--</md-input-container>-->
+                                </div>
+
+                                <md-input-container class="md-block">
+                                    <label>Address</label>
+                                    <input minlength="3" md-maxlength="30" name="dealerAddress" required
+                                           ng-model="dealer.dealer_address">
+                                    <div ng-messages="updateDealerFrom.dealerAddress.$error" role="alert"
+                                         multiple>
+                                        <div ng-message="required" class="my-message">You must write down the
+                                            address.
+                                        </div>
+                                        <div ng-message="md-maxlength">The address must be less than 30
+                                            characters long.
+                                        </div>
+                                        <div ng-message="minlength">The address must be more than 3 characters
+                                            long.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                            </md-content>
+                        </div>
+
+                        <div>
+                            <md-button ng-disabled="updateDealerFrom.$invalid"
+                                       ng-click="updateDealerFrom($event, DealerFrom)" class="md-raised md-button"
+                                       type="submit">Update
+                            </md-button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
