@@ -115,9 +115,41 @@ export function show(req, res) {
 
 // Creates a new Sale in the DB
 export function create(req, res) {
-    return Sale.create(req.body)
+    var vehicleId;
+    var customerId;
+    // console.log(req.body.Vehicle);
+    return sqldb.sequelize.transaction(function (t) {
+
+        // chain all your queries here. make sure you return them.
+        return Vehicle.create(req.body.Vehicle, {transaction: t})
+            .then(function (vehicle) {
+                vehicleId = vehicle.dataValues._id;
+                return Customer.create(req.body.Customer, {transaction: t});
+            }).then(function (customer) {
+                customerId = customer.dataValues._id
+
+            });
+
+    }).then(function (result) {
+        return Sale.create({
+            "description": req.body.description,
+            "EmployeeId": req.body.EmployeeId,
+            "CustomerId": customerId
+        });
+    })
+        .then(function (sale) {
+            req.body.SalesDetails.SaleId = sale.dataValues._id;
+            req.body.SalesDetails.VehicleMasterId = vehicleId;
+
+            console.log(req.body.SalesDetails);
+
+            return SalesDetails.create(req.body.SalesDetails);
+        })
         .then(respondWithResult(res, 201))
-        .catch(handleError(res));
+        .catch(function (err) {
+            console.log('err');
+            console.log(err);
+        });
 }
 
 // Upserts the given Sale in the DB at the specified ID
@@ -163,3 +195,19 @@ export function destroy(req, res) {
         .then(removeEntity(res))
         .catch(handleError(res));
 }
+//
+// return SalesDetails.create({
+//     "price": req.body.SalesDetails.price,
+//     "free_service_number": req.body.SalesDetails.free_service_number,
+//     "is_company": req.body.SalesDetails.is_company,
+//     "internal_note": req.body.SalesDetails.internal_note,
+//     "discount": req.body.SalesDetails.discount,
+//     "degree_of_trust": req.body.SalesDetails.degree_of_trust,
+//     "internal_reference": req.body.SalesDetails.internal_reference,
+//     "payment_method": req.body.SalesDetails.payment_method,
+//     "account_receivable": req.body.SalesDetails.account_receivable,
+//     "account_payable": req.body.SalesDetails.account_payable,
+//     "tax": req.body.SalesDetails.tax,
+//     "saleId": saleId,
+//     "VehicleMasterId": vehicleId
+// });
