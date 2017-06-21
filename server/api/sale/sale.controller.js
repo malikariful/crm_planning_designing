@@ -11,11 +11,14 @@
 'use strict';
 
 import jsonpatch from 'fast-json-patch';
+import sqldb from '../../sqldb';
 import {Sale} from '../../sqldb';
 import {Customer} from '../../sqldb';
 import {Employee} from '../../sqldb';
 import {Designation} from '../../sqldb';
 import {Area} from '../../sqldb';
+import {SalesDetails} from '../../sqldb';
+import {Vehicle} from '../../sqldb';
 
 function respondWithResult(res, statusCode) {
     statusCode = statusCode || 200;
@@ -97,10 +100,13 @@ export function index(req, res) {
 
 // Gets a single Sale from the DB
 export function show(req, res) {
-    return Sale.find({
+    return SalesDetails.find({
         where: {
-            _id: req.params.id
-        }
+            SaleId: req.params.id
+        },
+        include: [{
+            model: Vehicle
+        }]
     })
         .then(handleEntityNotFound(res))
         .then(respondWithResult(res))
