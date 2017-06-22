@@ -2,13 +2,14 @@
 
 export default class SaleNewController {
     /*@ngInject*/
-    constructor($rootScope, $scope, $state, employerService, $mdDialog) {
+    constructor($rootScope, $scope, $state, employerService, saleService, $mdDialog) {
         this.$state = $state;
         this.$rootScope = $rootScope;
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
         this.employees = employerService.query();
-        console.log(this.employees);
+        this.saleService = new saleService();
+
     }
 
     createVehicle(form) {
@@ -80,6 +81,11 @@ export default class SaleNewController {
     newSale(form) {
         if (form.$valid) {
 
+            console.log(this.$scope);
+
+            this.saleService.EmployeeId = this.$scope.selectedEmployer;
+            this.saleService.description = this.$scope.saleDescriptions;
+
             this.saleService.Customer = {
                 customer_name: this.$scope.customer.customerName,
                 customer_tin: this.$scope.customer.customerTin,
@@ -95,31 +101,22 @@ export default class SaleNewController {
             };
 
             this.saleService.SalesDetails = {
-                vehicle_master_chassis_no: this.$scope.vehicle.chassisNo,
-                vehicle_master_engine_no: this.$scope.vehicle.engineNo,
-                VehicleModelId: this.$scope.vehicle.selectedVehicleModel
+                tax: this.$scope.salesDetails.tax,
+                price: this.$scope.salesDetails.price,
+                account_receivable: this.$scope.salesDetails.accountReceivable,
+                account_payable: this.$scope.salesDetails.accountPayable,
+                discount: this.$scope.salesDetails.discount,
+                internal_reference: this.$scope.salesDetails.internalReference,
+                payment_method: "cash",
+                internal_note: "nothing",
+                sales_date: new Date ()
             };
 
-            return false;
 
             this.saleService.$save()
                 .then(res => {
                     if (res.$resolved) {
-                        this.vehicleDetailService.data.VehicleMasterId = res._id;
-                        this.vehicleDetailService.$save()
-                            .then(res => {
-                                if (res.$resolved) {
-                                    console.log("res saving vehicle details obj");
-                                    console.log(res);
-                                    this.showAlert(res);
-                                }
-                            })
-                            .catch(function (req) {
-                                console.log("error saving obj");
-                            })
-                            .finally(function () {
-                                console.log("always called")
-                            });
+                        this.showAlert(res);
                     }
                 })
                 .catch(function (req) {
@@ -133,5 +130,21 @@ export default class SaleNewController {
         }
     }
 
+    showAlert(res) {
+        alert = this.$mdDialog.alert({
+            title: 'Sell has successfully',
+            textContent: '',
+            ok: 'Close'
+        });
+
+        this.$mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
+        this.$state.go('sale');
+
+    }
 
 }
+
