@@ -94,6 +94,6 @@ export default class SaleController {
             });
         });
     };
-
+    
 }
 

@@ -2,20 +2,13 @@
 
 export default class SaleNewController {
     /*@ngInject*/
-    constructor($rootScope, $scope, $state, vehicleService, vehicleDetailsService, vehicleModelService, dealerService, $mdDialog) {
+    constructor($rootScope, $scope, $state, employerService, $mdDialog) {
         this.$state = $state;
         this.$rootScope = $rootScope;
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
-        this.vehicleService = new vehicleService();
-        this.vehicleDetailService = new vehicleDetailsService();
-
-        this.vehicle = vehicleService.query();
-        this.vehicleModels = vehicleModelService.query();
-        this.vehicleDetail = vehicleDetailsService.query();
-
-
-        this.dealers = dealerService.query();
+        this.employees = employerService.query();
+        console.log(this.employees);
     }
 
     createVehicle(form) {
@@ -82,6 +75,62 @@ export default class SaleNewController {
             });
         this.$state.go('vehicle');
 
+    }
+
+    newSale(form) {
+        if (form.$valid) {
+
+            this.saleService.Customer = {
+                customer_name: this.$scope.customer.customerName,
+                customer_tin: this.$scope.customer.customerTin,
+                customer_phone: this.$scope.customer.customerPhone,
+                customer_address: this.$scope.customer.customerAddress,
+                free_service_number: this.$scope.customer.freeServiceNumber
+            };
+
+            this.saleService.Vehicle = {
+                vehicle_master_chassis_no: this.$scope.vehicle.chassisNo,
+                vehicle_master_engine_no: this.$scope.vehicle.engineNo,
+                number_of_servicing: 0
+            };
+
+            this.saleService.SalesDetails = {
+                vehicle_master_chassis_no: this.$scope.vehicle.chassisNo,
+                vehicle_master_engine_no: this.$scope.vehicle.engineNo,
+                VehicleModelId: this.$scope.vehicle.selectedVehicleModel
+            };
+
+            return false;
+
+            this.saleService.$save()
+                .then(res => {
+                    if (res.$resolved) {
+                        this.vehicleDetailService.data.VehicleMasterId = res._id;
+                        this.vehicleDetailService.$save()
+                            .then(res => {
+                                if (res.$resolved) {
+                                    console.log("res saving vehicle details obj");
+                                    console.log(res);
+                                    this.showAlert(res);
+                                }
+                            })
+                            .catch(function (req) {
+                                console.log("error saving obj");
+                            })
+                            .finally(function () {
+                                console.log("always called")
+                            });
+                    }
+                })
+                .catch(function (req) {
+                    console.log("error saving obj");
+                })
+                .finally(function () {
+                    console.log("always called")
+                });
+
+
+        }
     }
 
 
