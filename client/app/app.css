@@ -66,6 +66,7 @@ body {
 @import 'main/main.css';
 @import 'model/model.css';
 @import 'problem/problem.css';
+@import 'sale/sale.css';
 @import 'vehicle/vehicle.css';
 @import '../components/footer/footer.css';
 @import '../components/navbar/navbar.css';

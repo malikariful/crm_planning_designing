@@ -1,0 +1,147 @@
+<div layout="column" ng-cloak class="container">
+
+    <md-card>
+        <md-card-title>
+            <md-card-title-media class="margin-top-0">
+                <div class="card-media" layout>
+                    <md-button ui-sref="sale" class="md-raised">
+                        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>Back
+                    </md-button>
+
+                </div>
+            </md-card-title-media>
+            <md-card-title-text class="padding-left-50">
+                <span class="md-headline">Sale</span>
+                <span class="md-subhead description">Sell a new motorcycle</span>
+            </md-card-title-text>
+        </md-card-title>
+    </md-card>
+
+    <md-content layout-padding>
+
+        <form name="vehicleForm" ng-submit="vehicleSetUp.createVehicle(vehicleForm)" novalidate>
+
+            <div layout="row">
+                <md-input-container flex="30">
+                    <label>Vehicle Chassis Number</label>
+                    <input minlength="3" md-maxlength="30" name="vehicleChassisNo" ng-model="vehicle.chassisNo"
+                           required>
+
+                    <div ng-messages="vehicleForm.vehicleChassisNo.$error" multiple>
+
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="md-maxlength">The chassis number must be less than 30 characters long.</div>
+                        <div ng-message="minlength">The chassis number must be more than 3 characters long.</div>
+
+                    </div>
+                </md-input-container>
+
+                <md-input-container flex="30">
+                    <label>Vehicle Engine Number</label>
+                    <input minlength="3" md-maxlength="30" name="vehicleEngineNo" ng-model="vehicle.engineNo" required>
+
+                    <div ng-messages="vehicleForm.vehicleEngineNo.$error" multiple>
+
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="md-maxlength">The engine number must be less than 30 characters long.</div>
+                        <div ng-message="minlength">The engine number must be more than 3 characters long.</div>
+
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Select Model</label>
+                    <md-select ng-model="vehicle.selectedVehicleModel">
+                        <md-option ng-repeat="model in vehicleSetUp.vehicleModels" value="{{model._id}}">
+                            {{model.vehicle_model_name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+
+            </div>
+
+
+            <md-input-container class="md-block">
+                <label>Vehicle Details</label>
+                <input minlength="3" md-maxlength="40" md-no-asterisk name="vehicleDetails" ng-model="vehicle.details"
+                       required>
+                <div ng-messages="vehicleForm.vehicleDetails.$error">
+                    <div ng-message="required">This is required.</div>
+                    <div ng-message="md-maxlength">The address must be less than 40 characters long.</div>
+                    <div ng-message="minlength">The address must be more than 3 characters long.</div>
+                </div>
+            </md-input-container>
+
+
+            <div layout="row">
+                <div flex="30">
+                    <label class="text-color-gray">Sales date</label>
+                    </br>
+                    <md-datepicker ng-model="vehicle.salesDate" md-placeholder="Select date"></md-datepicker>
+                </div>
+                <div flex="30">
+                    <label class="text-color-gray">Import date</label>
+                    </br>
+                    <md-datepicker ng-model="vehicle.importDate" md-placeholder="Select date"></md-datepicker>
+                </div>
+                <div flex="50">
+                    <label class="text-color-gray">Allocated date</label>
+                    </br>
+                    <md-datepicker ng-model="vehicle.allocatedServiceDate" md-placeholder="Select date"></md-datepicker>
+                </div>
+                <div flex="30">
+                    <label class="text-color-gray">Servicing date</label>
+                    </br>
+                    <md-datepicker ng-model="vehicle.servicingDate" md-placeholder="Select date"></md-datepicker>
+                </div>
+            </div>
+
+            <div layout="row" class="margin-top-40">
+
+                <md-input-container flex="30">
+                    <label>Last grade</label>
+                    <input type="number" md-no-asterisk name="grade" ng-model="vehicle.grade" required min="0">
+                    <div ng-messages="vehicleForm.grade.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container flex="30">
+                    <label>Number of free service</label>
+                    <input type="number" min="0" md-no-asterisk name="freeService" ng-model="vehicle.freeService" required>
+
+                    <div ng-messages="vehicleForm.freeService.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container flex="30">
+                    <label>Last Mileage</label>
+                    <input type="number" min="0" md-no-asterisk name="mileage" ng-model="vehicle.mileage" required>
+                    <div ng-messages="vehicleForm.mileage.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+
+            </div>
+
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Select Dealer</label>
+                <md-select ng-model="vehicle.selectedDealer">
+                    <md-option ng-repeat="dealer in vehicleSetUp.dealers" value="{{dealer._id}}">
+                        {{dealer.dealer_name}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+
+
+            <div class="pull-right">
+                <md-button ng-disabled="vehicleForm.$invalid" class="md-raised md-button" type="submit">Create
+                </md-button>
+            </div>
+
+        </form>
+
+    </md-content>
+
+</div>

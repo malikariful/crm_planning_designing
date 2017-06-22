@@ -10,4 +10,11 @@ export default function routes($stateProvider) {
     controllerAs: 'sale',
     authenticate: 'admin'
   });
+  $stateProvider.state('saleNew', {
+    url: '/saleNew',
+    template: require('./saleNew.html'),
+    controller: 'SaleNewController',
+    controllerAs: 'saleNew',
+    authenticate: 'admin'
+  });
 };

@@ -1,5 +1,9 @@
 <div ng-init="sale.onInit();" class="paddingTop-10 container">
 
+    <button type="button" ui-sref="saleNew" class="btn btn-sm btn-success">
+        <i class="glyphicon glyphicon-plus">
+        </i> New Sale
+    </button>
 
     <table st-table="displayedCollection" st-safe-src="sale.sales" class="table table-striped" style="table-layout: fixed">
         <thead>
