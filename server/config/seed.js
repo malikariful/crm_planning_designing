@@ -62,7 +62,7 @@ var User = sqldb.User;
 //             });
 //     });
 
-
+//
 // VehicleModel.sync()
 //     .then(() => {
 //         return VehicleModel.destroy({where: {}});
@@ -80,8 +80,8 @@ var User = sqldb.User;
 //             "vehicle_model_name": "iaculis"
 //         }]);
 //     });
-
-
+//
+//
 // Vehicle.sync()
 //     .then(() => {
 //         return Vehicle.destroy({where: {}});
@@ -90,33 +90,39 @@ var User = sqldb.User;
 //         Vehicle.bulkCreate([{
 //             "vehicle_master_chassis_no": "53346-1309",
 //             "vehicle_master_engine_no": "11673-517",
-//             "VehicleModelId": 1
+//             "number_of_servicing": "5",
+//             "VehicleModelId": 2
 //
 //
 //         }, {
 //             "vehicle_master_chassis_no": "0409-7809",
 //             "vehicle_master_engine_no": "0268-6560",
+//             "number_of_servicing": "5",
 //             "VehicleModelId": 2
 //
 //
 //         }, {
 //             "vehicle_master_chassis_no": "0944-4201",
 //             "vehicle_master_engine_no": "64159-7048",
+//             "number_of_servicing": "5",
 //             "VehicleModelId": 3
 //
 //
 //         }, {
 //             "vehicle_master_chassis_no": "49349-126",
 //             "vehicle_master_engine_no": "49715-007",
+//             "number_of_servicing": "5",
 //             "VehicleModelId": 4
 //
 //         }, {
 //             "vehicle_master_chassis_no": "42787-102",
 //             "vehicle_master_engine_no": "11673-245",
+//             "number_of_servicing": "5",
 //             "VehicleModelId": 5
 //
 //         }]);
 //     });
+
 //
 // VehicleDetail.sync()
 //     .then(() => {
@@ -135,8 +141,8 @@ var User = sqldb.User;
 //             "vehicle_detail_allocated_service_date": "10/17/2016",
 //             "vehicle_detail_service_date": "2/29/2016",
 //             "vehicle_detail_last_milage": 1,
-//             "DealerId": 1,
-//             "VehicleMasterId":1
+//             "DealerId": 6,
+//             "VehicleMasterId":10
 //         }, {
 //             "vehicle_detail_name": "id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie",
 //             "vehicle_detail_description": "primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti",
@@ -149,8 +155,8 @@ var User = sqldb.User;
 //             "vehicle_detail_allocated_service_date": "12/12/2016",
 //             "vehicle_detail_service_date": "8/26/2016",
 //             "vehicle_detail_last_milage": 2,
-//             "DealerId": 2,
-//             "VehicleMasterId":2
+//             "DealerId": 7,
+//             "VehicleMasterId": 11
 //         }, {
 //             "vehicle_detail_name": "praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla",
 //             "vehicle_detail_description": "ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse",
@@ -163,8 +169,8 @@ var User = sqldb.User;
 //             "vehicle_detail_allocated_service_date": "10/28/2016",
 //             "vehicle_detail_service_date": "2/6/2016",
 //             "vehicle_detail_last_milage": 3,
-//             "DealerId": 3,
-//             "VehicleMasterId":3
+//             "DealerId": 8,
+//             "VehicleMasterId":12
 //         }, {
 //             "vehicle_detail_name": "sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at diam nam tristique",
 //             "vehicle_detail_description": "ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae",
@@ -177,8 +183,8 @@ var User = sqldb.User;
 //             "vehicle_detail_allocated_service_date": "4/18/2016",
 //             "vehicle_detail_service_date": "4/6/2016",
 //             "vehicle_detail_last_milage": 4,
-//             "DealerId": 4,
-//             "VehicleMasterId":4
+//             "DealerId": 9,
+//             "VehicleMasterId":13
 //         }, {
 //             "vehicle_detail_name": "nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam",
 //             "vehicle_detail_description": "montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem praesent id massa id",
@@ -191,11 +197,12 @@ var User = sqldb.User;
 //             "vehicle_detail_allocated_service_date": "1/27/2016",
 //             "vehicle_detail_service_date": "7/31/2016",
 //             "vehicle_detail_last_milage": 5,
-//             "DealerId": 5,
-//             "VehicleMasterId": 5
+//             "DealerId": 10,
+//             "VehicleMasterId": 14
 //         }]);
 //     });
 
+//
 
 // Area.sync()
 //     .then(() => {
@@ -219,7 +226,7 @@ var User = sqldb.User;
 //             "area_address": "0 Manitowish Center"
 //         }]);
 //     });
-
+//
 //
 // Customer.sync()
 //     .then(() => {
@@ -240,8 +247,8 @@ var User = sqldb.User;
 //             "free_service_number": 5
 //         }]);
 //     });
-
-
+//
+//
 // Dealer.sync()
 //     .then(() => {
 //         return Dealer.destroy({where: {}});
@@ -264,8 +271,8 @@ var User = sqldb.User;
 //             "dealer_address": "84 Westridge Parkway"
 //         }]);
 //     });
-
-
+//
+//
 //
 // Designation.sync()
 //     .then(() => {
@@ -294,10 +301,10 @@ var User = sqldb.User;
 //             "designation_lavel": 5
 //         }]);
 //     });
-
-
-
-
+//
+//
+//
+//
 // Employee.sync()
 //     .then(() => {
 //         return Employee.destroy({where: {}});
@@ -320,8 +327,8 @@ var User = sqldb.User;
 //             "DesignationId": 5
 //         }]);
 //     });
-
-
+//
+//
 //
 // Grade.sync()
 //     .then(() => {
@@ -345,8 +352,8 @@ var User = sqldb.User;
 //             "grade_description": "sed magna at nunc commodo placerat praesent blandit nam nulla"
 //         }]);
 //     });
-
-
+//
+//
 //
 // Job.sync()
 //     .then(() => {
@@ -374,7 +381,7 @@ var User = sqldb.User;
 //             "job_terms": "penatibus enatibus",
 //             "job_date": "12/16/2016",
 //             "VehicleMasterId": 3
-
+//
 //         }, {
 //             "_id": 4,
 //             "job_name": "morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat",
@@ -382,7 +389,7 @@ var User = sqldb.User;
 //             "job_terms": "quam pede",
 //             "job_date": "6/1/2016",
 //             "VehicleMasterId": 4
-
+//
 //         }, {
 //             "_id": 5,
 //             "job_name": "eu sapien cursus vestibulum proin eu mi nulla ac enim in",
@@ -390,11 +397,11 @@ var User = sqldb.User;
 //             "job_terms": "ornare ",
 //             "job_date": "8/18/2016",
 //             "VehicleMasterId": 5
-
+//
 //         }]);
 //     });
-
-
+//
+//
 //
 // Permission.sync()
 //     .then(() => {
@@ -413,9 +420,9 @@ var User = sqldb.User;
 //             "permisson_name": "amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh"
 //         }]);
 //     });
-
-
-
+//
+//
+//
 // Problem.sync()
 //     .then(() => {
 //         return Problem.destroy({where: {}});
@@ -443,8 +450,8 @@ var User = sqldb.User;
 //             "problem_fee": 46
 //         }]);
 //     });
-
-
+//
+//
 //
 // Role.sync()
 //     .then(() => {
@@ -463,12 +470,12 @@ var User = sqldb.User;
 //             "role_name": "vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget"
 //         }]);
 //     });
-
-
-
-
 //
-
+//
+//
+//
+//
+//
 // CustomerVehicle.sync()
 //     .then(() => {
 //         return CustomerVehicle.destroy({where: {}});
@@ -481,11 +488,11 @@ var User = sqldb.User;
 //     });
 //
 //
-
-
-
-
 //
+//
+
+
+
 // JobCartProblems.sync()
 //     .then(() => {
 //         return JobCartProblems.destroy({where: {}});
@@ -518,9 +525,9 @@ var User = sqldb.User;
 //             "job_cart_problem_receiver_id": 5
 //         }]);
 //     });
-
-
-
+//
+//
+//
 // RolePermissions.sync()
 //     .then(() => {
 //         return RolePermissions.destroy({where: {}});

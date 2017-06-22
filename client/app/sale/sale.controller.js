@@ -1,16 +1,16 @@
 'use strict';
 
-export default class CustomerController {
+export default class SaleController {
     /*@ngInject*/
-    constructor($scope, customerService, $mdDialog, ModalService) {
+    constructor($scope, saleService, $mdDialog, ModalService) {
         this.itemsByPage = 10;
-        this.customers = customerService.query();
+        this.sales = saleService.query();
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
         this.ModalService = ModalService;
     }
     
-    deleteCustomer = function (ev, customer) {
+    deleteSale = function (ev, sale) {
         var confirm = this.$mdDialog.confirm()
             .title('Would you like to delete the customer?')
             .textContent('All of the information will be gone.')
@@ -26,7 +26,7 @@ export default class CustomerController {
         });
     };
     
-    editCustomer = function (customer) {
+    editSale = function (sale) {
         this.ModalService.showModal({
             templateUrl: 'editCustomer.html',
             controller: ['$scope', 'customer', 'customerService', '$mdToast', function ($scope, customer, customerService, $mdToast) {
@@ -67,6 +67,30 @@ export default class CustomerController {
         }).then(function (modal) {
             modal.element.modal();
             modal.close.then(function (customer) {
+            });
+        });
+    };
+
+    showSale = function (sale) {
+        this.ModalService.showModal({
+            templateUrl: 'showSale.html',
+            controller: ['$scope', 'sale', 'saleService', function ($scope, sale, saleService) {
+                $scope.sale = sale;
+                saleService.get({
+                    id: sale._id
+                }, response => {
+                    $scope.saleDetails = response;
+
+                });
+
+
+            }],
+            inputs: {
+                sale: sale
+            }
+        }).then(function (modal) {
+            modal.element.modal();
+            modal.close.then(function (dealer) {
             });
         });
     };

@@ -1,0 +1,259 @@
+<div ng-init="sale.onInit();" class="paddingTop-10 container">
+
+
+    <table st-table="displayedCollection" st-safe-src="sale.sales" class="table table-striped" style="table-layout: fixed">
+        <thead>
+        <tr>
+            <th colspan="7"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
+        </tr>
+        <tr>
+            <th st-sort="customer_name">Customer Name</th>
+            <th st-sort="description">Description</th>
+            <th st-sort="customer_phone">Customer Phone</th>
+            <th st-sort="free_service_number">Free service</th>
+            <th st-sort="free_service_number">Seller</th>
+            <th st-sort="designation_name">Seller Designation</th>
+            <th st-sort="employee_name">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection">
+            <td>{{row.Customer.customer_name}}</td>
+            <td>{{row.description}}</td>
+            <td>{{row.Customer.customer_phone}}</td>
+            <td>{{row.Customer.free_service_number}}</td>
+            <td>{{row.Employee.employee_name}}</td>
+            <td>{{row.Designation.designation_name}}</td>
+            <td>
+                <button type="button" ng-click="sale.showSale(row)" class="btn btn-sm btn-info">
+                    <i class="glyphicon glyphicon-eye-open">
+                    </i>
+                    Motorcycle Details
+                </button>
+
+                <button type="button" ng-click="customer.editCustomer(row)" class="btn btn-sm btn-primary" style="margin-top: 1px">
+                    <i class="glyphicon glyphicon-pencil">
+                    </i>
+                    Edit Selling Details
+                </button>
+
+                <!--<button type="button" ng-click="customer.deleteCustomer($event, row)" class="btn btn-sm btn-danger">-->
+                <!--<i class="glyphicon glyphicon-remove-circle">-->
+                <!--</i>-->
+                <!--</button>-->
+
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="sale.itemsByPage" st-displayed-pages="10"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+<script type="text/ng-template" id="editSale.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Edit Dealer Information</p>
+                    <form name="DealerFrom" novalidate show-validation>
+                        <div layout="column" ng-cloak class="md-inline-form">
+                            <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+
+                                <md-input-container>
+                                    <label>Dealer name</label>
+                                    <input minlength="3" md-maxlength="30" name="dealerName" required
+                                           ng-model="dealer.dealer_name">
+
+                                    <div ng-messages="updateDealerFrom.dealerName.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">You must write a dealer
+                                            name.
+                                        </div>
+                                        <div ng-message="md-maxlength">The name must be less than 30 characters
+                                            long.
+                                        </div>
+                                        <div ng-message="minlength">The name must be more than 3 characters long.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Dealer email</label>
+                                    <input name="dealerEmail" required ng-model="dealer.dealer_email" type="email">
+                                    <div ng-messages="updateDealerFrom.dealerEmail.$error" role="alert" multiple>
+                                        <div ng-message="required" class="my-message">You must write a email.</div>
+                                    </div>
+                                </md-input-container>
+                            </md-content>
+
+                            <md-content layout-padding>
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>Dealer phone</label>
+                                        <input name="dealerPhone" required ng-model="dealer.dealer_phone">
+                                        <div ng-messages="updateDealerFrom.dealerPhone.$error" role="alert"
+                                             multiple>
+                                            <div ng-message="required" class="my-message">You must write a phone
+                                                number.
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                                    <!--<md-input-container class="md-block" flex-gt-xs>-->
+                                    <!--<label>Dealer type</label>-->
+                                    <!--<input ng-model="dealer.dealer_type">-->
+                                    <!--</md-input-container>-->
+                                </div>
+
+                                <md-input-container class="md-block">
+                                    <label>Address</label>
+                                    <input minlength="3" md-maxlength="30" name="dealerAddress" required
+                                           ng-model="dealer.dealer_address">
+                                    <div ng-messages="updateDealerFrom.dealerAddress.$error" role="alert"
+                                         multiple>
+                                        <div ng-message="required" class="my-message">You must write down the
+                                            address.
+                                        </div>
+                                        <div ng-message="md-maxlength">The address must be less than 30
+                                            characters long.
+                                        </div>
+                                        <div ng-message="minlength">The address must be more than 3 characters
+                                            long.
+                                        </div>
+                                    </div>
+                                </md-input-container>
+
+                            </md-content>
+                        </div>
+
+                        <div>
+                            <md-button ng-disabled="updateDealerFrom.$invalid"
+                                       ng-click="updateDealerFrom($event, DealerFrom)" class="md-raised md-button"
+                                       type="submit">Update
+                            </md-button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="showSale.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Dealer details</p>
+
+                    <div layout="column" ng-cloak class="md-inline-form">
+
+                        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                            <div>
+                                <md-input-container>
+                                    <label>Engine No</label>
+                                    <input ng-readonly="true" ng-model="saleDetails.Vehicle_master.vehicle_master_engine_no">
+                                </md-input-container>
+
+                                <md-input-container>
+                                    <label>Chassis No</label>
+                                    <input ng-readonly="true" ng-model="saleDetails.Vehicle_master.vehicle_master_chassis_no">
+                                </md-input-container>
+
+                            </div>
+                        </md-content>
+
+                        <md-content layout-padding>
+                            <div>
+
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>Motorcycle Price</label>
+                                        <input ng-readonly="true" ng-model="saleDetails.price">
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>Payment Method</label>
+                                        <input ng-readonly="true" ng-model="saleDetails.payment_method">
+                                    </md-input-container>
+                                </div>
+
+                                <md-input-container class="md-block">
+                                    <label>Tax</label>
+                                    <input ng-readonly="true" ng-model="saleDetails.tax">
+                                </md-input-container>
+
+                            </div>
+                        </md-content>
+
+                        <md-content layout-padding>
+                            <div>
+
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>Account Receivable</label>
+                                        <input ng-readonly="true" ng-model="saleDetails.account_receivable">
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>Account Payable</label>
+                                        <input ng-readonly="true" ng-model="saleDetails.account_payable">
+                                    </md-input-container>
+                                </div>
+
+                                <md-input-container class="md-block">
+                                    <label>Discount</label>
+                                    <input ng-readonly="true" ng-model="saleDetails.discount">
+                                </md-input-container>
+
+                            </div>
+                        </md-content>
+
+
+                        <md-content layout-padding>
+                            <div>
+
+                                <div layout-gt-xs="row">
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>Internal Note</label>
+                                        <input ng-readonly="true" ng-model="saleDetails.nothing">
+                                    </md-input-container>
+
+                                    <md-input-container class="md-block" flex-gt-xs>
+                                        <label>Degree of trust</label>
+                                        <input ng-readonly="true" ng-model="saleDetails.degree_of_trust">
+                                    </md-input-container>
+                                </div>
+
+                                <md-input-container class="md-block">
+                                    <label>Internal Reference</label>
+                                    <input ng-readonly="true" ng-model="saleDetails.internal_reference">
+                                </md-input-container>
+
+                            </div>
+                        </md-content>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-primary" data-dismiss="modal">close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
