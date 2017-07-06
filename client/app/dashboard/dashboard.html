@@ -9,7 +9,7 @@
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
-                            <i class="fa fa-compass fa-4x" aria-hidden="true"></i>
+                            <i class="fa fa-thumb-tack fa-4x" aria-hidden="true"></i>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
@@ -63,7 +63,7 @@
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
-                            <i class="fa fa-umbrella fa-4x" aria-hidden="true"></i>
+                            <i class="fa fa-users fa-4x" aria-hidden="true"></i>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
@@ -73,7 +73,6 @@
             </md-card>
         </div>
     </div>
-
     <div class="row">
         <div class="col-sm-6 col-md-3 col-lg-3">
             <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
@@ -84,7 +83,7 @@
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
-                            <i class="fa fa-cart-plus fa-4x" aria-hidden="true"></i>
+                            <i class="fa fa-ship fa-4x" aria-hidden="true"></i>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
@@ -102,7 +101,7 @@
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
-                            <i class="fa fa-users fa-4x" aria-hidden="true"></i>
+                            <i class="fa fa-street-view fa-4x" aria-hidden="true"></i>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
@@ -115,17 +114,17 @@
             <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">Problems</span>
-                        <span class="md-subhead">Details of problems</span>
+                        <span class="md-headline">Message</span>
+                        <span class="md-subhead">Details of Message</span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
-                            <i class="fa fa-cogs fa-4x" aria-hidden="true"></i>
+                            <i class="fa fa-commenting-o fa-4x" aria-hidden="true"></i>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button class="md-raised" ui-sref="vehicle">Dashboard</md-button>
+                    <md-button class="md-raised" ui-sref="message">Dashboard</md-button>
                 </md-card-actions>
             </md-card>
         </div>
@@ -133,17 +132,37 @@
             <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">Grade</span>
-                        <span class="md-subhead">Details of grade</span>
+                        <span class="md-headline">Service</span>
+                        <span class="md-subhead">Details of Service</span>
                     </md-card-title-text>
                     <md-card-title-media>
                         <div class="md-media-sm card-media">
-                            <i class="fa fa-anchor fa-4x" aria-hidden="true"></i>
+                            <i class="fa fa-yelp fa-4x" aria-hidden="true"></i>
                         </div>
                     </md-card-title-media>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="end center">
-                    <md-button class="md-raised" ui-sref="dealer">Dashboard</md-button>
+                    <md-button class="md-raised" ui-sref="service">Dashboard</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-3 col-lg-3">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Area</span>
+                        <span class="md-subhead">Setup area</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <i class="fa fa-map-marker fa-4x" aria-hidden="true"></i>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-raised" ui-sref="area">Dashboard</md-button>
                 </md-card-actions>
             </md-card>
         </div>
