@@ -28,6 +28,7 @@ import account from './account';
 import admin from './admin';
 import userManagement from './admin/userManagement';
 import dashboard from './dashboard';
+import setup from './setup';
 import vehicle from './vehicle';
 import model from './model';
 import jobCard from './jobCard';
@@ -65,7 +66,7 @@ angular.module('crmApp', [
     // ngMessages,
 
     // ngValidationMatch,
-    _Auth, account, admin, userManagement, dashboard, navbar, footer, main, constants, util, dateConversionDirective, dateStringFilterModule, jobCard, area,
+    _Auth, account, admin, userManagement, dashboard, setup, navbar, footer, main, constants, util, dateConversionDirective, dateStringFilterModule, jobCard, area,
     vehicle, model, employer, designation, problem, customer, sale,
      dealerService, problemService, dealer, modelService, vehiclesService, vehicleDetailsService, employerService,
     designationService, jobCardService, jobCardPropsFilter, customeServicer, saleService, areaServicer

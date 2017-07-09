@@ -9,6 +9,35 @@ export default class SaleNewController {
         this.$mdDialog = $mdDialog;
         this.employees = employerService.query();
         this.saleService = new saleService();
+        this.$scope.customer = {
+            freeServiceNumber: 4
+        };
+        this.$scope.colors = [
+            {
+                _id: 1,
+                name: "Red"
+            },
+            {
+                _id: 2,
+                name: "Blue"
+            },
+            {
+                _id: 3,
+                name: "Black"
+            },
+            {
+                _id: 4,
+                name: "Gray"
+            },
+            {
+                _id: 5,
+                name: "White"
+            },
+            {
+                _id: 6,
+                name: "Green"
+            }
+        ]
 
     }
 
@@ -88,7 +117,6 @@ export default class SaleNewController {
 
             this.saleService.Customer = {
                 customer_name: this.$scope.customer.customerName,
-                customer_tin: this.$scope.customer.customerTin,
                 customer_phone: this.$scope.customer.customerPhone,
                 customer_address: this.$scope.customer.customerAddress,
                 free_service_number: this.$scope.customer.freeServiceNumber
@@ -101,7 +129,6 @@ export default class SaleNewController {
             };
 
             this.saleService.SalesDetails = {
-                tax: this.$scope.salesDetails.tax,
                 price: this.$scope.salesDetails.price,
                 account_receivable: this.$scope.salesDetails.accountReceivable,
                 account_payable: this.$scope.salesDetails.accountPayable,
@@ -109,7 +136,7 @@ export default class SaleNewController {
                 internal_reference: this.$scope.salesDetails.internalReference,
                 payment_method: "cash",
                 internal_note: "nothing",
-                sales_date: new Date ()
+                sales_date: new Date()
             };
 
 

@@ -51,7 +51,7 @@
 
                 <md-input-container class="md-block" flex-gt-sm>
                     <label>Free service Number</label>
-                    <input min="0" name="freeServiceNumber" ng-model="customer.freeServiceNumber" required>
+                    <input min="4" name="freeServiceNumber" ng-model="customer.freeServiceNumber" required>
 
                     <div ng-messages="sellForm.freeServiceNumber.$error" multiple>
                         <div ng-message="required">This is required.</div>
@@ -73,15 +73,6 @@
                         <div ng-message="md-maxlength">The customer name must be less than 30 characters long.</div>
                         <div ng-message="minlength">The customer name must be more than 3 characters long.</div>
 
-                    </div>
-                </md-input-container>
-
-                <md-input-container flex="30">
-                    <label>Customer TIN</label>
-                    <input min="0" name="customerTin" ng-model="customer.customerTin" required>
-
-                    <div ng-messages="sellForm.customerTin.$error" multiple>
-                        <div ng-message="required">This is required.</div>
                     </div>
                 </md-input-container>
 
@@ -128,11 +119,7 @@
                 </md-input-container>
 
                 <md-input-container flex="30">
-                    <label>Tax</label>
-                    <input type="number" md-no-asterisk name="tax" ng-model="salesDetails.tax" required min="0">
-                    <div ng-messages="sellForm.tax.$error">
-                        <div ng-message="required">This is required.</div>
-                    </div>
+                    <label>Total Price: <strong>{{salesDetails.price - salesDetails.discount}}</strong></label>
                 </md-input-container>
 
             </div>
@@ -141,23 +128,18 @@
             <div layout="row" class="margin-top-40">
 
                 <md-input-container flex="30">
-                    <label>Account Receivable</label>
-                    <input type="number" md-no-asterisk name="price" ng-model="salesDetails.accountReceivable" required min="0">
-                    <div ng-messages="sellForm.accountReceivable.$error">
-                        <div ng-message="required">This is required.</div>
-                    </div>
+                    <label>Motorcycle Color</label>
+
+                    <md-select ng-model="selectedColor">
+                        <md-option ng-repeat="color in colors" value="{{color._id}}">
+                            {{color.name}}
+                        </md-option>
+                    </md-select>
+
                 </md-input-container>
 
                 <md-input-container flex="30">
-                    <label>Account Payable</label>
-                    <input type="number" md-no-asterisk name="accountPayable" ng-model="salesDetails.accountPayable" required min="0">
-                    <div ng-messages="sellForm.accountPayable.$error">
-                        <div ng-message="required">This is required.</div>
-                    </div>
-                </md-input-container>
-
-                <md-input-container flex="30">
-                    <label>Internal Reference</label>
+                    <label>Reference</label>
                     <input md-no-asterisk name="internalReference" ng-model="salesDetails.internalReference" required min="0">
                     <div ng-messages="sellForm.internalReference.$error">
                         <div ng-message="required">This is required.</div>

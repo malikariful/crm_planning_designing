@@ -12,10 +12,6 @@ export default function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true
         },
-        customer_tin: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
         customer_phone: {
             type: DataTypes.INTEGER(12),
             allowNull: true

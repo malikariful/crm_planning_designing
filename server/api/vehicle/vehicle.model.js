@@ -18,7 +18,9 @@ export default function (sequelize, DataTypes) {
         },
         number_of_servicing: {
             type: DataTypes.INTEGER(12),
-            allowNull: false
+            allowNull: false,
+            defaultValue: 4
+
         }
     }, {
         tableName: 'Vehicle_master'

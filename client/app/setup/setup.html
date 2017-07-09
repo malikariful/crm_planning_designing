@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row">
+        <md-card>
+            <md-card-title>
+                <md-card-title-media class="margin-top-0">
+                    <div class="card-media" layout>
+                        <md-button ui-sref="dashboard" class="md-raised">
+                           Back to dashboard
+                        </md-button>
+
+                    </div>
+                </md-card-title-media>
+
+            </md-card-title>
+        </md-card>
+
+        <div class="col-sm-6 col-md-3 col-lg-3">
+
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Employer</span>
+                        <span class="md-subhead">Details of employer</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <i class="fa fa-user-secret fa-4x" aria-hidden="true"></i>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-raised" ui-sref="employer">Dashboard</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Dealer</span>
+                        <span class="md-subhead">Details of dealer</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <i class="fa fa-users fa-4x" aria-hidden="true"></i>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-raised" ui-sref="dealer">Dashboard</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Area</span>
+                        <span class="md-subhead">Setup area</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <i class="fa fa-map-marker fa-4x" aria-hidden="true"></i>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-raised" ui-sref="area">Dashboard</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+        <div class="col-sm-6 col-md-3 col-lg-3">
+            <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Models</span>
+                        <span class="md-subhead">Setup model</span>
+                    </md-card-title-text>
+                    <md-card-title-media>
+                        <div class="md-media-sm card-media">
+                            <i class="fa fa-motorcycle fa-4x" aria-hidden="true"></i>
+                        </div>
+                    </md-card-title-media>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-raised" ui-sref="model">Dashboard</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </div>
+</div>

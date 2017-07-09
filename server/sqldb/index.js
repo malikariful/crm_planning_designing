@@ -68,18 +68,6 @@ const salesDetails = db.sequelize.define('salesDetails', {
     payment_method: {
         type: db.Sequelize.STRING,
         allowNull: false
-    },
-    account_receivable: {
-        type: db.Sequelize.INTEGER(15),
-        allowNull: false
-    },
-    account_payable: {
-        type: db.Sequelize.INTEGER(15),
-        allowNull: false
-    },
-    tax: {
-        type: db.Sequelize.INTEGER(15),
-        allowNull: false
     }
 });
 

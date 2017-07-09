@@ -55,10 +55,10 @@
         </i> Add New Model
     </button>
 
-    <button type="button" class="btn btn-sm btn-success" ui-sref="vehicle">
-        <i class="glyphicon glyphicon-list">
-        </i> Vehicle List
-    </button>
+    <!--<button type="button" class="btn btn-sm btn-success" ui-sref="vehicle">-->
+        <!--<i class="glyphicon glyphicon-list">-->
+        <!--</i> Vehicle List-->
+    <!--</button>-->
 
     <table st-table="displayedCollection" st-safe-src="model.models" class="table table-striped">
         <thead>
@@ -74,8 +74,7 @@
             <td>{{row.vehicle_model_name}}</td>
             <td>
                 <button type="button" ng-click="model.deleteModel($event, row)" class="btn btn-sm btn-danger">
-                    <i class="glyphicon glyphicon-remove-circle">
-                    </i>
+                    <i class="glyphicon glyphicon-remove-circle"></i>Delete Model
                 </button>
 
             </td>
