@@ -20,33 +20,35 @@
 
     <md-content layout-padding>
 
-        <form name="employerForm" ng-submit="employerSetUp.createEmployer(employerForm)" novalidate>
+        <form name="areaForm" ng-submit="areaSetUp.createArea(areaForm)" novalidate>
 
             <div layout="row">
+
                 <md-input-container flex="50">
-                    <label>Employer Name</label>
-                    <input minlength="3" md-maxlength="30" required name="employerName" ng-model="employer.name">
-                    <div ng-messages="employerForm.employerName.$error" multiple>
+                    <label>Area Name</label>
+                    <input minlength="3" md-maxlength="100" required name="areaName" ng-model="area.name">
+                    <div ng-messages="areaForm.areaName.$error" multiple>
                         <div ng-message="required">This is required.</div>
-                        <div ng-message="md-maxlength">The name must be less than 30 characters long.</div>
-                        <div ng-message="minlength">The name must be more than 3 characters long.</div>
+                        <div ng-message="md-maxlength">The area name must be less than 100 characters long.</div>
+                        <div ng-message="minlength">The area name must be more than 3 characters long.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container flex="50">
+                    <label>Area Address</label>
+                    <input minlength="3" md-maxlength="100" required name="areaAddress" ng-model="area.address">
+                    <div ng-messages="areaForm.areaAddress.$error" multiple>
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="md-maxlength">The area address must be less than 100 characters long.</div>
+                        <div ng-message="minlength">The area address must be more than 3 characters long.</div>
                     </div>
                 </md-input-container>
 
 
-                <md-input-container flex="50">
-                    <label>Select Designation</label>
-                    <md-select ng-model="employer.designation" required>
-                        <md-option ng-repeat="designation in employerSetUp.designations" value="{{designation._id}}">
-                            {{designation.designation_name}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
-
             </div>
 
             <div>
-                <md-button ng-disabled="employerForm.$invalid" class="pull-right md-raised md-button" type="submit">Create</md-button>
+                <md-button ng-disabled="areaForm.$invalid" class="pull-right md-raised md-button" type="submit">Create</md-button>
             </div>
 
         </form>

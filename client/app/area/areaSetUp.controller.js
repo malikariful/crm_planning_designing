@@ -2,25 +2,24 @@
 
 export default class AreaSetUpController {
     /*@ngInject*/
-    constructor($scope, $state, employerService, designationService, $mdDialog) {
+    constructor($scope, $state, areaService,$mdDialog) {
         this.$state = $state;
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
-        this.employerService = employerService;
-        this.employees = employerService.query();
-        this.designations = designationService.query();
+        this.areaService = areaService;
+        this.areas = areaService.query();
     }
 
-    createEmployer(form) {
+    createArea(form) {
         if (form.$valid) {
-            this.newEmployer = new this.employerService();
+            this.newArea = new this.areaService();
 
-            this.newEmployer.data = {
-                employee_name: this.$scope.employer.name,
-                DesignationId: this.$scope.employer.designation
+            this.newArea.data = {
+                area_name: this.$scope.area.name,
+                area_address: this.$scope.area.address
             };
 
-            this.newEmployer.$save()
+            this.newArea.$save()
                 .then(res => {
                     if (res.$resolved) {
                         console.log("res saving obj");
@@ -39,7 +38,7 @@ export default class AreaSetUpController {
 
     showAlert(res) {
         alert = this.$mdDialog.alert({
-            title: 'Employer has created successfully',
+            title: 'Area has created successfully',
             textContent: '',
             ok: 'Close'
         });

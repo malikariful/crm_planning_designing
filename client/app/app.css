@@ -57,6 +57,7 @@ body {
 @import 'account/account.css';
 @import 'admin/admin.css';
 @import 'admin/userManagement/userManagement.css';
+@import 'area/area.css';
 @import 'customer/customer.css';
 @import 'dashboard/dashboard.css';
 @import 'dealer/dealer.css';
