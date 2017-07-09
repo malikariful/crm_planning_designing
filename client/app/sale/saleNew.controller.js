@@ -2,12 +2,16 @@
 
 export default class SaleNewController {
     /*@ngInject*/
-    constructor($rootScope, $scope, $state, employerService, saleService, $mdDialog) {
+    constructor($rootScope, $scope, $state, employerService, vehicleModelService, saleService, $mdDialog) {
         this.$state = $state;
         this.$rootScope = $rootScope;
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
         this.employees = employerService.query();
+        this.models = vehicleModelService.query();
+        console.log("models");
+        console.log(this.models);
+
         this.saleService = new saleService();
         this.$scope.customer = {
             freeServiceNumber: 4

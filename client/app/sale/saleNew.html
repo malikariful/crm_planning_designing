@@ -128,6 +128,17 @@
             <div layout="row" class="margin-top-40">
 
                 <md-input-container flex="30">
+                    <label>Motorcycle Model</label>
+
+                    <md-select ng-model="selectedModel">
+                        <md-option ng-repeat="model in saleNew.models" value="{{model._id}}">
+                            {{model.vehicle_model_name}}
+                        </md-option>
+                    </md-select>
+
+                </md-input-container>
+
+                <md-input-container flex="30">
                     <label>Motorcycle Color</label>
 
                     <md-select ng-model="selectedColor">
