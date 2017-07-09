@@ -1,0 +1,92 @@
+<div ng-init="area.onInit();" class="paddingTop-10 container">
+
+    <button type="button" ui-sref="areaSetUp" class="btn btn-sm btn-success">
+        <i class="glyphicon glyphicon-plus">
+        </i> Add New Area
+    </button>
+
+    <table st-table="displayedCollection" st-safe-src="area.areas" class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="3"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+        </tr>
+        <tr>
+            <th st-sort="name">Area</th>
+            <th st-sort="area_address">Address</th>
+            <th st-sort="actions">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection">
+            <td>{{row.area_name}}</td>
+            <td>{{row.area_address}}</td>
+            <td>
+                <button type="button" ng-click="area.editArea(row)" class="btn btn-sm btn-primary">
+                    <i class="glyphicon glyphicon-pencil"></i> Update Area
+                </button>
+
+                <button type="button" ng-click="area.deleteArea($event, row)" class="btn btn-sm btn-danger">
+                    <i class="glyphicon glyphicon-remove-circle"></i> Delete Area
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/ng-template" id="editArea.html">
+    <div class="modal fade" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Update Area Informations</h4>
+                </div>
+                <div class="modal-body">
+                    <form name="areaFrom" novalidate show-validation>
+
+
+                        <md-input-container class="md-block">
+                            <label>Area</label>
+                            <input md-maxlength="100" required md-no-asterisk name="areaName" ng-model="area.area_name">
+                            <div ng-messages="areaFrom.areaName.$error">
+                                <div ng-message="required">This is required.</div>
+                                <div ng-message="md-maxlength">The area name must be less than 100 characters long.
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label>Address</label>
+                            <input md-maxlength="100" required md-no-asterisk name="areaAddress" ng-model="area.area_address">
+                            <div ng-messages="areaFrom.areaAddress.$error">
+                                <div ng-message="required">This is required.</div>
+                                <div ng-message="md-maxlength">The area name must be less than 100 characters long.
+                                </div>
+                            </div>
+                        </md-input-container>
+
+
+                        <div class="margin-top-15">
+                            <md-button ng-disabled="areaFrom.$invalid"
+                                       ng-click="updateArea($event, areaFrom)" class="md-raised md-button"
+                                       type="submit">Update
+                            </md-button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" ng-click="close('Cancel')" data-dismiss="modal" aria-hidden="true">
+                        Close
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</script>
