@@ -17,7 +17,7 @@
         </md-card-title>
     </md-card>
 
-    <md-content layout-padding>
+    <md-content layout-padding style="overflow: hidden">
 
         <form name="sellForm" ng-submit="saleNew.newSale(sellForm)" novalidate>
 
@@ -76,8 +76,19 @@
                     </div>
                 </md-input-container>
 
+                <md-input-container flex="30">
+                    <label>Area</label>
 
-                <md-input-container class="md-block" flex-gt-sm>
+                    <md-select ng-model="selectedArea">
+                        <md-option ng-repeat="area in saleNew.areas" value="{{area._id}}">
+                            {{area.area_name}}
+                        </md-option>
+                    </md-select>
+
+                </md-input-container>
+
+
+                <md-input-container flex="30">
                     <label>Phone Number</label>
                     <input min="0" name="customerPhone" ng-model="customer.customerPhone" required>
 
@@ -110,7 +121,7 @@
                     </div>
                 </md-input-container>
 
-                   <md-input-container flex="30">
+                <md-input-container flex="30">
                     <label>Discount</label>
                     <input type="number" md-no-asterisk name="discount" ng-model="salesDetails.discount" required min="0">
                     <div ng-messages="sellForm.discount.$error">
@@ -181,6 +192,63 @@
                 </md-input-container>
 
             </div>
+
+            <div layout="row">
+
+                <md-input-container flex="30">
+                    <h5>Sales Date</h5>
+                    <md-datepicker ng-model="sales_date" md-placeholder="Enter date"></md-datepicker>
+
+                </md-input-container>
+
+                <md-input-container flex="30">
+                    <h5>Terms & Conditions</h5>
+
+                    <md-radio-group ng-model="payment.cash">
+
+                        <md-radio-button value="1" class="md-primary">Cash</md-radio-button>
+                        <md-radio-button value="2">Credit </md-radio-button>
+
+                    </md-radio-group>
+                </md-input-container>
+
+            </div>
+
+            <div layout="row" ng-show="payment.cash == 2">
+
+<label></label>
+                <md-input-container class="md-block" flex="50">
+                    <label>Start Date</label>
+                    <md-datepicker ng-model="sales_date" md-placeholder="Enter date"></md-datepicker>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex="50">
+                    <label>End Date</label>
+                    <md-datepicker ng-model="sales_date" md-placeholder="Enter date"></md-datepicker>
+                </md-input-container>
+
+
+
+                <md-input-container flex="50">
+                    <label>Down Payment</label>
+                    <input type="number" md-no-asterisk name="downPayment" ng-model="downPayment" required min="0">
+                    <div ng-messages="sellForm.downPayment.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container flex="50">
+
+                    <label>Rest of amount</label>
+                    <input type="number" md-no-asterisk name="restOfAmount" ng-model="restOfAmount" required min="0">
+                    <div ng-messages="sellForm.restOfAmount.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
+                </md-input-container>
+
+
+            </div>
+
 
 
             <div class="pull-right">

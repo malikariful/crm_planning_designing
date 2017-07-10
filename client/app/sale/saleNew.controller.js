@@ -2,20 +2,21 @@
 
 export default class SaleNewController {
     /*@ngInject*/
-    constructor($rootScope, $scope, $state, employerService, vehicleModelService, saleService, $mdDialog) {
+    constructor($rootScope, $scope, $state, employerService, vehicleModelService, areaService, saleService, $mdDialog) {
         this.$state = $state;
         this.$rootScope = $rootScope;
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
         this.employees = employerService.query();
         this.models = vehicleModelService.query();
-        console.log("models");
-        console.log(this.models);
+        this.areas= areaService.query();
 
         this.saleService = new saleService();
         this.$scope.customer = {
             freeServiceNumber: 4
         };
+        this.$scope.sales_date = new Date();
+
         this.$scope.colors = [
             {
                 _id: 1,
@@ -41,7 +42,13 @@ export default class SaleNewController {
                 _id: 6,
                 name: "Green"
             }
-        ]
+        ];
+        
+        this.$scope.payment = {
+            cash : 1,
+            credit : 2
+        };
+
 
     }
 
