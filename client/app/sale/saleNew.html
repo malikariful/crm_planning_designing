@@ -130,7 +130,7 @@
                 </md-input-container>
 
                 <md-input-container flex="30">
-                    <label>Total Price: <strong>{{salesDetails.price - salesDetails.discount}}</strong></label>
+                    <label>Total Price: <strong>{{actualPrice = salesDetails.price - salesDetails.discount}}</strong></label>
                 </md-input-container>
 
             </div>
@@ -215,6 +215,7 @@
             <div layout="row" ng-show="paymentMethod.cash == 'credit' ">
 
                 <label>Time Duration</label>
+
                 <md-input-container class="md-block" flex="50">
                     <label>Start Date</label>
                     <md-datepicker ng-model="salesDetails.creditStartDate" md-placeholder="Enter date"></md-datepicker>
@@ -228,7 +229,7 @@
 
                 <md-input-container flex="50">
                     <label>Down Payment</label>
-                    <input type="number" md-no-asterisk name="downPayment" ng-model="salesDetails.downPayment" required min="0">
+                    <input type="number" md-no-asterisk name="downPayment" ng-model="salesDetails.downPayment" min="0" max="{{actualPrice}}">
                     <div ng-messages="sellForm.downPayment.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
@@ -236,11 +237,8 @@
 
                 <md-input-container flex="50">
 
-                    <label>Rest of amount</label>
-                    <input type="number" md-no-asterisk name="restOfAmount" ng-model="salesDetails.duePayment" required min="0">
-                    <div ng-messages="sellForm.restOfAmount.$error">
-                        <div ng-message="required">This is required.</div>
-                    </div>
+                    <label>Rest of amount: <strong>{{actualPrice - salesDetails.downPayment}}</strong></label>
+                    <!--<input type="number" md-no-asterisk name="restOfAmount" ng-model="salesDetails.duePayment" min="0">-->
                 </md-input-container>
 
 

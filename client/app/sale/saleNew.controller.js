@@ -9,13 +9,14 @@ export default class SaleNewController {
         this.$mdDialog = $mdDialog;
         this.employees = employerService.query();
         this.models = vehicleModelService.query();
-        this.areas= areaService.query();
+        this.areas = areaService.query();
 
         this.saleService = new saleService();
         this.$scope.customer = {
             freeServiceNumber: 4
         };
         this.$scope.sales_date = new Date();
+        this.$scope.actualPrice = 0;
         this.$scope.colors = [
             {
                 _id: 1,
@@ -43,8 +44,8 @@ export default class SaleNewController {
             }
         ];
         this.$scope.paymentMethod = {
-            cash : 'cash',
-            credit : 'credit'
+            cash: 'cash',
+            credit: 'credit'
         };
 
     }
@@ -118,8 +119,6 @@ export default class SaleNewController {
     newSale(form) {
         if (form.$valid) {
 
-            console.log(this.$scope);
-
             this.saleService.EmployeeId = this.$scope.selectedEmployer;
             this.saleService.description = this.$scope.saleDescriptions;
 
@@ -128,7 +127,7 @@ export default class SaleNewController {
                 customer_phone: this.$scope.customer.customerPhone,
                 customer_address: this.$scope.customer.customerAddress,
                 free_service_number: this.$scope.customer.freeServiceNumber,
-                areaId: this.$scope.selectedArea
+                AreaId: this.$scope.selectedArea
             };
 
             this.saleService.Vehicle = {
@@ -142,15 +141,19 @@ export default class SaleNewController {
             this.saleService.SalesDetails = {
                 price: this.$scope.salesDetails.price,
                 discount: this.$scope.salesDetails.discount,
-                down_payment: this.$scope.salesDetails.downPayment,
-                due_payment: this.$scope.salesDetails.duePayment,
+                down_payment: this.$scope.salesDetails.downPayment || 0,
+                due_payment: this.$scope.salesDetails.price - this.$scope.salesDetails.downPayment || 0,
                 internal_reference: this.$scope.salesDetails.internalReference,
-                payment_method: this.$scope.paymentMethod,
+                payment_method: this.$scope.paymentMethod.cash,
                 sales_date: this.$scope.sales_date,
-                credit_start_date: this.$scope.salesDetails.creditStartDate,
-                credit_end_date: this.$scope.salesDetails.creditEndDate
+                credit_start_date: this.$scope.salesDetails.creditStartDate || null,
+                credit_end_date: this.$scope.salesDetails.creditEndDate || null
             };
+            
+            console.log('Prepared Data');
+            console.log(this.saleService);
 
+ ;
 
             this.saleService.$save()
                 .then(res => {

@@ -82,8 +82,6 @@ export default class SaleController {
                     $scope.saleDetails = response;
 
                 });
-
-
             }],
             inputs: {
                 sale: sale

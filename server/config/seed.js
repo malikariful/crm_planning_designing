@@ -1,3 +1,4 @@
+
 /**
  * Populate DB with sample data on server startUser.sync()
     .then(() => User.destroy({where: {}}))
@@ -201,7 +202,6 @@ var User = sqldb.User;
 //             "VehicleMasterId": 14
 //         }]);
 //     });
-
 //
 
 // Area.sync()
@@ -490,7 +490,6 @@ var User = sqldb.User;
 //
 //
 //
-
 
 
 // JobCartProblems.sync()
