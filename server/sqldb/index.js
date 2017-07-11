@@ -26,7 +26,6 @@ db.sequelize.authenticate()
     console.log('Connection has been established successfully.');
   })
   .catch(function (err) {
-    console.log('****************************************************');
     console.log('Unable to connect to the database:*************', err);
   });
 
@@ -41,19 +40,27 @@ const salesDetails = db.sequelize.define('salesDetails', {
         type: db.Sequelize.DATE,
         allowNull: false
     },
+    credit_start_date: {
+        type: db.Sequelize.DATE,
+        allowNull: true
+    },  
+    credit_end_date: {
+        type: db.Sequelize.DATE,
+        allowNull: true
+    },
     free_service_number: {
         type: db.Sequelize.INTEGER(5),
         allowNull: true
     },
-    is_company: {
-        type: db.Sequelize.BOOLEAN,
+    discount: {
+        type: db.Sequelize.INTEGER(12),
         allowNull: true
     },
-    internal_note: {
-        type: db.Sequelize.STRING,
-        allowNull: false
+    down_payment: {
+        type: db.Sequelize.INTEGER(12),
+        allowNull: true
     },
-    discount: {
+    due_payment: {
         type: db.Sequelize.INTEGER(12),
         allowNull: true
     },
@@ -115,6 +122,7 @@ db.Sale.belongsTo(db.Employee);
 db.Customer.hasMany(db.Sale);
 db.Sale.belongsTo(db.Customer);
 
+db.Area.hasMany(db.Customer);
 
 
 

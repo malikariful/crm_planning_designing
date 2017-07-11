@@ -63,7 +63,7 @@
 
             <div layout="row">
                 <md-input-container flex="30">
-                    <label>Customer name</label>
+                    <label>Customer Name</label>
                     <input minlength="3" md-maxlength="30" name="customerName" ng-model="customer.customerName"
                            required>
 
@@ -135,13 +135,12 @@
 
             </div>
 
-
             <div layout="row" class="margin-top-40">
 
                 <md-input-container flex="30">
                     <label>Motorcycle Model</label>
 
-                    <md-select ng-model="selectedModel">
+                    <md-select ng-model="vehicle.selectedModel">
                         <md-option ng-repeat="model in saleNew.models" value="{{model._id}}">
                             {{model.vehicle_model_name}}
                         </md-option>
@@ -152,8 +151,8 @@
                 <md-input-container flex="30">
                     <label>Motorcycle Color</label>
 
-                    <md-select ng-model="selectedColor">
-                        <md-option ng-repeat="color in colors" value="{{color._id}}">
+                    <md-select ng-model="vehicle.selectedColor">
+                        <md-option ng-repeat="color in colors" value="{{color.name}}">
                             {{color.name}}
                         </md-option>
                     </md-select>
@@ -204,34 +203,32 @@
                 <md-input-container flex="30">
                     <h5>Terms & Conditions</h5>
 
-                    <md-radio-group ng-model="payment.cash">
+                    <md-radio-group ng-model="paymentMethod.cash">
 
-                        <md-radio-button value="1" class="md-primary">Cash</md-radio-button>
-                        <md-radio-button value="2">Credit </md-radio-button>
+                        <md-radio-button value="cash" class="md-primary">Cash</md-radio-button>
+                        <md-radio-button value="credit">Credit</md-radio-button>
 
                     </md-radio-group>
                 </md-input-container>
-
             </div>
 
-            <div layout="row" ng-show="payment.cash == 2">
+            <div layout="row" ng-show="paymentMethod.cash == 'credit' ">
 
-<label></label>
+                <label>Time Duration</label>
                 <md-input-container class="md-block" flex="50">
                     <label>Start Date</label>
-                    <md-datepicker ng-model="sales_date" md-placeholder="Enter date"></md-datepicker>
+                    <md-datepicker ng-model="salesDetails.creditStartDate" md-placeholder="Enter date"></md-datepicker>
                 </md-input-container>
 
                 <md-input-container class="md-block" flex="50">
                     <label>End Date</label>
-                    <md-datepicker ng-model="sales_date" md-placeholder="Enter date"></md-datepicker>
+                    <md-datepicker  md-min-date="salesDetails.creditStartDate" ng-model="salesDetails.creditEndDate" md-placeholder="Enter date"></md-datepicker>
                 </md-input-container>
-
 
 
                 <md-input-container flex="50">
                     <label>Down Payment</label>
-                    <input type="number" md-no-asterisk name="downPayment" ng-model="downPayment" required min="0">
+                    <input type="number" md-no-asterisk name="downPayment" ng-model="salesDetails.downPayment" required min="0">
                     <div ng-messages="sellForm.downPayment.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
@@ -240,7 +237,7 @@
                 <md-input-container flex="50">
 
                     <label>Rest of amount</label>
-                    <input type="number" md-no-asterisk name="restOfAmount" ng-model="restOfAmount" required min="0">
+                    <input type="number" md-no-asterisk name="restOfAmount" ng-model="salesDetails.duePayment" required min="0">
                     <div ng-messages="sellForm.restOfAmount.$error">
                         <div ng-message="required">This is required.</div>
                     </div>
@@ -248,7 +245,6 @@
 
 
             </div>
-
 
 
             <div class="pull-right">

@@ -16,7 +16,6 @@ export default class SaleNewController {
             freeServiceNumber: 4
         };
         this.$scope.sales_date = new Date();
-
         this.$scope.colors = [
             {
                 _id: 1,
@@ -43,12 +42,10 @@ export default class SaleNewController {
                 name: "Green"
             }
         ];
-        
-        this.$scope.payment = {
-            cash : 1,
-            credit : 2
+        this.$scope.paymentMethod = {
+            cash : 'cash',
+            credit : 'credit'
         };
-
 
     }
 
@@ -130,24 +127,28 @@ export default class SaleNewController {
                 customer_name: this.$scope.customer.customerName,
                 customer_phone: this.$scope.customer.customerPhone,
                 customer_address: this.$scope.customer.customerAddress,
-                free_service_number: this.$scope.customer.freeServiceNumber
+                free_service_number: this.$scope.customer.freeServiceNumber,
+                areaId: this.$scope.selectedArea
             };
 
             this.saleService.Vehicle = {
                 vehicle_master_chassis_no: this.$scope.vehicle.chassisNo,
                 vehicle_master_engine_no: this.$scope.vehicle.engineNo,
-                number_of_servicing: 0
+                number_of_servicing: 0,
+                vehicle_color: this.$scope.vehicle.selectedColor,
+                VehicleModelId: this.$scope.vehicle.selectedModel
             };
 
             this.saleService.SalesDetails = {
                 price: this.$scope.salesDetails.price,
-                account_receivable: this.$scope.salesDetails.accountReceivable,
-                account_payable: this.$scope.salesDetails.accountPayable,
                 discount: this.$scope.salesDetails.discount,
+                down_payment: this.$scope.salesDetails.downPayment,
+                due_payment: this.$scope.salesDetails.duePayment,
                 internal_reference: this.$scope.salesDetails.internalReference,
-                payment_method: "cash",
-                internal_note: "nothing",
-                sales_date: new Date()
+                payment_method: this.$scope.paymentMethod,
+                sales_date: this.$scope.sales_date,
+                credit_start_date: this.$scope.salesDetails.creditStartDate,
+                credit_end_date: this.$scope.salesDetails.creditEndDate
             };
 
 
