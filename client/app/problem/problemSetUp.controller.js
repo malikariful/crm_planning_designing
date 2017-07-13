@@ -2,25 +2,24 @@
 
 export default class EmployerSetUpController {
     /*@ngInject*/
-    constructor($scope, $state, employerService, designationService, $mdDialog) {
+    constructor($scope, $state, problemService, $mdDialog) {
         this.$state = $state;
         this.$scope = $scope;
         this.$mdDialog = $mdDialog;
-        this.employerService = employerService;
-        this.employees = employerService.query();
-        this.designations = designationService.query();
+        this.problemService = problemService;
     }
 
-    createEmployer(form) {
+    createProblem(form) {
         if (form.$valid) {
-            this.newEmployer = new this.employerService();
+            this.newProblem = new this.problemService();
 
-            this.newEmployer.data = {
-                employee_name: this.$scope.employer.name,
-                DesignationId: this.$scope.employer.designation
+            this.newProblem.data = {
+                problem_name: this.$scope.problem.name,
+                problem_description: this.$scope.problem.description,
+                problem_fee: this.$scope.problem.fee
             };
 
-            this.newEmployer.$save()
+            this.newProblem.$save()
                 .then(res => {
                     if (res.$resolved) {
                         console.log("res saving obj");
@@ -39,7 +38,7 @@ export default class EmployerSetUpController {
 
     showAlert(res) {
         alert = this.$mdDialog.alert({
-            title: 'Employer has created successfully',
+            title: 'Problem has created successfully',
             textContent: '',
             ok: 'Close'
         });

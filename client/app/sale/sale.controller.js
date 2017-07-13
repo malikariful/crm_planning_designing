@@ -5,6 +5,7 @@ export default class SaleController {
     constructor($scope, saleService, $mdDialog, ModalService) {
         this.itemsByPage = 10;
         this.sales = saleService.query();
+        console.log(this.sales);
         this.$mdDialog = $mdDialog;
         this.$scope = $scope;
         this.ModalService = ModalService;

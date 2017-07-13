@@ -11,7 +11,6 @@
             <th colspan="5"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
         </tr>
         <tr>
-            <th st-sort="id">Id</th>
             <th st-sort="name">Name</th>
             <th st-sort="address">Address</th>
             <th st-sort="action">Actions</th>
@@ -19,23 +18,22 @@
         </thead>
         <tbody>
         <tr ng-repeat="row in displayedCollection">
-            <td>{{row._id}}</td>
             <td>{{row.dealer_name}}</td>
             <td>{{row.dealer_address}}</td>
             <td>
                 <button type="button" ng-click="dealer.showDealer(row)" class="btn btn-sm btn-info">
                     <i class="glyphicon glyphicon-eye-open">
-                    </i>
+                    </i> Show
                 </button>
 
                 <button type="button" ng-click="dealer.editDealer(row)" class="btn btn-sm btn-primary">
                     <i class="glyphicon glyphicon-pencil">
-                    </i>
+                    </i> Edit
                 </button>
 
                 <button type="button" ng-click="dealer.deleteDealer($event, row)" class="btn btn-sm btn-danger">
                     <i class="glyphicon glyphicon-remove-circle">
-                    </i>
+                    </i> Delete
                 </button>
 
             </td>

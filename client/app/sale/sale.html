@@ -11,11 +11,11 @@
             <th colspan="7"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
         </tr>
         <tr>
-            <th st-sort="customer_name">Customer Name</th>
+            <th st-sort="customer_name">Client</th>
             <th st-sort="description">Description</th>
-            <th st-sort="customer_phone">Customer Phone</th>
+            <th st-sort="customer_phone">Phone</th>
             <th st-sort="free_service_number">Free service</th>
-            <th st-sort="free_service_number">Seller</th>
+            <th st-sort="free_service_number">Sold By</th>
             <th st-sort="designation_name">Seller Designation</th>
             <th st-sort="employee_name">Actions</th>
         </tr>
@@ -27,7 +27,7 @@
             <td>{{row.Customer.customer_phone}}</td>
             <td>{{row.Customer.free_service_number}}</td>
             <td>{{row.Employee.employee_name}}</td>
-            <td>{{row.Designation.designation_name}}</td>
+            <td>{{row.Employee.Designation.designation_name}}</td>
             <td>
                 <button type="button" ng-click="sale.showSale(row)" class="btn btn-sm btn-info">
                     <i class="glyphicon glyphicon-eye-open">
