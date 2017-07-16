@@ -11,8 +11,8 @@ export default class JobCardController {
         this.vehicles = vehicleService.query();
         this.employees = employerService.query();
 
-        // console.log('jobs');
-        // console.log(this.jobs);
+        console.log('jobs');
+        console.log(this.jobs);
     }
 
     showJob(job) {

@@ -16,6 +16,14 @@ export default function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
+      job_fee: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    job_status: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     job_finish_date: {
       type: DataTypes.DATE,
       allowNull: true

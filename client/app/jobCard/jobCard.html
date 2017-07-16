@@ -13,11 +13,14 @@
     <table st-table="displayedCollection" st-safe-src="jobCard.jobs" class="table table-striped">
         <thead>
         <tr>
-            <th colspan="5"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
+            <th colspan="8"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
         </tr>
         <tr>
             <th st-sort="name">Name</th>
-            <th st-sort="name">Reason</th>
+            <th st-sort="job_status">Status</th>
+            <th st-sort="fee">Fee</th>
+            <th st-sort="vehicle_master_engine_no">Motorcycle Engine</th>
+            <th st-sort="number_of_servicing">No servicing</th>
             <th st-sort="address">Terms</th>
             <th st-sort="action">Actions</th>
         </tr>
@@ -25,22 +28,22 @@
         <tbody>
         <tr ng-repeat="row in displayedCollection">
             <td>{{row.job_name}}</td>
-            <td>{{row.job_reason}}</td>
+            <td><span class="badge badge-info">{{row.job_status}}</span></td>
+            <td>{{row.job_fee}}</td>
+            <td>{{row.Vehicle_master.vehicle_master_engine_no}}</td>
+            <td>{{row.Vehicle_master.number_of_servicing}}</td>
             <td>{{row.job_terms}}</td>
             <td>
                 <button type="button" ng-click="jobCard.showJob(row)" class="btn btn-sm btn-info">
-                    <i class="glyphicon glyphicon-eye-open">
-                    </i>
+                    <i class="glyphicon glyphicon-eye-open"></i> Details
                 </button>
 
                 <button type="button" ng-click="jobCard.editJob(row)" class="btn btn-sm btn-primary">
-                    <i class="glyphicon glyphicon-pencil">
-                    </i>
+                    <i class="glyphicon glyphicon-pencil"></i> Edit
                 </button>
 
                 <button type="button" ng-click="jobCard.deleteJob($event, row)" class="btn btn-sm btn-danger">
-                    <i class="glyphicon glyphicon-remove-circle">
-                    </i>
+                    <i class="glyphicon glyphicon-remove-circle"></i> Delete
                 </button>
 
             </td>
@@ -48,7 +51,7 @@
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="5" class="text-center">
+            <td colspan="8" class="text-center">
                 <div st-pagination="" st-items-by-page="jobCard.itemsByPage" st-displayed-pages="10"></div>
             </td>
         </tr>
