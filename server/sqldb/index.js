@@ -111,15 +111,21 @@ db.Vehicle.hasOne(db.VehicleDetail);
 db.Employee.belongsTo(db.Designation);
 
 db.Job.belongsTo(db.Vehicle);
-db.Job.belongsToMany(db.Employee, {through: 'jobEmployeeMappingTable'});
+
+db.Job.belongsToMany(db.Employee, {through: 'jobEmployeeMappingTable'}, { onDelete: 'cascade', hooks: true });
+
 db.Employee.belongsToMany(db.Job, {through: 'jobEmployeeMappingTable'});
-db.Job.belongsToMany(db.Problem, {through: 'jobProblemMappingTable'});
+
+db.Job.belongsToMany(db.Problem, {through: 'jobProblemMappingTable'}, { onDelete: 'cascade', hooks: true });
+
 db.Problem.belongsToMany(db.Job, {through: 'jobProblemMappingTable'});
 
 db.Employee.hasMany(db.Sale);
+
 db.Sale.belongsTo(db.Employee);
 
 db.Customer.hasMany(db.Sale);
+
 db.Sale.belongsTo(db.Customer);
 
 db.Area.hasMany(db.Customer);
