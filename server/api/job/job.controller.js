@@ -24,8 +24,8 @@ function respondWithResult(res, statusCode) {
     return function (entity) {
         if (entity && entity != entity instanceof Array) {
             return res.status(statusCode).json(entity);
-        } else if(entity instanceof Array){
-            var entityConverted = entity.reduce(function(acc, cur, i) {
+        } else if (entity instanceof Array) {
+            var entityConverted = entity.reduce(function (acc, cur, i) {
                 acc[i] = cur;
                 return acc;
             }, {});
@@ -145,6 +145,8 @@ export function create(req, res) {
     if (req.body.employeeId) {
         employeeId = req.body.employeeId;
         problemId = req.body.problemId;
+        console.log(employeeId);
+        console.log(problemId);
         delete req.body.employeeId;
         delete req.body.problemId;
     }
@@ -156,17 +158,24 @@ export function create(req, res) {
 
             .then(function (job) {
 
-                sqldb.sequelize.query('INSERT INTO `jobEmployeeMappingTable` (`JobId`, `EmployeeId`) VALUES (:jobId, :empId)',
-                    {
-                        replacements: {jobId: parseInt(job._id), empId: parseInt(employeeId)},
-                        type: sqldb.sequelize.QueryTypes.INSERT
-                    });
-                
-                sqldb.sequelize.query('INSERT INTO `jobProblemMappingTable` (`JobId`, `ProblemId`) VALUES (:jobId, :problemId)',
-                    {
-                        replacements: {jobId: parseInt(job._id), problemId: parseInt(problemId)},
-                        type: sqldb.sequelize.QueryTypes.INSERT
-                    });
+                employeeId.forEach(function (eId) {
+                    sqldb.sequelize.query('INSERT INTO `jobEmployeeMappingTable` (`JobId`, `EmployeeId`) VALUES (:jobId, :empId)',
+                        {
+                            replacements: {jobId: parseInt(job._id), empId: eId},
+                            type: sqldb.sequelize.QueryTypes.INSERT
+                        });
+                });
+
+
+                problemId.forEach(function (pId) {
+                    sqldb.sequelize.query('INSERT INTO `jobProblemMappingTable` (`JobId`, `ProblemId`) VALUES (:jobId, :problemId)',
+                        {
+                            replacements: {jobId: parseInt(job._id), problemId: pId},
+                            type: sqldb.sequelize.QueryTypes.INSERT
+                        });
+
+                });
+
 
                 return job;
 
@@ -249,10 +258,10 @@ export function jobEmployee(req, res) {
     let jobId = req.params.id;
 
     sqldb.sequelize.query('SELECT EmployeeId FROM `jobEmployeeMappingTable` WHERE JobId = :jobId',
-    {
-        replacements: {jobId: parseInt(jobId)},
-        type: sqldb.sequelize.QueryTypes.SELECT
-    }).then(function (queryResult) {
+        {
+            replacements: {jobId: parseInt(jobId)},
+            type: sqldb.sequelize.QueryTypes.SELECT
+        }).then(function (queryResult) {
 
         var employeeIds = queryResult.map(function (currentValue) {
 
