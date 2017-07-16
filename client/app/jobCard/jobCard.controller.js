@@ -43,7 +43,7 @@ export default class JobCardController {
             modal.close.then(function (job) {
             });
         });
-    }
+    };
 
     deleteJob = function (ev, job) {
         var confirm = this.$mdDialog.confirm()
@@ -157,6 +157,26 @@ export default class JobCardController {
             });
         });
     };
+
+    changeJobStatus(ev, status){
+
+        var confirm = this.$mdDialog.confirm()
+            .clickOutsideToClose(true)
+            .title('Change Job status')
+            .textContent('It will chage the current status of the job')
+            .targetEvent(ev)
+            .ok('Please do it!')
+            .cancel('Sounds like a scam');
+
+        this.$mdDialog.show(confirm).then(() => {
+            console.log(confirm);
+            console.log(status);
+
+        }, () => {
+            console.log(status);
+        });
+    }
+
 
 }
 
