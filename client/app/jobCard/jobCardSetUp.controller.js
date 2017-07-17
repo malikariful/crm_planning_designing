@@ -3,34 +3,49 @@
 export default class JobCardSetUpController {
 
   /*@ngInject*/
-  constructor( $state, $scope, jobCardService) {
-    this.$state = $state;
-    this.myDate = new Date();
-    this.isOpen = false;
-    $scope.advices = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    'WY').split(' ').map(function(advice) {
-      return {abbrev: advice};
-    });
-    $scope.user = {
-      name: 'John Doe',
-      email: '',
-      phone: '',
-      address: 'Mountain View, CA',
-      donation: 19.99
-    };
+  constructor($scope, $state, jobCardService) {
+      this.$scope = $scope;
+      this.$state = $state;
+      this.jobCardService = jobCardService;
   }
 
-  register(form) {
-    this.submitted = true;
-    if (form.$valid) {
-      console.log("job name is");
-      console.log(this.job.name);
-    }
-  }
-  changeAdvice(){
-    console.log('user.advice');
-    console.log(this.user.advice);
-
-  }
+    // createEmployer(form) {
+    //     if (form.$valid) {
+    //         this.newEmployer = new this.jobCardService();
+    //
+    //         this.newEmployer.data = {
+    //             employee_name: this.$scope.employer.name,
+    //             DesignationId: this.$scope.employer.designation
+    //         };
+    //
+    //         this.newEmployer.$save()
+    //             .then(res => {
+    //                 if (res.$resolved) {
+    //                     console.log("res saving obj");
+    //                     console.log(res);
+    //                     this.showAlert(res);
+    //                 }
+    //             })
+    //             .catch(function (req) {
+    //                 console.log("error saving obj");
+    //             })
+    //             .finally(function () {
+    //                 console.log("always called")
+    //             });
+    //     }
+    // }
+    //
+    // showAlert(res) {
+    //     alert = this.$mdDialog.alert({
+    //         title: 'Employer has created successfully',
+    //         textContent: '',
+    //         ok: 'Close'
+    //     });
+    //
+    //     this.$mdDialog
+    //         .show(alert)
+    //         .finally(function () {
+    //             alert = undefined;
+    //         });
+    // }
 }
