@@ -2,12 +2,74 @@
 
 export default class JobCardSetUpController {
 
-  /*@ngInject*/
-  constructor($scope, $state, jobCardService) {
-      this.$scope = $scope;
-      this.$state = $state;
-      this.jobCardService = jobCardService;
-  }
+    /*@ngInject*/
+    constructor($scope, $state, jobCardService, $timeout, $q, $log) {
+        this.$scope = $scope;
+        this.$state = $state;
+        this.$timeout = $timeout;
+
+        this.$q = $q;
+        this.$log = $log;
+        this.jobCardService = jobCardService;
+        this.init();
+    }
+
+    init(){
+        this.states = this.loadAll();
+
+    }
+
+    newState(state) {
+        alert("Sorry! You'll need to create a Constitution for " + state + " first!");
+    }
+
+    querySearch(query) {
+        var results = query ? this.states.filter(this.createFilterFor(query)) : this.states,
+            deferred;
+        if (this.simulateQuery) {
+            deferred = $q.defer();
+            $timeout(function () {
+                deferred.resolve(results);
+            }, Math.random() * 1000, false);
+            return deferred.promise;
+        } else {
+            return results;
+        }
+    }
+
+    searchTextChange(text) {
+        console.log('searchTextChange');
+    }
+
+    selectedItemChange(item) {
+        console.log('selectedItemChange');
+    }
+
+    loadAll() {
+        var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
+              Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
+              Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
+              Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
+              North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
+              South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
+              Wisconsin, Wyoming';
+
+        return allStates.split(/, +/g).map(function (state) {
+            return {
+                value: state.toLowerCase(),
+                display: state
+            };
+        });
+    }
+
+    createFilterFor(query) {
+        var lowercaseQuery = angular.lowercase(query);
+
+        return function filterFn(state) {
+            return (state.value.indexOf(lowercaseQuery) === 0);
+        };
+
+    }
 
     // createEmployer(form) {
     //     if (form.$valid) {
@@ -49,3 +111,5 @@ export default class JobCardSetUpController {
     //         });
     // }
 }
+
+

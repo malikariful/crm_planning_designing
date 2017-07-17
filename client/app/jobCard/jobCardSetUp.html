@@ -1,56 +1,32 @@
-<div layout="column" ng-cloak class="container">
+<div layout="column" ng-cloak>
+    <md-content class="md-padding">
+        <form ng-submit="$event.preventDefault()">
+            <p>Use <code>md-autocomplete</code> to search for matches from local or remote data sources.</p>
+            <md-autocomplete
+                    ng-disabled="jobCardSetUp.isDisabled"
+                    md-no-cache="jobCardSetUp.noCache"
+                    md-selected-item="jobCardSetUp.selectedItem"
+                    md-search-text-change="jobCardSetUp.searchTextChange(jobCardSetUp.searchText)"
+                    md-search-text="jobCardSetUp.searchText"
+                    md-selected-item-change="jobCardSetUp.selectedItemChange(item)"
+                    md-items="item in jobCardSetUp.querySearch(jobCardSetUp.searchText)"
+                    md-item-text="item.display"
+                    md-min-length="0"
+                    placeholder="What is your favorite US state?">
+                <md-item-template>
+                    <span md-highlight-text="jobCardSetUp.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                </md-item-template>
+                <md-not-found>
+                    No states matching "{{jobCardSetUp.searchText}}" were found.
+                    <a ng-click="jobCardSetUp.newState(jobCardSetUp.searchText)">Create a new one!</a>
+                </md-not-found>
+            </md-autocomplete>
+            <br/>
+            <md-checkbox ng-model="jobCardSetUp.simulateQuery">Simulate query for results?</md-checkbox>
+            <md-checkbox ng-model="jobCardSetUp.noCache">Disable caching of queries?</md-checkbox>
+            <md-checkbox ng-model="jobCardSetUp.isDisabled">Disable the input?</md-checkbox>
 
-    <md-card>
-        <md-card-title>
-            <md-card-title-media class="margin-top-0">
-                <div class="card-media" layout>
-                    <md-button ui-sref="jobCard" class="md-raised">
-                        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
-                        Back
-                    </md-button>
-                </div>
-            </md-card-title-media>
-            <md-card-title-text class="padding-left-50">
-                <span class="md-headline">Job</span>
-                <span class="md-subhead description">Create a new job</span>
-            </md-card-title-text>
-        </md-card-title>
-    </md-card>
-
-
-    <md-content layout-padding>
-
-        <form name="jobCardForm" ng-submit="jobCardSetUp.createJob(jobCardForm)" novalidate>
-
-            <div layout="row">
-                <md-input-container flex="50">
-                    <label>Job</label>
-                    <input minlength="3" md-maxlength="30" required name="jobName" ng-model="job.name">
-                    <div ng-messages="jobCardForm.jobName.$error" multiple>
-                        <div ng-message="required">This is required.</div>
-                        <div ng-message="md-maxlength">The name must be less than 30 characters long.</div>
-                        <div ng-message="minlength">The name must be more than 3 characters long.</div>
-                    </div>
-                </md-input-container>
-
-
-                <!--<md-input-container flex="50">-->
-                    <!--<label>Select Designation</label>-->
-                    <!--<md-select ng-model="employer.designation" required>-->
-                        <!--<md-option ng-repeat="designation in employerSetUp.designations" value="{{designation._id}}">-->
-                            <!--{{designation.designation_name}}-->
-                        <!--</md-option>-->
-                    <!--</md-select>-->
-                <!--</md-input-container>-->
-
-            </div>
-
-            <div>
-                <md-button ng-disabled="jobCardForm.$invalid" class="pull-right md-raised md-button" type="submit">Create</md-button>
-            </div>
-
+            <p>By default, <code>md-autocomplete</code> will cache results when performing a query.  After the initial call is performed, it will use the cached results to eliminate unnecessary server requests or lookup logic. This can be disabled above.</p>
         </form>
-
     </md-content>
-
 </div>
