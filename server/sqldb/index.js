@@ -113,6 +113,7 @@ const emiDetails = db.sequelize.define('emiDetails', {
 // Insert models below
 db.Sale = db.sequelize.import('../api/sale/sale.model');
 db.SalesDetails = salesDetails;
+db.EmiDetails = emiDetails;
 db.VehicleDetail = db.sequelize.import('../api/vehicleDetail/vehicleDetail.model');
 db.Vehicle = db.sequelize.import('../api/vehicle/vehicle.model');
 db.Role = db.sequelize.import('../api/role/role.model');
