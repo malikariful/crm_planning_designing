@@ -21,6 +21,64 @@
                 <li ng-hide="$ctrl.isLoggedIn()" ui-sref-active="active"><a ui-sref="signup">Sign up</a></li>
                 <li ng-hide="$ctrl.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">Login</a></li>
                 <!--<li ng-show="$ctrl.isLoggedIn()"><p class="navbar-text">Hello {{ $ctrl.getCurrentUser().name }}</p></li>-->
+                <li ng-show="$ctrl.isLoggedIn()">
+
+                    <a style="cursor: pointer" id="dLabel" role="button" data-toggle="dropdown" data-target="#">
+                        <i class="glyphicon glyphicon-bell"></i> Notifications
+                    </a>
+
+                    <ul class="dropdown-menu notifications" role="menu" aria-labelledby="dLabel">
+
+                        <div class="notification-heading"><h4 class="menu-title">Notifications</h4><h4 class="menu-title pull-right">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4>
+                        </div>
+                        <li class="divider"></li>
+                        <div class="notifications-wrapper">
+                            <a class="content" href="#">
+
+                                <div class="notification-item">
+                                    <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <h4 class="item-title">Evaluation Deadline 1 · day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <h4 class="item-title">Evaluation Deadline 1 • day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <h4 class="item-title">Evaluation Deadline 1 • day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <h4 class="item-title">Evaluation Deadline 1 • day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+                            <a class="content" href="#">
+                                <div class="notification-item">
+                                    <h4 class="item-title">Evaluation Deadline 1 • day ago</h4>
+                                    <p class="item-info">Marketing 101, Video Assignment</p>
+                                </div>
+                            </a>
+
+                        </div>
+                        <li class="divider"></li>
+                        <div class="notification-footer"><h4 class="menu-title">View all<i class="glyphicon glyphicon-circle-arrow-right"></i></h4></div>
+                    </ul>
+
+                </li>
                 <li ng-show="$ctrl.isLoggedIn()"><a ui-sref="dashboard"><span class="glyphicon glyphicon-dashboard"></span>&nbsp;Dashboard</a></li>
                 <li ng-show="$ctrl.isLoggedIn()" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -36,6 +94,7 @@
                         <li><a ui-sref="settings"><span class="glyphicon glyphicon-lock"></span>&nbsp;Password</a></li>
                         <li><a ui-sref="logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Sign out</a></li>
                     </ul>
+
                 </li>
                 <li ng-show="$ctrl.isAdmin()" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -56,3 +115,5 @@
         </div>
     </div>
 </div>
+
+

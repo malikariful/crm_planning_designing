@@ -3,14 +3,16 @@
 export default class JobCardSetUpController {
 
     /*@ngInject*/
-    constructor($scope, $state, jobCardService, $timeout, $q, $log) {
+    constructor($scope, $state, jobCardService, vehicleService, $timeout, $q, $log) {
         this.$scope = $scope;
         this.$state = $state;
+        this.jobCardService = jobCardService;
+        this.vehicles = vehicleService.query();
+
         this.$timeout = $timeout;
 
         this.$q = $q;
         this.$log = $log;
-        this.jobCardService = jobCardService;
         this.init();
     }
 
@@ -71,45 +73,47 @@ export default class JobCardSetUpController {
 
     }
 
-    // createEmployer(form) {
-    //     if (form.$valid) {
-    //         this.newEmployer = new this.jobCardService();
-    //
-    //         this.newEmployer.data = {
-    //             employee_name: this.$scope.employer.name,
-    //             DesignationId: this.$scope.employer.designation
-    //         };
-    //
-    //         this.newEmployer.$save()
-    //             .then(res => {
-    //                 if (res.$resolved) {
-    //                     console.log("res saving obj");
-    //                     console.log(res);
-    //                     this.showAlert(res);
-    //                 }
-    //             })
-    //             .catch(function (req) {
-    //                 console.log("error saving obj");
-    //             })
-    //             .finally(function () {
-    //                 console.log("always called")
-    //             });
-    //     }
-    // }
-    //
-    // showAlert(res) {
-    //     alert = this.$mdDialog.alert({
-    //         title: 'Employer has created successfully',
-    //         textContent: '',
-    //         ok: 'Close'
-    //     });
-    //
-    //     this.$mdDialog
-    //         .show(alert)
-    //         .finally(function () {
-    //             alert = undefined;
-    //         });
-    // }
+    createJobCard(form) {
+        if (form.$valid) {
+            this.newJobCard = new this.jobCardService();
+
+            this.newJobCard.data = {
+                job_name: this.$scope.jobCard.name,
+                job_reason: this.$scope.jobCard.reason,
+                job_terms: this.$scope.jobCard.terms,
+                job_fee: this.$scope.jobCard.fee
+            };
+
+            this.newJobCard.$save()
+                .then(res => {
+                    if (res.$resolved) {
+                        console.log("res saving obj");
+                        console.log(res);
+                        this.showAlert(res);
+                    }
+                })
+                .catch(function (req) {
+                    console.log("error saving obj");
+                })
+                .finally(function () {
+                    console.log("always called")
+                });
+        }
+    }
+
+    showAlert(res) {
+        alert = this.$mdDialog.alert({
+            title: 'Job has created successfully',
+            textContent: '',
+            ok: 'Close'
+        });
+
+        this.$mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
+    }
 }
 
 

@@ -1,0 +1,49 @@
+<div ng-init="message.onInit();" class="paddingTop-10 container">
+
+    <table st-table="displayedCollection" st-safe-src="customer.customers" class="table table-striped">
+        <thead>
+        <tr>
+            <th colspan="6"><input st-search="" class="form-control" placeholder="search ..." type="text"/></th>
+        </tr>
+        <tr>
+            <th st-sort="customer_name">Name</th>
+            <th st-sort="customer_tin">Tin number</th>
+            <th st-sort="customer_phone">Phone</th>
+            <th st-sort="customer_address">Address</th>
+            <th st-sort="free_service_number">Free service</th>
+            <th st-sort="action">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in displayedCollection">
+            <td>{{row.customer_name}}</td>
+            <td>{{row.customer_tin}}</td>
+            <td>{{row.customer_phone}}</td>
+            <td>{{row.customer_address}}</td>
+            <td>{{row.free_service_number}}</td>
+            <td>
+
+                <button type="button" ng-click="customer.editCustomer(row)" class="btn btn-sm btn-primary">
+                    <i class="glyphicon glyphicon-pencil">
+                    </i> Edit
+                </button>
+
+                <!--<button type="button" ng-click="customer.deleteCustomer($event, row)" class="btn btn-sm btn-danger">-->
+                    <!--<i class="glyphicon glyphicon-remove-circle">-->
+                    <!--</i>-->
+                <!--</button>-->
+
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="dealer.itemsByPage" st-displayed-pages="10"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+
+</div>
+

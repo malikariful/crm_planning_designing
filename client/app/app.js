@@ -49,6 +49,8 @@ import sale from './sale';
 import saleService from './sale/sale.service';
 import customer from './customer';
 import customeServicer from './customer/customer.service';
+import message from './message';
+import messageServicer from './message/message.service';
 import area from './area';
 import areaServicer from './area/area.service';
 import navbar from '../components/navbar/navbar.component';
@@ -66,10 +68,10 @@ angular.module('crmApp', [
     // ngMessages,
 
     // ngValidationMatch,
-    _Auth, account, admin, userManagement, dashboard, setup, navbar, footer, main, constants, util, dateConversionDirective, dateStringFilterModule, jobCard, area,
+    _Auth, account, admin, userManagement, dashboard, setup, navbar, footer, main, constants, util, dateConversionDirective, dateStringFilterModule, jobCard, area, message,
     vehicle, model, employer, designation, problem, customer, sale,
      dealerService, problemService, dealer, modelService, vehiclesService, vehicleDetailsService, employerService,
-    designationService, jobCardService, jobCardPropsFilter, customeServicer, saleService, areaServicer
+    designationService, jobCardService, jobCardPropsFilter, customeServicer, saleService, areaServicer, messageServicer
   ])
   .config(routeConfig)
   .run(function($rootScope, $location, Auth) {
