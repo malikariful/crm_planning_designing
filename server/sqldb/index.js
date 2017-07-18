@@ -21,12 +21,13 @@ var db = {
     }
   })
 };
+
 db.sequelize.authenticate()
   .then(function (err) {
     console.log('Connection has been established successfully.');
   })
   .catch(function (err) {
-    console.log('Unable to connect to the database:*************', err);
+    console.log('Unable to connect to the database:', err);
   });
 
 // sales details design has declared here
@@ -74,6 +75,36 @@ const salesDetails = db.sequelize.define('salesDetails', {
     },
     payment_method: {
         type: db.Sequelize.STRING,
+        allowNull: false
+    }
+});
+
+const emiDetails = db.sequelize.define('emiDetails', {
+    _id: {
+        type: db.Sequelize.INTEGER(11),
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    is_emi_complete: {
+        type: db.Sequelize.BOOLEAN,
+        allowNull: false
+    },
+    //Initially it is equivalent salesDetails due_payment
+    payable_money: {
+        type: db.Sequelize.STRING,
+        allowNull: false
+    },
+    date_of_the_payment: {
+        type: db.Sequelize.DATE,
+        allowNull: false
+    },
+    payment_slot: {
+        type: db.Sequelize.INTEGER(12),
+        allowNull: false
+    },
+    interest_rate: {
+        type: db.Sequelize.INTEGER(12),
         allowNull: false
     }
 });

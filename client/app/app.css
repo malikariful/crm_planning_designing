@@ -66,6 +66,7 @@ body {
 @import 'employer/employer.css';
 @import 'jobCard/jobCard.css';
 @import 'main/main.css';
+@import 'message/message.css';
 @import 'model/model.css';
 @import 'problem/problem.css';
 @import 'sale/sale.css';

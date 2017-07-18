@@ -142,7 +142,7 @@ export default class SaleNewController {
                 price: this.$scope.salesDetails.price,
                 discount: this.$scope.salesDetails.discount,
                 down_payment: this.$scope.salesDetails.downPayment || 0,
-                due_payment: this.$scope.salesDetails.price - this.$scope.salesDetails.downPayment || 0,
+                due_payment: (this.$scope.salesDetails.price - this.$scope.salesDetails.discount) - this.$scope.salesDetails.downPayment || 0,
                 internal_reference: this.$scope.salesDetails.internalReference,
                 payment_method: this.$scope.paymentMethod.cash,
                 sales_date: this.$scope.sales_date,
