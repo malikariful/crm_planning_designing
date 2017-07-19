@@ -69,25 +69,71 @@
 
             </div>
 
+            <div layout="row">
 
-            <md-autocomplete
-                    md-no-cache="jobCardSetUp.noCache"
-                    md-selected-item="jobCardSetUp.selectedItem"
-                    md-search-text-change="jobCardSetUp.searchTextChange(jobCardSetUp.searchText)"
-                    md-search-text="jobCardSetUp.searchText"
-                    md-selected-item-change="jobCardSetUp.selectedItemChange(item)"
-                    md-items="item in jobCardSetUp.querySearch(jobCardSetUp.searchText)"
-                    md-item-text="item.display"
-                    md-min-length="0"
-                    placeholder="Select Motorcycle">
-                <md-item-template>
-                    <span md-highlight-text="jobCardSetUp.searchText" md-highlight-flags="^i">{{item.display}}</span>
-                </md-item-template>
-                <md-not-found>
-                    No motorcycle matching "{{jobCardSetUp.searchText}}" were found.
-                    <a ng-click="jobCardSetUp.newState(jobCardSetUp.searchText)">Create a new one!</a>
-                </md-not-found>
-            </md-autocomplete>
+                <md-autocomplete style="margin: 8px 2px 0px 0px"
+                                 flex="30"
+                                 md-no-cache="jobCardSetUp.noCache"
+                                 md-selected-item="jobCardSetUp.selectedItem"
+                                 md-search-text-change="jobCardSetUp.searchTextChange(jobCardSetUp.searchText)"
+                                 md-search-text="jobCardSetUp.searchText"
+                                 md-selected-item-change="jobCardSetUp.selectedItemChange(item)"
+                                 md-items="item in jobCardSetUp.querySearch(jobCardSetUp.searchText)"
+                                 md-item-text="item.display"
+                                 md-min-length="0"
+                                 placeholder="Select Motorcycle">
+                    <md-item-template>
+                        <span md-highlight-text="jobCardSetUp.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                    </md-item-template>
+                    <md-not-found>
+                        No motorcycle matching "{{jobCardSetUp.searchText}}" were found.
+                        <a ng-click="jobCardSetUp.newState(jobCardSetUp.searchText)">Create a new one!</a>
+                    </md-not-found>
+                </md-autocomplete>
+
+
+                <md-chips flex="30"
+                          ng-model="selectedGroups"
+                          md-autocomplete-snap
+                          md-require-match="true">
+                    <md-autocomplete
+                            md-search-text="searchText"
+                            md-items="item in queryGroups(searchText)"
+                            md-item-text="item"
+                            md-autoselect="true"
+                            md-select-on-match="true"
+                            md-no-cache="true"
+                            md-require-match="true"
+                            placeholder="Find a group..">
+                        <span md-highlight-text="searchText">{{item}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <span>{{$chip}}</span>
+                    </md-chip-template>
+                </md-chips>
+
+                <md-chips flex="30"
+                          ng-model="selectedGroups"
+                          md-autocomplete-snap
+                          md-require-match="true">
+                    <md-autocomplete
+                            md-search-text="searchText"
+                            md-items="item in queryGroups(searchText)"
+                            md-item-text="item"
+                            md-autoselect="true"
+                            md-select-on-match="true"
+                            md-no-cache="true"
+                            md-require-match="true"
+                            placeholder="Find a group..">
+                        <span md-highlight-text="searchText">{{item}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <span>{{$chip}}</span>
+                    </md-chip-template>
+                </md-chips>
+
+
+            </div>
 
 
             <div>
@@ -103,35 +149,3 @@
 </div>
 
 
-<!--<div layout="column" ng-cloak>-->
-<!--<md-content class="md-padding">-->
-<!--<form ng-submit="$event.preventDefault()">-->
-<!--<p>Use <code>md-autocomplete</code> to search for matches from local or remote data sources.</p>-->
-<!--<md-autocomplete-->
-<!--ng-disabled="jobCardSetUp.isDisabled"-->
-<!--md-no-cache="jobCardSetUp.noCache"-->
-<!--md-selected-item="jobCardSetUp.selectedItem"-->
-<!--md-search-text-change="jobCardSetUp.searchTextChange(jobCardSetUp.searchText)"-->
-<!--md-search-text="jobCardSetUp.searchText"-->
-<!--md-selected-item-change="jobCardSetUp.selectedItemChange(item)"-->
-<!--md-items="item in jobCardSetUp.querySearch(jobCardSetUp.searchText)"-->
-<!--md-item-text="item.display"-->
-<!--md-min-length="0"-->
-<!--placeholder="What is your favorite US state?">-->
-<!--<md-item-template>-->
-<!--<span md-highlight-text="jobCardSetUp.searchText" md-highlight-flags="^i">{{item.display}}</span>-->
-<!--</md-item-template>-->
-<!--<md-not-found>-->
-<!--No states matching "{{jobCardSetUp.searchText}}" were found.-->
-<!--<a ng-click="jobCardSetUp.newState(jobCardSetUp.searchText)">Create a new one!</a>-->
-<!--</md-not-found>-->
-<!--</md-autocomplete>-->
-<!--<br/>-->
-<!--<md-checkbox ng-model="jobCardSetUp.simulateQuery">Simulate query for results?</md-checkbox>-->
-<!--<md-checkbox ng-model="jobCardSetUp.noCache">Disable caching of queries?</md-checkbox>-->
-<!--<md-checkbox ng-model="jobCardSetUp.isDisabled">Disable the input?</md-checkbox>-->
-
-<!--<p>By default, <code>md-autocomplete</code> will cache results when performing a query.  After the initial call is performed, it will use the cached results to eliminate unnecessary server requests or lookup logic. This can be disabled above.</p>-->
-<!--</form>-->
-<!--</md-content>-->
-<!--</div>-->

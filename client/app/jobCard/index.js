@@ -1,6 +1,6 @@
 'use strict';
 import routes from './jobCard.routes';
-import JobCardSetUpController from './jobCardSetUp.controller';
+// import JobCardSetUpController from './jobCardSetUp.controller';
 import JobCardController from './jobCard.controller';
 
 export default angular.module('crmApp.jobCard', ['crmApp.auth', 'ui.router', 'smart-table'])
@@ -10,13 +10,12 @@ export default angular.module('crmApp.jobCard', ['crmApp.auth', 'ui.router', 'sm
     .name;
 
 
-function JobCardSetUpController2($timeout, $q, $log) {
+function JobCardSetUpController($scope, $filter, $timeout, $q, $log) {
     var self = this;
 
     self.simulateQuery = false;
     self.isDisabled = false;
 
-    // list of `state` value/display objects
     self.states = loadAll();
     self.querySearch = querySearch;
     self.selectedItemChange = selectedItemChange;
@@ -28,14 +27,6 @@ function JobCardSetUpController2($timeout, $q, $log) {
         alert("Sorry! You'll need to create a Constitution for " + state + " first!");
     }
 
-    // ******************************
-    // Internal methods
-    // ******************************
-
-    /**
-     * Search for states... use $timeout to simulate
-     * remote dataservice call.
-     */
     function querySearch(query) {
         var results = query ? self.states.filter(createFilterFor(query)) : self.states,
             deferred;
@@ -58,9 +49,6 @@ function JobCardSetUpController2($timeout, $q, $log) {
         $log.info('Item changed to ' + JSON.stringify(item));
     }
 
-    /**
-     * Build `states` list of key/value pairs
-     */
     function loadAll() {
         var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
               Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
@@ -78,9 +66,6 @@ function JobCardSetUpController2($timeout, $q, $log) {
         });
     }
 
-    /**
-     * Create filter function for a query string
-     */
     function createFilterFor(query) {
         var lowercaseQuery = angular.lowercase(query);
 
@@ -89,4 +74,30 @@ function JobCardSetUpController2($timeout, $q, $log) {
         };
 
     }
+
+    var allGroups = [
+        'one',
+        'two',
+        'three'
+    ];
+
+    $scope.queryGroups = function(search) {
+        var firstPass = $filter('filter')(allGroups, search);
+
+        return firstPass.filter(function(item) {
+            return $scope.selectedGroups.indexOf(item) === -1;
+        });
+    };
+
+    $scope.addGroup = function(group) {
+        $scope.selectedGroups.push(group);
+    };
+
+    $scope.allGroups = allGroups;
+
+    $scope.selectedGroups = [allGroups[0]];
+
+    $scope.$watchCollection('selectedGroups', function() {
+        $scope.availableGroups = $scope.queryGroups('');
+    });
 }
