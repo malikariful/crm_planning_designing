@@ -79,18 +79,18 @@
                                  md-search-text="jobCardSetUp.searchText"
                                  md-selected-item-change="jobCardSetUp.selectedItemChange(item)"
                                  md-items="item in jobCardSetUp.querySearch(jobCardSetUp.searchText)"
-                                 md-item-text="item.display"
+                                 md-item-text="item.Vehicle_model.vehicle_model_name"
                                  md-min-length="0"
                                  placeholder="Select Motorcycle">
                     <md-item-template>
-                        <span md-highlight-text="jobCardSetUp.searchText" md-highlight-flags="^i">{{item.display}}</span>
+                        <span md-highlight-text="jobCardSetUp.searchText" md-highlight-flags="^i">{{item.Vehicle_model.vehicle_model_name}}</span>
                     </md-item-template>
-                    <md-not-found>
-                        No motorcycle matching "{{jobCardSetUp.searchText}}" were found.
-                        <a ng-click="jobCardSetUp.newState(jobCardSetUp.searchText)">Create a new one!</a>
-                    </md-not-found>
-                </md-autocomplete>
 
+                    <md-not-found>
+                        No motorcycle were found.
+                    </md-not-found>
+
+                </md-autocomplete>
 
                 <md-chips flex="30"
                           ng-model="selectedGroups"
@@ -104,7 +104,7 @@
                             md-select-on-match="true"
                             md-no-cache="true"
                             md-require-match="true"
-                            placeholder="Find a group..">
+                            placeholder="Select mistry">
                         <span md-highlight-text="searchText">{{item}}</span>
                     </md-autocomplete>
                     <md-chip-template>
@@ -124,7 +124,7 @@
                             md-select-on-match="true"
                             md-no-cache="true"
                             md-require-match="true"
-                            placeholder="Find a group..">
+                            placeholder="Select problems">
                         <span md-highlight-text="searchText">{{item}}</span>
                     </md-autocomplete>
                     <md-chip-template>
