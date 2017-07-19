@@ -97,8 +97,8 @@
                           md-autocomplete-snap
                           md-require-match="true">
                     <md-autocomplete
-                            md-search-text="searchText"
-                            md-items="employee in queryEmployees(searchText)"
+                            md-search-text="searchEmployee"
+                            md-items="employee in queryEmployees(searchEmployee)"
                             md-item-text="employee.employee_name"
                             md-autoselect="true"
                             md-select-on-match="true"
@@ -114,29 +114,28 @@
 
                 </md-chips>
 
-                <md-chips flex="30"
-                          ng-model="selectedGroups"
-                          md-autocomplete-snap
-                          md-require-match="true">
-                    <md-autocomplete
-                            md-search-text="searchText"
-                            md-items="item in queryGroups(searchText)"
-                            md-item-text="item"
-                            md-autoselect="true"
-                            md-select-on-match="true"
-                            md-no-cache="true"
-                            md-require-match="true"
-                            placeholder="Select problems">
-                        <span md-highlight-text="searchText">{{item}}</span>
-                    </md-autocomplete>
-                    <md-chip-template>
-                        <span>{{$chip}}</span>
-                    </md-chip-template>
-                </md-chips>
+                <!--<md-chips flex="30"-->
+                          <!--ng-model="selectedProblems"-->
+                          <!--md-autocomplete-snap-->
+                          <!--md-require-match="true">-->
+                    <!--<md-autocomplete-->
+                            <!--md-search-text="searchProblem"-->
+                            <!--md-items="problem in queryProblems(searchProblem)"-->
+                            <!--md-item-text="problem.problem_name"-->
+                            <!--md-autoselect="true"-->
+                            <!--md-select-on-match="true"-->
+                            <!--md-no-cache="true"-->
+                            <!--md-require-match="true"-->
+                            <!--placeholder="Select problems">-->
+                        <!--<span md-highlight-text="searchText">{{problem.problem_name}}</span>-->
+                    <!--</md-autocomplete>-->
+                    <!--<md-chip-template>-->
+                        <!--<span>{{$chip.problem_name}}</span>-->
+                    <!--</md-chip-template>-->
+                <!--</md-chips>-->
 
 
             </div>
-
 
             <div>
                 <md-button ng-disabled="jobCardForm.$invalid" class="pull-right md-raised md-button" type="submit">

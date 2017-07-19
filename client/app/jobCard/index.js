@@ -12,16 +12,21 @@ export default angular.module('crmApp.jobCard', ['crmApp.auth', 'ui.router', 'sm
 
 function JobCardSetUpController($scope, vehicleService, employerService, problemService, $filter, $timeout, $q, $log) {
     var self = this;
+
+    self.searchEmployee = null;
+    self.searchProblem = null;
+
+    self.selectedEmployees = null;
+    self.selectedProblems = null;
+
     self.vehicles = vehicleService.query();
     self.employees = employerService.query();
     self.problems = problemService.query();
 
     // console.log(self.vehicles);
-    console.log(self.employees);
+    // console.log(self.employees);
     // console.log(self.problems);
 
-    self.simulateQuery = false;
-    self.isDisabled = false;
 
     self.querySearch = querySearch;
     self.selectedItemChange = selectedItemChange;
@@ -56,7 +61,7 @@ function JobCardSetUpController($scope, vehicleService, employerService, problem
         };
 
     }
-    
+
 
     $scope.queryEmployees = function (search) {
         var firstPass = $filter('filter')(self.employees, search);
@@ -65,7 +70,7 @@ function JobCardSetUpController($scope, vehicleService, employerService, problem
         });
     };
 
-    $scope.addGroup = function (employee) {
+    $scope.addEmployees = function (employee) {
         $scope.selectedEmployees.push(employee.employee_name);
     };
 
@@ -77,4 +82,17 @@ function JobCardSetUpController($scope, vehicleService, employerService, problem
         $scope.availablEmployees = $scope.queryEmployees('');
 
     });
+
+    
+    $scope.queryProblems = function (search) {
+        var firstPass = $filter('filter')(self.problems, search);
+        return firstPass.filter(function (problem) {
+            return $scope.selectedProblems.indexOf(problem) === -1;
+        });
+    };
+
+    $scope.problems = self.problems;
+
+    $scope.selectedProblems = [self.problems[0]];
+
 }
