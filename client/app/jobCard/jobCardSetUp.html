@@ -93,23 +93,25 @@
                 </md-autocomplete>
 
                 <md-chips flex="30"
-                          ng-model="selectedGroups"
+                          ng-model="selectedEmployees"
                           md-autocomplete-snap
                           md-require-match="true">
                     <md-autocomplete
                             md-search-text="searchText"
-                            md-items="item in queryGroups(searchText)"
-                            md-item-text="item"
+                            md-items="employee in queryEmployees(searchText)"
+                            md-item-text="employee.employee_name"
                             md-autoselect="true"
                             md-select-on-match="true"
                             md-no-cache="true"
                             md-require-match="true"
-                            placeholder="Select mistry">
-                        <span md-highlight-text="searchText">{{item}}</span>
+                            placeholder="Select Mistry">
+                        <span md-highlight-text="searchText">{{employee.employee_name}}</span>
                     </md-autocomplete>
+
                     <md-chip-template>
-                        <span>{{$chip}}</span>
+                        <span>{{$chip.employee_name}}</span>
                     </md-chip-template>
+
                 </md-chips>
 
                 <md-chips flex="30"

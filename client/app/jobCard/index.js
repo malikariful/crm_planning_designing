@@ -10,10 +10,15 @@ export default angular.module('crmApp.jobCard', ['crmApp.auth', 'ui.router', 'sm
     .name;
 
 
-function JobCardSetUpController($scope, vehicleService, $filter, $timeout, $q, $log) {
+function JobCardSetUpController($scope, vehicleService, employerService, problemService, $filter, $timeout, $q, $log) {
     var self = this;
     self.vehicles = vehicleService.query();
-    console.log(self.vehicles);
+    self.employees = employerService.query();
+    self.problems = problemService.query();
+
+    // console.log(self.vehicles);
+    console.log(self.employees);
+    // console.log(self.problems);
 
     self.simulateQuery = false;
     self.isDisabled = false;
@@ -45,38 +50,31 @@ function JobCardSetUpController($scope, vehicleService, $filter, $timeout, $q, $
         $log.info(selectedVehicle);
     }
 
-
     function createFilterFor(query) {
         return function filterFn(vehicle) {
             return (vehicle.Vehicle_model.vehicle_model_name.indexOf(query) === 0);
         };
 
     }
+    
 
-
-    var allGroups = [
-        'one',
-        'two',
-        'three'
-    ];
-
-    $scope.queryGroups = function (search) {
-        var firstPass = $filter('filter')(allGroups, search);
-
-        return firstPass.filter(function (item) {
-            return $scope.selectedGroups.indexOf(item) === -1;
+    $scope.queryEmployees = function (search) {
+        var firstPass = $filter('filter')(self.employees, search);
+        return firstPass.filter(function (employee) {
+            return $scope.selectedEmployees.indexOf(employee) === -1;
         });
     };
 
-    $scope.addGroup = function (group) {
-        $scope.selectedGroups.push(group);
+    $scope.addGroup = function (employee) {
+        $scope.selectedEmployees.push(employee.employee_name);
     };
 
-    $scope.allGroups = allGroups;
+    $scope.employees = self.employees;
 
-    $scope.selectedGroups = [allGroups[0]];
+    $scope.selectedEmployees = [self.employees[0]];
 
-    $scope.$watchCollection('selectedGroups', function () {
-        $scope.availableGroups = $scope.queryGroups('');
+    $scope.$watchCollection('selectedEmployees', function () {
+        $scope.availablEmployees = $scope.queryEmployees('');
+
     });
 }
