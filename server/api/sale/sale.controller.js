@@ -149,7 +149,7 @@ export function create(req, res) {
 
             sqldb.sequelize.query('INSERT INTO `EmiDetails` (`SaleId`,`payable_money`, `date_of_the_payment`, `interest_rate`) VALUES (:SaleId, :payable_money, :date_of_the_payment, :interest_rate)',
                 {
-                    replacements: {SaleId: SaleId, payable_money: payable_money, date_of_the_payment: date_of_the_payment,interest_rate: interest_rate, },
+                    replacements: {SaleId: SaleId, payable_money: payable_money, date_of_the_payment: date_of_the_payment,interest_rate: interest_rate},
                     type: sqldb.sequelize.QueryTypes.INSERT
                 });
 
