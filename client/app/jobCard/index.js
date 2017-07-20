@@ -10,14 +10,14 @@ export default angular.module('crmApp.jobCard', ['crmApp.auth', 'ui.router', 'sm
     .name;
 
 
-function JobCardSetUpController($scope, vehicleService, employerService, problemService, $filter, $timeout, $q, $log) {
+function JobCardSetUpController($scope, jobCardService, vehicleService, employerService, problemService, $filter, $timeout, $q, $log, $state, $mdDialog) {
     var self = this;
 
     self.searchEmployee = null;
     self.searchProblem = null;
 
-    self.selectedEmployees = null;
-    self.selectedProblems = null;
+    self.selectedEmployees = [];
+    self.selectedProblems = [];
 
     self.vehicles = vehicleService.query();
     self.employees = employerService.query();
@@ -52,7 +52,10 @@ function JobCardSetUpController($scope, vehicleService, employerService, problem
     }
 
     function selectedItemChange(selectedVehicle) {
-        $log.info(selectedVehicle);
+        if(selectedVehicle){
+            self.selectedVehicleMasterId = selectedVehicle._id;
+        }
+        // $log.info(selectedVehicle._id);
     }
 
     function createFilterFor(query) {
@@ -61,7 +64,6 @@ function JobCardSetUpController($scope, vehicleService, employerService, problem
         };
 
     }
-
 
     $scope.queryEmployees = function (search) {
         var firstPass = $filter('filter')(self.employees, search);
@@ -80,10 +82,8 @@ function JobCardSetUpController($scope, vehicleService, employerService, problem
 
     $scope.$watchCollection('selectedEmployees', function () {
         $scope.availablEmployees = $scope.queryEmployees('');
-
     });
 
-    
     $scope.queryProblems = function (search) {
         var firstPass = $filter('filter')(self.problems, search);
         return firstPass.filter(function (problem) {
@@ -95,4 +95,55 @@ function JobCardSetUpController($scope, vehicleService, employerService, problem
 
     $scope.selectedProblems = [self.problems[0]];
 
+    $scope.createJobCard= function (jobCardForm) {
+
+        let employeesId = self.selectedEmployees.map(function (employee) {
+            return employee._id
+        });
+
+        let problemsId = self.selectedProblems.map(function (problem) {
+            return problem._id
+
+        });
+
+        if (jobCardForm.$valid) {
+
+            let newJobCard = {
+                job_name: $scope.jobCard.name,
+                job_reason: $scope.jobCard.reason,
+                job_terms: $scope.jobCard.terms,
+                job_fee: $scope.jobCard.fee,
+                VehicleMasterId: self.selectedVehicleMasterId,
+                employeeId: employeesId,
+                problemId: problemsId
+            };
+
+            jobCardService.save(newJobCard, function(res) {
+                if (res.$resolved) {
+                    console.log("res saving obj");
+                    console.log(res);
+                    $scope.showAlert(res);
+                }
+            });
+
+        }
+    }
+
+    $scope.showAlert = function(res) {
+        alert = $mdDialog.alert({
+            title: 'Job has created successfully',
+            textContent: '',
+            ok: 'Close'
+        });
+
+        $mdDialog
+            .show(alert)
+            .finally(function () {
+                alert = undefined;
+            });
+        $state.go('jobCard');
+
+    }
 }
+
+
