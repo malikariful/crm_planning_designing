@@ -7,8 +7,30 @@ export default angular.module('crmApp.jobCard', ['crmApp.auth', 'ui.router', 'sm
     .config(routes)
     .controller('JobCardSetUpController', JobCardSetUpController)
     .controller('JobCardController', JobCardController)
+    .directive('minItems', minItems)
     .name;
 
+function minItems() {
+    return {
+        require: 'ngModel',
+        restrict: 'A',
+        link: function(scope, element, attr, ctrl) {
+            var minItems = 0;
+
+            attr.$observe('minItems', function(value) {
+                console.log('value');
+                console.log(value);
+                minItems = parseInt(value, 10) || 0;
+                ctrl.$validate();
+            });
+
+            ctrl.$validators['min-items'] = function(modelValue, viewValue) {
+                return viewValue.length >= minItems;
+            };
+
+        }
+    };
+}
 
 function JobCardSetUpController($scope, jobCardService, vehicleService, employerService, problemService, $filter, $timeout, $q, $log, $state, $mdDialog) {
     var self = this;
@@ -23,7 +45,7 @@ function JobCardSetUpController($scope, jobCardService, vehicleService, employer
     self.employees = employerService.query();
     self.problems = problemService.query();
 
-    // console.log(self.vehicles);
+    console.log(self.vehicles);
     // console.log(self.employees);
     // console.log(self.problems);
 
@@ -55,12 +77,11 @@ function JobCardSetUpController($scope, jobCardService, vehicleService, employer
         if(selectedVehicle){
             self.selectedVehicleMasterId = selectedVehicle._id;
         }
-        // $log.info(selectedVehicle._id);
     }
 
     function createFilterFor(query) {
         return function filterFn(vehicle) {
-            return (vehicle.Vehicle_model.vehicle_model_name.indexOf(query) === 0);
+            return (vehicle.vehicle_master_engine_no.indexOf(query) === 0);
         };
 
     }

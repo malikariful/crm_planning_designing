@@ -72,6 +72,7 @@
             <div layout="row">
 
                 <md-autocomplete style="margin: 8px 2px 0px 0px"
+                                 required
                                  flex="30"
                                  md-no-cache="jobCardSetUp.noCache"
                                  md-selected-item="jobCardSetUp.selectedItem"
@@ -79,11 +80,11 @@
                                  md-search-text="jobCardSetUp.searchText"
                                  md-selected-item-change="jobCardSetUp.selectedItemChange(item)"
                                  md-items="item in jobCardSetUp.querySearch(jobCardSetUp.searchText)"
-                                 md-item-text="item.Vehicle_model.vehicle_model_name"
+                                 md-item-text="item.vehicle_master_engine_no"
                                  md-min-length="0"
-                                 placeholder="Select Motorcycle">
+                                 placeholder="Enter motorcycle engine no">
                     <md-item-template>
-                        <span md-highlight-text="jobCardSetUp.searchText" md-highlight-flags="^i">{{item.Vehicle_model.vehicle_model_name}}</span>
+                        <span md-highlight-text="jobCardSetUp.searchText" md-highlight-flags="^i">{{item.vehicle_master_engine_no}}</span>
                     </md-item-template>
 
                     <md-not-found>
@@ -133,6 +134,9 @@
                         <span>{{$chip.problem_name}}</span>
                     </md-chip-template>
                 </md-chips>
+
+
+
 
 
             </div>
