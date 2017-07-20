@@ -28,7 +28,7 @@
         <tbody>
         <tr ng-repeat="row in displayedCollection">
             <td>{{row.job_name}}</td>
-            <td ng-click="jobCard.changeJobStatus($event, row.job_status);"><span class="badge badge-info">{{row.job_status}}</span></td>
+            <td ng-click="jobCard.changeJobStatus($event, row.job_status);"><span class="badge badge-info">{{row.job_status || 'unfinished'}}</span></td>
             <td>{{row.job_fee}}</td>
             <td>{{row.Vehicle_master.vehicle_master_engine_no}}</td>
             <td>{{row.Vehicle_master.number_of_servicing}}</td>

@@ -79,7 +79,7 @@ const salesDetails = db.sequelize.define('salesDetails', {
     }
 });
 
-const emiDetails = db.sequelize.define('emiDetails', {
+const emiDetails = db.sequelize.define('EmiDetails', {
     _id: {
         type: db.Sequelize.INTEGER(11),
         allowNull: false,
@@ -88,7 +88,9 @@ const emiDetails = db.sequelize.define('emiDetails', {
     },
     is_emi_complete: {
         type: db.Sequelize.BOOLEAN,
-        allowNull: false
+        allowNull: true,
+        defaultValue:false
+
     },
     //Initially it is equivalent salesDetails due_payment
     payable_money: {
@@ -101,7 +103,9 @@ const emiDetails = db.sequelize.define('emiDetails', {
     },
     payment_slot: {
         type: db.Sequelize.INTEGER(12),
-        allowNull: false
+        allowNull: true,
+        defaultValue: 1
+
     },
     interest_rate: {
         type: db.Sequelize.INTEGER(12),
@@ -162,14 +166,16 @@ db.Sale.belongsTo(db.Customer);
 
 db.Area.hasMany(db.Customer);
 
-
-
-
 db.Sale.belongsToMany(db.Vehicle, {through: 'salesDetails'}, { onDelete: 'cascade', hooks: true });
+
 db.Vehicle.belongsToMany(db.Sale, {through: 'salesDetails'});
 
 salesDetails.belongsTo(db.Sale);
+
 salesDetails.belongsTo(db.Vehicle);
+
+db.EmiDetails.belongsTo(db.Sale);
+
 
 db.User.belongsToMany(db.Role, {through: 'UserRole'});
 db.Role.belongsToMany(db.User, {through: 'UserRole'});

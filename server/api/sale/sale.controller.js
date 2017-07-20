@@ -115,6 +115,7 @@ export function show(req, res) {
 
 // Creates a new Sale in the DB
 export function create(req, res) {
+
     var vehicleId;
     var customerId;
     return sqldb.sequelize.transaction(function (t) {
@@ -137,10 +138,21 @@ export function create(req, res) {
         });
     })
         .then(function (sale) {
+            let SaleId = sale.dataValues._id;
+            let payable_money = req.body.EmiDetails.payable_money;
+            let date_of_the_payment = req.body.EmiDetails.date_of_the_payment;
+            let interest_rate = req.body.EmiDetails.interest_rate;
+
             req.body.SalesDetails.SaleId = sale.dataValues._id;
             req.body.SalesDetails.VehicleMasterId = vehicleId;
 
-            console.log(req.body.SalesDetails);
+
+            sqldb.sequelize.query('INSERT INTO `EmiDetails` (`SaleId`,`payable_money`, `date_of_the_payment`, `interest_rate`) VALUES (:SaleId, :payable_money, :date_of_the_payment, :interest_rate)',
+                {
+                    replacements: {SaleId: SaleId, payable_money: payable_money, date_of_the_payment: date_of_the_payment,interest_rate: interest_rate, },
+                    type: sqldb.sequelize.QueryTypes.INSERT
+                });
+
 
             return SalesDetails.create(req.body.SalesDetails);
         })

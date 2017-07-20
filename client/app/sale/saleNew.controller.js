@@ -149,7 +149,14 @@ export default class SaleNewController {
                 credit_start_date: this.$scope.salesDetails.creditStartDate || null,
                 credit_end_date: this.$scope.salesDetails.creditEndDate || null
             };
-            
+
+            this.saleService.EmiDetails = {
+                payable_money: (this.$scope.salesDetails.price - this.$scope.salesDetails.discount) - this.$scope.salesDetails.downPayment,
+                interest_rate: this.$scope.emiDetails.interestRate,
+                date_of_the_payment: this.$scope.salesDetails.creditEndDate
+            };
+
+
             console.log('Prepared Data');
             console.log(this.saleService);
 
